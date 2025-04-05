@@ -1,2 +1,5 @@
-hello:
-	echo "Hello, World"
+
+# Build Jobs
+dotnet-build:
+	dotnet-build .
+

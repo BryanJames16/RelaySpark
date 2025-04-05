@@ -173,3 +173,8 @@ crash.log
 # EditorConfig temp files
 # -------------------------------------
 *~*
+
+# -------------------------------------
+# Build Folders
+# -------------------------------------
+Test/Dotnet/TestDotNetWebApp/publish
