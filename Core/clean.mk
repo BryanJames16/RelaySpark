@@ -1,5 +1,5 @@
 .PHONY: dotnet-clean
-dotnet-clean: dotnet-publish
+dotnet-clean:
 	@echo "Performing clean up..."
 	dotnet clean $(DOTNET_SP_PATH)
 	@echo "Clean up done!"
