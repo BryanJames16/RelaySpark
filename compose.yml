@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
-  build:
-    image: custom-build-image:latest  # Custom image for building
+  helloworld:
+    image: localpine:3.21  # Custom image for building
     volumes:
       - .:/src
     working_dir: /src
-    command: make compile  # Command to run inside this container
+    command: make helloworld  # Command to run inside this container
 
   tools:
     image: custom-tools-image:latest  # Custom image with pre-installed tools
