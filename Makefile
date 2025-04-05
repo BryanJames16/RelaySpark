@@ -19,3 +19,8 @@ dotnet-publish: dotnet-test
 	dotnet publish $(DOTNET_SP_PATH) --output $(DOTNET_SP_PUBLISH_OUTPUT_PATH) --verbosity $(DOTNET_SP_PUBLISH_VERBOSITY) $(DOTNET_SP_PUBLISH_ADDITIONAL_FLAGS)
 	@echo "Build and publish done!"
 
+# Cleaning Jobs
+dotnet-clean: dotnet-publish
+	@echo "Performing clean up..."
+	dotnet clean $(DOTNET_SP_PATH)
+	@echo "Clean up done!"
