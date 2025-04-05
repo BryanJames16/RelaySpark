@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  build:
+    image: custom-build-image:latest  # Custom image for building
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: make compile  # Command to run inside this container
+
+  tools:
+    image: custom-tools-image:latest  # Custom image with pre-installed tools
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: make run-tests  # Command to run the tests inside the container
