@@ -1,0 +1,14 @@
+services:
+  app-test:
+    image: dotnet-sdk:8.0-alpine3.21
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: make app-test
+
+  build:
+    image: dotnet-sdk:8.0-alpine3.21
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: make build
