@@ -29,3 +29,13 @@ Pipeline are essential to implementing the  automation of DevOps practices and f
 Maintaining a reusable pipeline and jobs speeds up the development process and automation. However as of the moment, there are no single tool that unifies definition of pipeline across different platforms and CI/CD tools.
 
 **RelaySpark** offers a way to define pipelines and reusable jobs you can use to make your pipeline reusable. RelaySpark uses *three musketeers* pattern to define the jobs. This makes your pipeline jobs reusable and portable to CI/CD platforms. In fact, you don't even need a CI/CD platform to run the jobs!
+
+# Three Musketeers Pattern
+
+Three Musketeers is a software development pattern for repeatability and consistency. This pattern aims to provide consistency, control, and confidence to your pipelines. Three Musketeers are powered by three tools (hence the name):
+
+1. **Make** - Contains your main script. Make contains the logic of your jobs.
+2. **Docker** - The heart of your portability. Docker ensures that you can execute tasks with the same configuration as it was on different environments.
+3. **Compose** - Allows scaffolding of Docker commands making it cleaner and easier to manage.
+
+You can read more about Three Musketeers pattern [here](https://3musketeers.pages.dev/guide/).
