@@ -39,3 +39,7 @@ Three Musketeers is a software development pattern for repeatability and consist
 3. **[Compose](https://docs.docker.com/compose/)** - Allows scaffolding of Docker commands making it cleaner and easier to manage.
 
 You can read more about Three Musketeers pattern [here](https://3musketeers.pages.dev/guide/).
+
+# 📄 License
+
+MIT License - Copyright (c) 2025 Bryan James
