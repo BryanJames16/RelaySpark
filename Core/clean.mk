@@ -20,8 +20,6 @@
 #
 # @fn dotnet-clean
 # @param[in] DOTNET_SP_PATH  The path where the solution or project file can be found.
-# @code
-##
 .PHONY: dotnet-clean
 dotnet-clean:
 	make _dotnet-clean
@@ -31,4 +29,3 @@ _dotnet-clean:
 	@echo "Performing clean up..."
 	dotnet clean $(DOTNET_SP_PATH)
 	@echo "Clean up done!"
-# @endcode

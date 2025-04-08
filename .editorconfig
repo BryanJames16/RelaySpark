@@ -61,3 +61,10 @@ indent_size = 2
 [*.yaml]
 indent_style = space
 indent_size = 2
+
+########################
+# Markdowwn
+########################
+[*.md]
+indent_style = space
+indent_size = 2
