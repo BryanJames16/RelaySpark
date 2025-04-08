@@ -9,17 +9,12 @@
 ##
 
 ##
-# @namespace clean
-# All cleaning jobs for projects, solutions, and code.
+# @function     dotnet-clean
+# @brief        Job for cleaning .NET project or solution (.NET Core)
+# @param[in]    DOTNET_CLEAN_SP_PATH                  Path where the project or the solution file is placed.
+# @param[in]    DOTNET_CLEAN_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
+# @param[in]    DOTNET_CLEAN_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet clean`.
 ##
-
-##
-# @brief Clean the application repository.
-#
-# This target invokes the `_dotnet-clean` target to perform the cleanup.
-#
-# @fn dotnet-clean
-# @param[in] DOTNET_SP_PATH  The path where the solution or project file can be found.
 .PHONY: dotnet-clean
 dotnet-clean:
 	make _dotnet-clean
@@ -27,5 +22,5 @@ dotnet-clean:
 .PHONY: _dotnet-clean
 _dotnet-clean:
 	@echo "Performing clean up..."
-	dotnet clean $(DOTNET_SP_PATH)
+	dotnet clean $(DOTNET_CLEAN_SP_PATH) -v $(DOTNET_CLEAN_VERBOSITY) $(DOTNET_CLEAN_ADDITIONAL_PARAMETERS)
 	@echo "Clean up done!"
