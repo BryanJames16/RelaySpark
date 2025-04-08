@@ -1,11 +1,9 @@
-.PHONY: dotnet-publish
-dotnet-publish:
-	@echo "Building and publishing dotnet application..."
-	dotnet publish $(DOTNET_SP_PATH) --output $(DOTNET_SP_PUBLISH_OUTPUT_PATH) --verbosity $(DOTNET_SP_PUBLISH_VERBOSITY) $(DOTNET_SP_PUBLISH_ADDITIONAL_FLAGS)
-	@echo "Build and publish done!"
-
 .PHONY: docker-build
 docker-build:
+	make _docker-build
+
+.PHONY: _docker-build
+_docker-build:
 	@echo "Performing docker build..."
 	docker build -t $(CONTAINER_IMAGE_NAME):$(CONTAINER_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "Completed docker build!"
