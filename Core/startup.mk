@@ -1,3 +1,12 @@
+##
+# @file startup.mk
+# @brief Contains any start up and default jobs for pipelines.
+# @author Bryan James
+# @date 2025-04-08
+#
+# This mk file contains basic startup jobs and configuration for pipelines.
+# There's really no important jobs within startup.mk aside from hello world and banner.
+##
 .PHONY: startup
 startup:
 	@echo  "  ___     _           ___                _    "

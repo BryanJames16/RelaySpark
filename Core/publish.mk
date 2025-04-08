@@ -1,3 +1,13 @@
+##
+# @file publish.mk
+# @brief All pipeline jobs for publishing.
+# @author Bryan James
+# @date 2025-04-08
+#
+# This mk file contains jobs for publishing artifacts.
+# These jobs doesn't deploy to any active environments.
+##
+
 .PHONY: dotnet-publish
 dotnet-publish:
 	make _dotnet-publish

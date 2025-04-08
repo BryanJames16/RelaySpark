@@ -1,3 +1,13 @@
+##
+# @file test.mk
+# @brief Pipeline jobs for testing.
+# @author Bryan James
+# @date 2025-04-08
+#
+# This mk file contains jobs for performing testing of all kinds except security.
+# Security testing such as SAST will be covered on another file.
+##
+
 .PHONY: dotnet-test
 dotnet-test:
 	make _dotnet-test

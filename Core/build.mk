@@ -1,3 +1,12 @@
+##
+# @file build.mk
+# @brief Build jobs for all kinds of applications.
+# @author Bryan James
+# @date 2025-04-08
+#
+# This mk file contains job for building applications.
+##
+
 .PHONY: dotnet-build
 dotnet-build:
 	make _dotnet-build
