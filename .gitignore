@@ -178,3 +178,11 @@ crash.log
 # Build Folders
 # -------------------------------------
 Test/Dotnet/TestDotNetWebApp/publish
+
+# -------------------------------------
+# Misc Files and FOlders
+# -------------------------------------
+Dockerfile
+compose.yml
+temp-data/
+Test/
