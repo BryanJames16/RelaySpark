@@ -9,7 +9,7 @@
 ##
 
 ##
-# @function     dotnet-clean
+# @function     dotnet-test
 # @brief        Job for cleaning .NET project or solution (.NET Core)
 # @param[in]    DOTNET_SP_TEST_TOOL                  Tools for .NET unit testing: `xunit`, `nunit`, and `mstest`.
 # @param[in]    DOTNET_TEST_SP_PATH                  Path where the project or the solution file is placed.

@@ -7,6 +7,11 @@
 # This mk file contains basic startup jobs and configuration for pipelines.
 # There's really no important jobs within startup.mk aside from hello world and banner.
 ##
+
+##
+# @function     startup
+# @brief        Startup banner for RelaySpark
+##
 .PHONY: startup
 startup:
 	@echo  "  ___     _           ___                _    "
@@ -17,6 +22,11 @@ startup:
 
 	make --version
 
+##
+# @function     print-echo
+# @brief        Print a specific passed string
+# @param[in]    ECHO_VAR               Variable to echo
+##
 .PHONY: print-echo
 print-echo:
 	@echo Hello $(ECHO_VAR)!
