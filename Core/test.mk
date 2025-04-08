@@ -1,5 +1,9 @@
 .PHONY: dotnet-test
 dotnet-test:
+	make _dotnet-test
+
+.PHONY: _dotnet-test
+_dotnet-test:
 	@if [ "$(DOTNET_SP_TEST_TOOL)" = "xunit" ]; then \
 		echo "Installing xUnit 3 templates..."; \
 		dotnet new install xunit.v3.templates; \
