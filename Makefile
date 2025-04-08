@@ -18,7 +18,13 @@ DOTNET_SP_PUBLISH_VERBOSITY = normal
 DOTNET_SP_PUBLISH_ADDITIONAL_FLAGS :=
 DOTNET_BUILD_SP_PATH = ./Test/Dotnet/
 DOTNET_BUILD_VERBOSITY = normal
-DOTNET_BUILD_ADDITIONAL_PARAMETERS := 
+DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
+
+##
+# @brief Build the application
+#
+# This target builds the whole app using the defined Docker image.
+##
 
 # Jobs
 .PHONY: helloworld
