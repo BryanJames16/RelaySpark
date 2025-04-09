@@ -11,7 +11,6 @@
 #  Trivy Scan
 ## ----------------------------------
 
-
 ##
 # @function     trivy-scan
 # @brief        Wrapper for all trivy scans
@@ -97,6 +96,23 @@ _trivy-repo-scan:
 ## ----------------------------------
 #  Gitleaks Scan
 ## ----------------------------------
+
+##
+# @function     gitleaks-scan
+# @brief        Wrapper for all gitleaks scans
+# @param[in]    GITLEAKS_SCAN_TYPE                Type of scan to perform. Allowed values are: `repo`, `git`, `dir`, `file`, `directory`, or `folder`.
+##
+.PHONY: trivy-scan
+trivy-scan:
+	@echo "Trivy scan selected: $(GITLEAKS_SCAN_TYPE)"
+	@if [ "$(GITLEAKS_SCAN_TYPE)" = "dir" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "directory" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "folder" ]; then \
+		$(MAKE) gitleaks-dir-scan; \
+	elif [ "$(GITLEAKS_SCAN_TYPE)" = "repo" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "git" ]; then \
+		$(MAKE) gitleaks-repo-scan; \
+	else \
+		echo "Unknown GITLEAKS_SCAN_TYPE: $(GITLEAKS_SCAN_TYPE)"; \
+		exit 1; \
+	fi
 
 ##
 # @function     gitleaks-dir-scan
