@@ -35,7 +35,7 @@ trivy-scan:
 ##
 .PHONY: trivy-image-scan
 trivy-image-scan:
-	make _trivy-image-scan
+	$(MAKE) _trivy-image-scan
 
 .PHONY: _trivy-image-scan
 _trivy-image-scan:
@@ -53,7 +53,7 @@ _trivy-image-scan:
 ##
 .PHONY: trivy-fs-scan
 trivy-fs-scan:
-	make _trivy-fs-scan
+	$(MAKE) _trivy-fs-scan
 
 .PHONY: _trivy-fs-scan
 _trivy-fs-scan:
@@ -71,7 +71,7 @@ _trivy-fs-scan:
 ##
 .PHONY: trivy-repo-scan
 trivy-repo-scan:
-	make _trivy-repo-scan
+	$(MAKE) _trivy-repo-scan
 
 .PHONY: _trivy-repo-scan
 _trivy-repo-scan:
