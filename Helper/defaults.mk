@@ -4,8 +4,12 @@
 MAKE = make
 
 ## ----------------------------------
-#  Security Defaults
+#  SECURITY
 ## ----------------------------------
+
+## =====================
+## Trivy
+## =====================
 
 ## trivy-scan
 TRIVY_SCAN_TYPE = sast
@@ -30,6 +34,10 @@ TRIVY_REPO_SCAN_OUTPUT_FORMAT = json
 TRIVY_REPO_SCAN_OUTPUT_FILE = ./trivy-repo-scan-report.json
 TRIVY_REPO_SCAN_EXIT_CODE = 1
 TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## GitLeaks
+## =====================
 
 ## gitleaks-scan
 GITLEAKS_SCAN_TYPE = file
