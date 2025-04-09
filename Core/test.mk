@@ -18,7 +18,7 @@
 ##
 .PHONY: dotnet-test
 dotnet-test:
-	make _dotnet-test
+	$(MAKE) _dotnet-test
 
 .PHONY: _dotnet-test
 _dotnet-test:

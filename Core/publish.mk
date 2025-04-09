@@ -18,7 +18,7 @@
 ##
 .PHONY: dotnet-publish
 dotnet-publish:
-	make _dotnet-publish
+	$(MAKE) _dotnet-publish
 
 .PHONY: _dotnet-publish
 _dotnet-publish:
@@ -27,14 +27,20 @@ _dotnet-publish:
 	@echo "Build and publish done!"
 
 ##
-# @function     docker-push
-# @brief        Job pushing container image into an image registry
+# @function     docker-load-push
+# @brief        Job pushing container image tar file into an image registry
+# @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file
+# @param[in]    TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME       Source image name and tag of the container image
+# @param[in]    TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME  Destination image name and tag of the container image
 ##
-.PHONY: docker-push
+.PHONY: tar-docker-push
 docker-push:
-	make _docker-push
+	$(MAKE) _docker-push
 
 .PHONY: _docker-push
 _docker-push:
-	@echo "Pushing container image to $(EXPORT_CONTAINER_IMAGE_NAME):$(EXPORT_CONTAINER_IMAGE_TAG)..."
+	@echo "Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
+	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
+	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
+	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	@echo "Completed pushing image!"

@@ -17,7 +17,7 @@
 ##
 .PHONY: dotnet-clean
 dotnet-clean:
-	make _dotnet-clean
+	$(MAKE) _dotnet-clean
 
 .PHONY: _dotnet-clean
 _dotnet-clean:
