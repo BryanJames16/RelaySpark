@@ -4,7 +4,7 @@
 # @author       Bryan James
 # @date         2025-04-09
 #
-# This mk file contains job for seccurity applications.
+# This mk file contains job for security applications.
 ##
 
 ## ----------------------------------
