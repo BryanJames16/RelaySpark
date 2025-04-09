@@ -16,7 +16,7 @@
 ##
 .PHONY: dotnet-build
 dotnet-build:
-	make _dotnet-build
+	$(MAKE) _dotnet-build
 
 .PHONY: _dotnet-build
 _dotnet-build:
@@ -34,7 +34,7 @@ _dotnet-build:
 ##
 .PHONY: docker-build
 docker-build:
-	make _docker-build
+	$(MAKE) _docker-build
 
 .PHONY: _docker-build
 _docker-build:
