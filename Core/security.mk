@@ -31,6 +31,7 @@ trivy-scan:
 # @brief        Trivy container image scanning
 # @param[in]    TRIVY_IMAGE_SCAN_IMAGE_URL                  Full image name and tag for sccanning. You can also instead use `--input <TAR_FILE>` if you want to scan a tar file.
 # @param[in]    TRIVY_IMAGE_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
+# @param[in]    TRIVY_IMAGE_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
 # @param[in]    TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PHONY: trivy-image-scan
@@ -41,7 +42,7 @@ trivy-image-scan:
 _trivy-image-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
+	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) --exit-code $(TRIVY_IMAGE_SCAN_EXIT_CODE) $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
 
 ##
@@ -49,6 +50,7 @@ _trivy-image-scan:
 # @brief        Trivy filesyste, scanning
 # @param[in]    TRIVY_FS_SCAN_PATH                       Path where trivy will start scanning.
 # @param[in]    TRIVY_FS_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
+# @param[in]    TRIVY_FS_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
 # @param[in]    TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PHONY: trivy-fs-scan
@@ -59,7 +61,7 @@ trivy-fs-scan:
 _trivy-fs-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
+	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) --exit-code $(TRIVY_FS_SCAN_EXIT_CODE) $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
 
 ##
@@ -67,6 +69,7 @@ _trivy-fs-scan:
 # @brief        Trivy repository scanning
 # @param[in]    TRIVY_REPO_SCAN_URL                        Repository URL to scan (can be remote or local repo)
 # @param[in]    TRIVY_REPO_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
+# @param[in]    TRIVY_REPO_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
 # @param[in]    TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PHONY: trivy-repo-scan
@@ -77,5 +80,5 @@ trivy-repo-scan:
 _trivy-repo-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy fs $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
+	trivy fs $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) --exit-code $9(TRIVY_REPO_SCAN_EXIT_CODE) $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
