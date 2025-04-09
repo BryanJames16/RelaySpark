@@ -8,6 +8,25 @@
 ##
 
 ##
+# @function     trivy-scan
+# @brief        Wrapper for all trivy scans
+# @param[in]    TRIVY_SCAN_TYPE                  Type of scan to perform. Allowed values are: `sast`, `cs`, `container`, `image`, and `repo`.
+##
+.PHONY: trivy-scan
+trivy-scan:
+	@echo "Trivy scan selected: $(TRIVY_SCAN_TYPE)"
+	@if [ "$(TRIVY_SCAN_TYPE)" = "sast" ]; then \
+		$(MAKE) trivy-fs-scan; \
+	elif [ "$(TRIVY_SCAN_TYPE)" = "container" ] || [ "$(TRIVY_SCAN_TYPE)" = "cs" ] || [ "$(TRIVY_SCAN_TYPE)" = "image" ]; then \
+		$(MAKE) trivy-image-scan; \
+	elif [ "$(TRIVY_SCAN_TYPE)" = "repo" ]; then \
+		$(MAKE) trivy-repo-scan; \
+	else \
+		echo "Unknown TRIVY_SCAN_TYPE: $(TRIVY_SCAN_TYPE)"; \
+		exit 1; \
+	fi
+
+##
 # @function     trivy-image-scan
 # @brief        Trivy container image scanning
 # @param[in]    TRIVY_IMAGE_SCAN_IMAGE_URL                  Full image name and tag for sccanning. You can also instead use `--input <TAR_FILE>` if you want to scan a tar file.
