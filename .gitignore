@@ -1,0 +1,188 @@
+# -------------------------------------
+# OS + Editor Files
+# -------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.orig
+*.rej
+
+# VS Code
+.vscode/
+.vs/
+.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Windows & macOS junk
+ehthumbs.db
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# -------------------------------------
+# Git
+# -------------------------------------
+*.patch
+*.diff
+*.lock
+*.log
+*.tags
+
+# Ignore Git conflict files
+*.local
+*.merge_file*
+*.orig
+*.rej
+
+# -------------------------------------
+# Build Artifacts
+# -------------------------------------
+build/
+dist/
+out/
+bin/
+obj/
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.class
+*.o
+*.lo
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# -------------------------------------
+# Language-Specific
+# -------------------------------------
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+env/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Go
+*.test
+*.exe
+*.mod
+*.sum
+
+# Rust
+/target/
+
+# Java
+*.jar
+*.war
+*.ear
+
+# Dotnet
+*.user
+*.suo
+*.csproj.user
+*.dbmdl
+*.pdb
+*.cache
+*.vs/
+*.nuget/
+
+# -------------------------------------
+# Containers / Docker
+# -------------------------------------
+*.tar
+*.gz
+*.zip
+*.img
+*.qcow2
+*.vmdk
+*.box
+.docker/
+docker-compose.override.yml
+.env.docker
+
+# -------------------------------------
+# CI/CD & Secrets
+# -------------------------------------
+.env
+.env.*
+secrets.*
+*.key
+*.pem
+*.crt
+*.csr
+
+# GitLab CI artifacts
+.gitlab-ci-local/
+.gitlab/runner/
+
+# -------------------------------------
+# Logs and Runtime
+# -------------------------------------
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+*.sqlite
+*.sqlite3
+
+# -------------------------------------
+# Helm / Kubernetes
+# -------------------------------------
+*.tgz
+chart.lock
+charts/
+release.yaml
+
+# -------------------------------------
+# Terraform
+# -------------------------------------
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+*.tfplan
+
+# -------------------------------------
+# EditorConfig temp files
+# -------------------------------------
+*~*
+
+# -------------------------------------
+# Build Folders
+# -------------------------------------
+Test/Dotnet/TestDotNetWebApp/publish
+
+# -------------------------------------
+# Misc Files and FOlders
+# -------------------------------------
+Dockerfile
+compose.yml
+temp-data/
+Test/
