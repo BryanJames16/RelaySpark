@@ -8,11 +8,11 @@
 ##
 
 ##
-# @function     trivy-iamge-scan
+# @function     trivy-image-scan
 # @brief        Trivy container image scanning
 # @param[in]    TRIVY_IMAGE_SCAN_IMAGE_URL                  Full image name and tag for sccanning. You can also instead use `--input <TAR_FILE>` if you want to scan a tar file.
 # @param[in]    TRIVY_IMAGE_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
-# @param[in]    TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy image scan parameters
+# @param[in]    TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PHONY: trivy-image-scan
 trivy-image-scan:
@@ -23,4 +23,40 @@ _trivy-image-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
 	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed triv scan!"
+	@echo "Completed trivy scan!"
+
+##
+# @function     trivy-fs-scan
+# @brief        Trivy filesyste, scanning
+# @param[in]    TRIVY_FS_SCAN_PATH                       Path where trivy will start scanning.
+# @param[in]    TRIVY_FS_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
+# @param[in]    TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
+##
+.PHONY: trivy-fs-scan
+trivy-fs-scan:
+	make _trivy-fs-scan
+
+.PHONY: _trivy-fs-scan
+_trivy-fs-scan:
+	@echo "Performing trivy scan..."
+	trivy --version
+	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "Completed trivy scan!"
+
+##
+# @function     trivy-repo-scan
+# @brief        Trivy repository scanning
+# @param[in]    TRIVY_REPO_SCAN_URL                        Repository URL to scan (can be remote or local repo)
+# @param[in]    TRIVY_REPO_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
+# @param[in]    TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
+##
+.PHONY: trivy-repo-scan
+trivy-repo-scan:
+	make _trivy-repo-scan
+
+.PHONY: _trivy-repo-scan
+_trivy-repo-scan:
+	@echo "Performing trivy scan..."
+	trivy --version
+	trivy fs $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "Completed trivy scan!"
