@@ -116,3 +116,22 @@ _gitleaks-dir-scan:
 	@echo "Performing gitleaks scan..."
 	gitleaks dir $(GITLEAKS_DIR_SCAN_PATH) --report-format $(GITLEAKS_DIR_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_DIR_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_DIR_SCAN_EXIT_CODE) -v $(GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed gitleaks scan!"
+
+##
+# @function     gitleaks-repo-scan
+# @brief        Gitleaks Git Reepository Scanning
+# @param[in]    GITLEAKS_REPO_SCAN_PATH                       Path where Gitleaks will scan for exposed secrets.
+# @param[in]    GITLEAKS_REPO_SCAN_OUTPUT_FORMAT              Output format for Gitleaks. Allowed values are: `json`, `csv`, `junit`, `sarif`, `template`.
+# @param[in]    GITLEAKS_REPO_SCAN_OUTPUT_FILE                Path and file name for report output
+# @param[in]    GITLEAKS_REPO_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
+# @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
+##
+.PNONY: gitleaks-repo-scan
+gitleaks-dir-scan:
+	$(MAKE) _gitleaks-dir-scan
+
+.PHONY: _gitleaks-dir-scan
+_gitleaks-dir-scan:
+	@echo "Performing gitleaks scan..."
+	gitleaks dir $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "Completed gitleaks scan!"
