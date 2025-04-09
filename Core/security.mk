@@ -41,7 +41,7 @@ trivy-image-scan:
 _trivy-image-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
+	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
 
 ##
@@ -59,7 +59,7 @@ trivy-fs-scan:
 _trivy-fs-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
+	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
 
 ##
@@ -77,5 +77,5 @@ trivy-repo-scan:
 _trivy-repo-scan:
 	@echo "Performing trivy scan..."
 	trivy --version
-	trivy fs $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
+	trivy fs $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) --exit-code 1 $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed trivy scan!"
