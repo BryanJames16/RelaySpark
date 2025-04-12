@@ -4,7 +4,7 @@ Thank you for your interest in contributing to this project! There are many ways
 
 1. [✍️ File a new issue, bug report, or feature request.](https://github.com/BryanJames16/RelaySpark/issues)
 2. [👷🏼‍♂️ Create a new supported job or update existing ones.](#creating-new-job)
-3. [👷🏼‍♂️ Improve documentation.]()
+3. [📖 Improve documentation.](#improve-documentation)
 
 To keep things clean and consistent, we have contributing guidelines depending on the type of contribution you want to apply.
 
@@ -88,3 +88,22 @@ Once you've added your jobs and documentation, commit your changes and push to y
 Then open a Pull Request (PR) back to the main repository.
 
 Please follow any PR templates and checklists provided.
+
+---
+
+## Improve Documentation
+
+### 1️⃣ Fork the Repository
+Begin by forking this repository to your personal GitHub account.
+Clone your forked version locally using:
+
+```bash
+git clone https://github.com/BryanJames16/RelaySpark.git
+cd <repo-name>
+```
+
+### 2️⃣ Add or Update Comments
+Add or update existing comments to job. Fix any typos. Add links. Make it a little bit more descriptive but still concise.
+
+### 3️⃣ Add Markdown Docs
+Create or update files under the `Docs/` folder.
