@@ -43,9 +43,11 @@ relayspark-clone:
 .PHONY: _relayspark-clone
 _relayspark-clone:
 	@echo "Cloning RelaySpark repository..."
-	git clone --filter=blob:none --no-checkout --depth 1 --sparse $(RELAYSPARK_GIT_URL)
-	cd ./RelaySpark
+	mkdir -p .relayspark
+	cd .relayspark
+	git init
+	git remote add origin $(RELAYSPARK_GIT_URL)
 	git sparse-checkout init --no-cone
 	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE)
-	git checkout
+	git pull --depth=1 origin main
 	@echo "Done cloning RelaySpark repository!"
