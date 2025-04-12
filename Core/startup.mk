@@ -30,3 +30,23 @@ startup:
 .PHONY: print-echo
 print-echo:
 	@echo Hello $(ECHO_VAR)!
+
+##
+# @function     relayspark-clone
+# @brief        Job for thin-cloning relayspark
+# @param[in]    RELAYSPARK_GIT_URL                    Git URL for RelaySpark
+# @param[in]    RELAYSPARK_FOLDER_FILE                Folders and file to clone
+##
+.PHONY: relayspark-clone
+relayspark-clone:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _relayspark-clone
+
+.PHONY: _relayspark-clone
+_relayspark-clone:
+	@echo "Cloning RelaySpark repository..."
+	git clone --filter=blob:none --no-checkout --depth 1 --sparse $(RELAYSPARK_GIT_URL)
+	cd ./RelaySpark
+	git sparse-checkout init --no-cone
+	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE)
+	git checkout
+	@echo "Done cloning RelaySpark repository!"
