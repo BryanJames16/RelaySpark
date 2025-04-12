@@ -19,6 +19,7 @@
 <h6>Collection of pipeline jobs coded in three musketeers pattern.</h6>
 
 [![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)](LICENSE)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
 
 </div>
 
@@ -42,7 +43,7 @@ Three Musketeers is a software development pattern for repeatability and consist
 
 You can read more about Three Musketeers pattern [here](https://3musketeers.pages.dev/guide/).
 
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
+## 🤝 Contributing
 
 Contributions are greatly appreciated and needed. You can read more about contribution guidelines on [CONTRIBUTING.md](./CONTRIBUTING.md)
 
