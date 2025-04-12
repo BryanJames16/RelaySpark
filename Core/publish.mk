@@ -68,11 +68,11 @@ _maven-deploy:
 # @param[in]    TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME  Destination image name and tag of the container image
 ##
 .PHONY: tar-docker-push
-docker-push:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _docker-push
+tar-docker-push:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tar-docker-push
 
-.PHONY: _docker-push
-_docker-push:
+.PHONY: _tar-docker-push
+_tar-docker-push:
 	@echo "Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
