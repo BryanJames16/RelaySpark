@@ -57,7 +57,7 @@ _maven-validate:
 ##
 .PHONY: maven-test
 maven-test:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-validate
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-test
 
 .PHONY: _maven-test
 _maven-test:
