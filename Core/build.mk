@@ -29,7 +29,7 @@ _dotnet-build:
 # @brief        Job for building Maven-based application
 # @param[in]    MAVEN_BUILD_PROJECT_PATH             Path where the project is located.
 # @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
-# @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
 ##
 .PHONY: maven-compile
 maven-compile:
