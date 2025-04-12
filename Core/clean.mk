@@ -17,7 +17,7 @@
 ##
 .PHONY: dotnet-clean
 dotnet-clean:
-	$(MAKE) _dotnet-clean
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _dotnet-clean
 
 .PHONY: _dotnet-clean
 _dotnet-clean:
