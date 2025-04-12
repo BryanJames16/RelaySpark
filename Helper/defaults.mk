@@ -1,3 +1,12 @@
+##
+# @file         defaults.mk
+# @brief        Default variable values.
+# @author       Bryan James
+# @date         2025-04-08
+#
+# This mk file contains variable definition for all jobs.
+##
+
 ## ----------------------------------
 #  General Configurations
 ## ----------------------------------
