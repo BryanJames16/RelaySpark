@@ -20,11 +20,11 @@
 trivy-scan:
 	@echo "Trivy scan selected: $(TRIVY_SCAN_TYPE)"
 	@if [ "$(TRIVY_SCAN_TYPE)" = "sast" ]; then \
-		$(MAKE) trivy-fs-scan; \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) trivy-fs-scan; \
 	elif [ "$(TRIVY_SCAN_TYPE)" = "container" ] || [ "$(TRIVY_SCAN_TYPE)" = "cs" ] || [ "$(TRIVY_SCAN_TYPE)" = "image" ]; then \
-		$(MAKE) trivy-image-scan; \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) trivy-image-scan; \
 	elif [ "$(TRIVY_SCAN_TYPE)" = "repo" ]; then \
-		$(MAKE) trivy-repo-scan; \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) trivy-repo-scan; \
 	else \
 		echo "Unknown TRIVY_SCAN_TYPE: $(TRIVY_SCAN_TYPE)"; \
 		exit 1; \
@@ -41,7 +41,7 @@ trivy-scan:
 ##
 .PHONY: trivy-image-scan
 trivy-image-scan:
-	$(MAKE) _trivy-image-scan
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _trivy-image-scan
 
 .PHONY: _trivy-image-scan
 _trivy-image-scan:
@@ -62,7 +62,7 @@ _trivy-image-scan:
 ##
 .PHONY: trivy-fs-scan
 trivy-fs-scan:
-	$(MAKE) _trivy-fs-scan
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _trivy-fs-scan
 
 .PHONY: _trivy-fs-scan
 _trivy-fs-scan:
@@ -83,7 +83,7 @@ _trivy-fs-scan:
 ##
 .PHONY: trivy-repo-scan
 trivy-repo-scan:
-	$(MAKE) _trivy-repo-scan
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _trivy-repo-scan
 
 .PHONY: _trivy-repo-scan
 _trivy-repo-scan:
@@ -102,13 +102,13 @@ _trivy-repo-scan:
 # @brief        Wrapper for all gitleaks scans
 # @param[in]    GITLEAKS_SCAN_TYPE                Type of scan to perform. Allowed values are: `repo`, `git`, `dir`, `file`, `directory`, or `folder`.
 ##
-.PHONY: trivy-scan
-trivy-scan:
-	@echo "Trivy scan selected: $(GITLEAKS_SCAN_TYPE)"
+.PHONY: gitleaks-scan
+gitleaks-scan:
+	@echo "GitLeaks scan selected: $(GITLEAKS_SCAN_TYPE)"
 	@if [ "$(GITLEAKS_SCAN_TYPE)" = "dir" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "directory" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "folder" ]; then \
-		$(MAKE) gitleaks-dir-scan; \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) gitleaks-dir-scan; \
 	elif [ "$(GITLEAKS_SCAN_TYPE)" = "repo" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "git" ]; then \
-		$(MAKE) gitleaks-repo-scan; \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) gitleaks-repo-scan; \
 	else \
 		echo "Unknown GITLEAKS_SCAN_TYPE: $(GITLEAKS_SCAN_TYPE)"; \
 		exit 1; \
@@ -125,7 +125,7 @@ trivy-scan:
 ##
 .PNONY: gitleaks-dir-scan
 gitleaks-dir-scan:
-	$(MAKE) _gitleaks-dir-scan
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-dir-scan
 
 .PHONY: _gitleaks-dir-scan
 _gitleaks-dir-scan:
@@ -144,7 +144,7 @@ _gitleaks-dir-scan:
 ##
 .PNONY: gitleaks-repo-scan
 gitleaks-dir-scan:
-	$(MAKE) _gitleaks-dir-scan
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-dir-scan
 
 .PHONY: _gitleaks-dir-scan
 _gitleaks-dir-scan:
