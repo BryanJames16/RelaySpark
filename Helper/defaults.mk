@@ -7,6 +7,25 @@ CONTAINER_COMMAND_PARAMETER = --rm
 CONTAINER_COMMAND_SERVICE = alpine
 
 ## ----------------------------------
+#  BUILD
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+DOTNET_BUILD_SP_PATH = ./
+DOTNET_BUILD_VERBOSITY = minimal
+DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Docker
+## =====================
+CONTAINER_BUILD_IMAGE_NAME = alpine
+CONTAINER_BUILD_IMAGE_TAG = 3.211
+DOCKERFILE_PATH = ./
+CONTAINER_BUILD_ADDITIONAL_PARAMETERS :=
+
+## ----------------------------------
 #  SECURITY
 ## ----------------------------------
 

@@ -27,10 +27,10 @@ _dotnet-build:
 ##
 # @function     docker-build
 # @brief        Job for building container images using Docker
-# @param[in]    CONTAINER_IMAGE_NAME               The full container image name.
-# @param[in]    CONTAINER_IMAGE_TAG                Tag of the container image to use.
-# @param[in]    DOCKERFILE_PATH                    Path of the Dockerfile.
-# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS      Additional docker build parameters
+# @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.
+# @param[in]    CONTAINER_BUILD_IMAGE_TAG                Tag of the container image to use.
+# @param[in]    DOCKERFILE_PATH                          Path of the Dockerfile.
+# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS    Additional docker build parameters
 ##
 .PHONY: docker-build
 docker-build:
@@ -39,5 +39,5 @@ docker-build:
 .PHONY: _docker-build
 _docker-build:
 	@echo "Performing docker build..."
-	docker build -t $(CONTAINER_IMAGE_NAME):$(CONTAINER_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
+	docker build -t $(CONTAINER_BUILD_IMAGE_NAME):$(CONTAINER_BUILD_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "Completed docker build!"
