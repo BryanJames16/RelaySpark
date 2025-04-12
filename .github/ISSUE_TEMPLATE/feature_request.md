@@ -6,14 +6,14 @@ labels: enhancement
 assignees: ''
 ---
 
-## Is your feature request related to a problem?
-A clear and concise description of the problem. Ex: I'm always frustrated when [...]
+## 🚩 Problem Statement
+A clear and concise description of the problem. Ex: I'm always frustrated when [...]. Include links to any related issues.
 
-## Describe the solution you'd like
+## 👍 Description
 A clear and concise description of what you want to happen.
 
-## Describe alternatives you've considered
+## 🏝️ Alternatives
 A clear and concise description of any alternative solutions or features you've considered.
 
-## Additional Context
+## 🏟️ Additional Context
 Add any other context, mockups, or screenshots here.
