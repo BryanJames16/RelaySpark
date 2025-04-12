@@ -13,6 +13,8 @@ CONTAINER_COMMAND_SERVICE = alpine
 ## =====================
 ## .NET
 ## =====================
+
+## dotnet-build
 DOTNET_BUILD_SP_PATH = ./
 DOTNET_BUILD_VERBOSITY = minimal
 DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
@@ -20,10 +22,26 @@ DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
 ## =====================
 ## Docker
 ## =====================
+
+## docker-build
 CONTAINER_BUILD_IMAGE_NAME = alpine
 CONTAINER_BUILD_IMAGE_TAG = 3.211
 DOCKERFILE_PATH = ./
 CONTAINER_BUILD_ADDITIONAL_PARAMETERS :=
+
+## ----------------------------------
+#  BUILD
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-clean
+DOTNET_CLEAN_SP_PATH = ./
+DOTNET_CLEAN_VERBOSITY = minimal
+DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
+
 
 ## ----------------------------------
 #  SECURITY
