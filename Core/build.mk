@@ -25,6 +25,23 @@ _dotnet-build:
 	@echo "Completed dotbet build!"
 
 ##
+# @function     maven-compile
+# @brief        Job for building Maven-based application
+# @param[in]    MAVEN_BUILD_PROJECT_PATH             Path where the project is located.
+# @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+##
+.PHONY: maven-compile
+maven-compile:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-compile
+
+.PHONY: _maven-compile
+_maven-compile:
+	@echo "Performing maven compile..."
+	mvn $(MAVEN_BUILD_VERBOSITY) compile $(MAVEN_BUILD_PROJECT_PATH) $(MAVEN_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "Completed dotbet build!"
+
+##
 # @function     docker-build
 # @brief        Job for building container images using Docker
 # @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.
