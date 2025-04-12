@@ -88,6 +88,23 @@ MAVEN_CLEAN_PROJECT_PATH = ./
 MAVEN_CLEAN_VERBOSITY = --errors
 MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
 
+## ----------------------------------
+#  PUBLISH
+## ----------------------------------
+
+## =====================
+## Java
+## =====================
+
+## maven-package
+MAVEN_PACKAGE_PROJECT_PATH = ./
+MAVEN_PACKAGE_VERBOSITY = --errors
+MAVEN_PACKAGE_ADDITIONAL_PARAMETERS :=
+
+## maven-deploy
+MAVEN_DEPLOY_PROJECT_PATH = ./
+MAVEN_DEPLOY_VERBOSITY = --errors
+MAVEN_DEPLOY_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
 #  SECURITY

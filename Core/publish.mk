@@ -27,6 +27,40 @@ _dotnet-publish:
 	@echo "Build and publish done!"
 
 ##
+# @function     maven-package
+# @brief        Job for packaging maven projects
+# @param[in]    MAVEN_PACKAGE_PROJECT_PATH             Path where the project is placed.
+# @param[in]    MAVEN_PACKAGE_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
+##
+.PHONY: maven-package
+maven-package:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-package
+
+.PHONY: _maven-package
+_maven-package:
+	@echo "Packaging your maven application..."
+	mvn $(MAVEN_PACKAGE_VERBOSITY) test $(MAVEN_PACKAGE_PROJECT_PATH) $(MAVEN_PACKAGE_ADDITIONAL_PARAMETERS)
+	@echo "Completed packaging your maven application!"
+
+##
+# @function     maven-deploy
+# @brief        Job for deploying maven projects
+# @param[in]    MAVEN_DEPLOY_PROJECT_PATH             Path where the project is placed.
+# @param[in]    MAVEN_DEPLOY_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_DEPLOY_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
+##
+.PHONY: maven-deploy
+maven-deploy:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-deploy
+
+.PHONY: _maven-deploy
+_maven-deploy:
+	@echo "Packaging your maven application..."
+	mvn $(MAVEN_DEPLOY_VERBOSITY) test $(MAVEN_DEPLOY_PROJECT_PATH) $(MAVEN_DEPLOY_ADDITIONAL_PARAMETERS)
+	@echo "Completed packaging your maven application!"
+
+##
 # @function     docker-load-push
 # @brief        Job pushing container image tar file into an image registry
 # @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file
