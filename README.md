@@ -42,10 +42,9 @@ Three Musketeers is a software development pattern for repeatability and consist
 
 You can read more about Three Musketeers pattern [here](https://3musketeers.pages.dev/guide/).
 
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.mdCONTRIBUTING.md)
+## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
 
 Contributions are greatly appreciated and needed. You can read more about contribution guidelines on [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 # 📄 License
-
 MIT License - Copyright (c) 2025 Bryan James
