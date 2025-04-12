@@ -18,7 +18,7 @@
 <h1 style="font-family: Onest, monospace; color: black; ">RelaySpark ⚡</h1>
 <h6>Collection of pipeline jobs coded in three musketeers pattern.</h6>
 
-![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)
+[![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)](LICENSE)
 
 </div>
 
