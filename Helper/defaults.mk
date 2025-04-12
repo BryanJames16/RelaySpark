@@ -20,6 +20,15 @@ DOTNET_BUILD_VERBOSITY = minimal
 DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Java
+## =====================
+
+## maven-build
+MAVEN_BUILD_PROJECT_PATH = ./
+MAVEN_BUILD_VERBOSITY = --errors
+MAVEN_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
 ## Docker
 ## =====================
 
@@ -30,7 +39,35 @@ DOCKERFILE_PATH = ./
 CONTAINER_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
-#  BUILD
+#  TEST
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-test
+DOTNET_TEST_TOOL = xunit
+DOTNET_TEST_SP_PATH = ./
+DOTNET_TEST_VERBOSITY = --normal
+DOTNET_TEST_ADDITIONAL_FLAGS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-validate
+MAVEN_VALIDATE_PROJECT_PATH = ./
+MAVEN_VALIDATE_VERBOSITY = --errors
+MAVEN_VALIDATE_ADDITIONAL_PARAMETERS :=
+
+## maven-test
+MAVEN_TEST_PROJECT_PATH = ./
+MAVEN_TEST_VERBOSITY = --errors
+MAVEN_TEST_ADDITIONAL_PARAMETERS :=
+
+## ----------------------------------
+#  CLEAN
 ## ----------------------------------
 
 ## =====================
