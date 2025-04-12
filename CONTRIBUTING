@@ -2,9 +2,9 @@
 
 Thank you for your interest in contributing to this project! There are many ways to contribute to the project. You can:
 
-1. ✍️ File a new issue or feature request.
-2. [👷🏼‍♂️ Create a new supported job.](#creating-new-job)
-3. 👷🏼‍♂️ Improve documentation
+1. [✍️ File a new issue, bug report, or feature request.](https://github.com/BryanJames16/RelaySpark/issues)
+2. [👷🏼‍♂️ Create a new supported job or update existing ones.](#creating-new-job)
+3. [👷🏼‍♂️ Improve documentation.]()
 
 To keep things clean and consistent, we have contributing guidelines depending on the type of contribution you want to apply.
 
@@ -35,13 +35,13 @@ Depending on the type of job you're adding or updating, navigate to the appropri
 | [Core/test.mk](./Core/test.mk) | Jobs for performing testing of all kinds except security. |
 | [Helper/clean.mk](./Helper/defaults.mk) | Default variable values. |
 
-### 3️⃣ Add the Job
+### 3️⃣ Add / Update Jobs
 
 Each job consists of two parts:
 - The container calling job (uses container pattern).
 - The script execution job (actual logic).
 
-Add both jobs to the appropriate .mk file using the following template:
+Add or update both jobs to the appropriate .mk file using the following template:
 ```Makefile
 .PHONY: <container-call-job>
 <container-call-job>:
@@ -58,8 +58,8 @@ _<script-job>:
 
 Note that the `script_job` should always start with underscore `_` as part of naming convention.
 
-### 4️⃣ Add Documentation to the Calling Job
-Add the following block above the container-calling job for proper documentation:
+### 4️⃣ Add or Update Documentation to the Calling Job
+Add or update the following block above the container-calling job for proper documentation:
 
 ```Makefile
 ##
@@ -71,7 +71,7 @@ Add the following block above the container-calling job for proper documentation
 ##
 ```
 
-### 5️⃣ Add Default Variables to `Helper/defaults.mk`
+### 5️⃣ Add or Update Default Variables to `Helper/defaults.mk`
 Define your job-specific default variables inside Helper/defaults.mk.
 
 Organize them under an appropriate section header, or create a new section if one doesn't exist. For example:
