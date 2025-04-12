@@ -16,28 +16,45 @@
 ##
 .PHONY: dotnet-build
 dotnet-build:
-	$(MAKE) _dotnet-build
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _dotnet-build
 
 .PHONY: _dotnet-build
 _dotnet-build:
 	@echo "Performing dotnet build..."
 	dotnet build $(DOTNET_BUILD_SP_PATH) -v $(DOTNET_BUILD_VERBOSITY) $(DOTNET_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed dotbet build!"
+	@echo "Completed dotnet build!"
+
+##
+# @function     maven-compile
+# @brief        Job for building Maven-based application
+# @param[in]    MAVEN_BUILD_PROJECT_PATH             Path where the project is located.
+# @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
+##
+.PHONY: maven-compile
+maven-compile:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-compile
+
+.PHONY: _maven-compile
+_maven-compile:
+	@echo "Performing maven compile..."
+	mvn $(MAVEN_BUILD_VERBOSITY) compile $(MAVEN_BUILD_PROJECT_PATH) $(MAVEN_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "Completed maven compile!"
 
 ##
 # @function     docker-build
 # @brief        Job for building container images using Docker
-# @param[in]    CONTAINER_IMAGE_NAME               The full container image name.
-# @param[in]    CONTAINER_IMAGE_TAG                Tag of the container image to use.
-# @param[in]    DOCKERFILE_PATH                    Path of the Dockerfile.
-# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS      Additional docker build parameters
+# @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.
+# @param[in]    CONTAINER_BUILD_IMAGE_TAG                Tag of the container image to use.
+# @param[in]    DOCKERFILE_PATH                          Path of the Dockerfile.
+# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS    Additional docker build parameters
 ##
 .PHONY: docker-build
 docker-build:
-	$(MAKE) _docker-build
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _docker-build
 
 .PHONY: _docker-build
 _docker-build:
 	@echo "Performing docker build..."
-	docker build -t $(CONTAINER_IMAGE_NAME):$(CONTAINER_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
+	docker build -t $(CONTAINER_BUILD_IMAGE_NAME):$(CONTAINER_BUILD_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "Completed docker build!"

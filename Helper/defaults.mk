@@ -2,6 +2,103 @@
 #  General Configurations
 ## ----------------------------------
 MAKE = make
+CONTAINER_COMMAND_BASE = docker compose run
+CONTAINER_COMMAND_PARAMETER = --rm
+CONTAINER_COMMAND_SERVICE = alpine
+
+## ----------------------------------
+#  BUILD
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-build
+DOTNET_BUILD_SP_PATH = ./
+DOTNET_BUILD_VERBOSITY = minimal
+DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-build
+MAVEN_BUILD_PROJECT_PATH = ./
+MAVEN_BUILD_VERBOSITY = --errors
+MAVEN_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Docker
+## =====================
+
+## docker-build
+CONTAINER_BUILD_IMAGE_NAME = alpine
+CONTAINER_BUILD_IMAGE_TAG = 3.211
+DOCKERFILE_PATH = ./
+CONTAINER_BUILD_ADDITIONAL_PARAMETERS :=
+
+
+## ----------------------------------
+#  CLEAN
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-clean
+DOTNET_CLEAN_SP_PATH = ./
+DOTNET_CLEAN_VERBOSITY = minimal
+DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-clean
+MAVEN_CLEAN_PROJECT_PATH = ./
+MAVEN_CLEAN_VERBOSITY = --errors
+MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
+
+
+## ----------------------------------
+#  PUBLISH
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-publish
+DOTNET_PUBLISH_SP_PATH =
+DOTNET_PUBLISH_OUTPUT_PATH =
+DOTNET_PUBLISH_VERBOSITY =
+DOTNET_PUBLISH_ADDITIONAL_FLAGS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-package
+MAVEN_PACKAGE_PROJECT_PATH = ./
+MAVEN_PACKAGE_VERBOSITY = --errors
+MAVEN_PACKAGE_ADDITIONAL_PARAMETERS :=
+
+## maven-deploy
+MAVEN_DEPLOY_PROJECT_PATH = ./
+MAVEN_DEPLOY_VERBOSITY = --errors
+MAVEN_DEPLOY_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Docker
+## =====================
+
+## tar-docker-push
+TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH = ./app_image.tar
+TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME = app_image:v1.0
+TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME = app_image:v1.0
+
 
 ## ----------------------------------
 #  SECURITY
@@ -55,3 +152,31 @@ GITLEAKS_REPO_SCAN_OUTPUT_FORMAT = json
 GITLEAKS_REPO_SCAN_OUTPUT_FILE = ./gitleaks-repo-scan-report.json
 GITLEAKS_REPO_SCAN_EXIT_CODE = 1
 GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## ----------------------------------
+#  TEST
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-test
+DOTNET_TEST_TOOL = xunit
+DOTNET_TEST_SP_PATH = ./
+DOTNET_TEST_VERBOSITY = --normal
+DOTNET_TEST_ADDITIONAL_FLAGS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-validate
+MAVEN_VALIDATE_PROJECT_PATH = ./
+MAVEN_VALIDATE_VERBOSITY = --errors
+MAVEN_VALIDATE_ADDITIONAL_PARAMETERS :=
+
+## maven-test
+MAVEN_TEST_PROJECT_PATH = ./
+MAVEN_TEST_VERBOSITY = --errors
+MAVEN_TEST_ADDITIONAL_PARAMETERS :=

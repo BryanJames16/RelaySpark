@@ -18,13 +18,47 @@
 ##
 .PHONY: dotnet-publish
 dotnet-publish:
-	$(MAKE) _dotnet-publish
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _dotnet-publish
 
 .PHONY: _dotnet-publish
 _dotnet-publish:
 	@echo "Building and publishing dotnet application..."
 	dotnet publish $(DOTNET_PUBLISH_SP_PATH) --output $(DOTNET_PUBLISH_OUTPUT_PATH) --verbosity $(DOTNET_PUBLISH_VERBOSITY) $(DOTNET_PUBLISH_ADDITIONAL_FLAGS)
 	@echo "Build and publish done!"
+
+##
+# @function     maven-package
+# @brief        Job for packaging maven projects
+# @param[in]    MAVEN_PACKAGE_PROJECT_PATH             Path where the project is placed.
+# @param[in]    MAVEN_PACKAGE_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
+##
+.PHONY: maven-package
+maven-package:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-package
+
+.PHONY: _maven-package
+_maven-package:
+	@echo "Packaging your maven application..."
+	mvn $(MAVEN_PACKAGE_VERBOSITY) package $(MAVEN_PACKAGE_PROJECT_PATH) $(MAVEN_PACKAGE_ADDITIONAL_PARAMETERS)
+	@echo "Completed packaging your maven application!"
+
+##
+# @function     maven-deploy
+# @brief        Job for deploying maven projects
+# @param[in]    MAVEN_DEPLOY_PROJECT_PATH             Path where the project is placed.
+# @param[in]    MAVEN_DEPLOY_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_DEPLOY_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
+##
+.PHONY: maven-deploy
+maven-deploy:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _maven-deploy
+
+.PHONY: _maven-deploy
+_maven-deploy:
+	@echo "Deploying your maven application..."
+	mvn $(MAVEN_DEPLOY_VERBOSITY) deploy $(MAVEN_DEPLOY_PROJECT_PATH) $(MAVEN_DEPLOY_ADDITIONAL_PARAMETERS)
+	@echo "Completed deploying your maven application!"
 
 ##
 # @function     docker-load-push
@@ -35,7 +69,7 @@ _dotnet-publish:
 ##
 .PHONY: tar-docker-push
 docker-push:
-	$(MAKE) _docker-push
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _docker-push
 
 .PHONY: _docker-push
 _docker-push:
