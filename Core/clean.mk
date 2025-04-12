@@ -39,5 +39,5 @@ maven-clean:
 .PHONY: _maven-clean
 _maven-clean:
 	@echo "Performing maven clean..."
-	mvn $(MAVEN_CLEAN_VERBOSITY) test $(MAVEN_CLEAN_PROJECT_PATH) $(MAVEN_CLEAN_ADDITIONAL_PARAMETERS)
+	mvn $(MAVEN_CLEAN_VERBOSITY) clean $(MAVEN_CLEAN_PROJECT_PATH) $(MAVEN_CLEAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed maven clean!"
