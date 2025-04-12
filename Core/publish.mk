@@ -40,7 +40,7 @@ maven-package:
 .PHONY: _maven-package
 _maven-package:
 	@echo "Packaging your maven application..."
-	mvn $(MAVEN_PACKAGE_VERBOSITY) test $(MAVEN_PACKAGE_PROJECT_PATH) $(MAVEN_PACKAGE_ADDITIONAL_PARAMETERS)
+	mvn $(MAVEN_PACKAGE_VERBOSITY) package $(MAVEN_PACKAGE_PROJECT_PATH) $(MAVEN_PACKAGE_ADDITIONAL_PARAMETERS)
 	@echo "Completed packaging your maven application!"
 
 ##
@@ -56,9 +56,9 @@ maven-deploy:
 
 .PHONY: _maven-deploy
 _maven-deploy:
-	@echo "Packaging your maven application..."
-	mvn $(MAVEN_DEPLOY_VERBOSITY) test $(MAVEN_DEPLOY_PROJECT_PATH) $(MAVEN_DEPLOY_ADDITIONAL_PARAMETERS)
-	@echo "Completed packaging your maven application!"
+	@echo "Deploying your maven application..."
+	mvn $(MAVEN_DEPLOY_VERBOSITY) deploy $(MAVEN_DEPLOY_PROJECT_PATH) $(MAVEN_DEPLOY_ADDITIONAL_PARAMETERS)
+	@echo "Completed deploying your maven application!"
 
 ##
 # @function     docker-load-push
