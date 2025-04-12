@@ -35,5 +35,5 @@ Please fill out the information below to help us review and merge your pull requ
 
 - [ ] I have read the [CONTRIBUTING.md](../CONTRIBUTING.md)
 - [ ] I have tested the jobs on my local machine to check if it runs properly
-- [ ] I have added necessary defailt variables for the job
+- [ ] I have added necessary default variables for the job
 - [ ] I have added necessary documentation within the job
