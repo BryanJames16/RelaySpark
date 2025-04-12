@@ -38,6 +38,14 @@ MAVEN_BUILD_VERBOSITY = --errors
 MAVEN_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## NodeJS
+## =====================
+
+## npm-build
+NPM_BUILD_DIRECTORY = ./
+NPM_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
 ## Docker
 ## =====================
 
