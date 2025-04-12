@@ -18,7 +18,7 @@
 ##
 .PHONY: dotnet-test
 dotnet-test:
-	$(MAKE) _dotnet-test
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _dotnet-test
 
 .PHONY: _dotnet-test
 _dotnet-test:
