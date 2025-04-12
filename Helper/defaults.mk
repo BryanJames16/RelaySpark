@@ -79,6 +79,15 @@ DOTNET_CLEAN_SP_PATH = ./
 DOTNET_CLEAN_VERBOSITY = minimal
 DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
 
+## =====================
+## Java
+## =====================
+
+## maven-clean
+MAVEN_CLEAN_PROJECT_PATH = ./
+MAVEN_CLEAN_VERBOSITY = --errors
+MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
+
 
 ## ----------------------------------
 #  SECURITY
