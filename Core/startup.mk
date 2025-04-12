@@ -5,7 +5,6 @@
 # @date 2025-04-08
 #
 # This mk file contains basic startup jobs and configuration for pipelines.
-# There's really no important jobs within startup.mk aside from hello world and banner.
 ##
 
 ##
@@ -30,3 +29,25 @@ startup:
 .PHONY: print-echo
 print-echo:
 	@echo Hello $(ECHO_VAR)!
+
+##
+# @function     relayspark-clone
+# @brief        Job for thin-cloning relayspark
+# @param[in]    RELAYSPARK_GIT_URL                    Git URL for RelaySpark
+# @param[in]    RELAYSPARK_FOLDER_FILE                Folders and file to clone
+##
+.PHONY: relayspark-clone
+relayspark-clone:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _relayspark-clone
+
+.PHONY: _relayspark-clone
+_relayspark-clone:
+	@echo "Cloning RelaySpark repository..."
+	mkdir -p .relayspark
+	cd .relayspark
+	git init
+	git remote add origin $(RELAYSPARK_GIT_URL)
+	git sparse-checkout init --no-cone
+	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE)
+	git pull --depth=1 origin main
+	@echo "Done cloning RelaySpark repository!"

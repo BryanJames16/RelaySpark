@@ -42,6 +42,22 @@ _maven-compile:
 	@echo "Completed maven compile!"
 
 ##
+# @function     npm-build
+# @brief        Build node application
+# @param[in]    NPM_BUILD_DIRECTORY                  Path where the project is located.
+# @param[in]    NPM_BUILD_ADDITIONAL_PARAMETERS      Additional parameters to pass to NPM.
+##
+.PHONY: npm-build
+npm-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _npm-build
+
+.PHONY: _npm-build
+_npm-build:
+	@echo "Performing npm build..."
+	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "Completed npm build!"
+
+##
 # @function     docker-build
 # @brief        Job for building container images using Docker
 # @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.

@@ -14,6 +14,8 @@ MAKE = make
 CONTAINER_COMMAND_BASE = docker compose run
 CONTAINER_COMMAND_PARAMETER = --rm
 CONTAINER_COMMAND_SERVICE = alpine
+RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
+RELAYSPARK_FOLDER_FILE = Core Helper pipeline.mk
 
 ## ----------------------------------
 #  BUILD
@@ -36,6 +38,14 @@ DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
 MAVEN_BUILD_PROJECT_PATH = ./
 MAVEN_BUILD_VERBOSITY = --errors
 MAVEN_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## NodeJS
+## =====================
+
+## npm-build
+NPM_BUILD_DIRECTORY = ./
+NPM_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## Docker

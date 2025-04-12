@@ -1,24 +1,24 @@
 <div align="center">
-  <!-- <img src="https://helm.sh/img/helm.svg" title="Helm" alt="Helm" width="256" height="256" style="filter: url(#glow);" /> -->
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0">
-  <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-</svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
 
-<link href="https://fonts.googleapis.com/css?family=Onest&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Onest&display=swap" rel="stylesheet">
 
-<h1 style="font-family: Onest, monospace; color: black; ">RelaySpark ⚡</h1>
-<h6>Collection of pipeline jobs coded in three musketeers pattern.</h6>
+  <h1 style="font-family: Onest, monospace; color: black; ">RelaySpark ⚡</h1>
+  <h6>Collection of pipeline jobs coded in three musketeers pattern.</h6>
 
-[![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)](LICENSE)
+  [![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)](LICENSE)
+  [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
 
 </div>
 
@@ -42,7 +42,7 @@ Three Musketeers is a software development pattern for repeatability and consist
 
 You can read more about Three Musketeers pattern [here](https://3musketeers.pages.dev/guide/).
 
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
+## 🤝 Contributing
 
 Contributions are greatly appreciated and needed. You can read more about contribution guidelines on [CONTRIBUTING.md](./CONTRIBUTING.md)
 
