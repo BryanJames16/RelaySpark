@@ -19,7 +19,7 @@
 <h6>Collection of pipeline jobs coded in three musketeers pattern.</h6>
 
 [![License](https://img.shields.io/github/license/BryanJames16/RelaySpark)](LICENSE)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
+[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
 
 </div>
 
