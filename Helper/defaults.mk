@@ -38,33 +38,6 @@ CONTAINER_BUILD_IMAGE_TAG = 3.211
 DOCKERFILE_PATH = ./
 CONTAINER_BUILD_ADDITIONAL_PARAMETERS :=
 
-## ----------------------------------
-#  TEST
-## ----------------------------------
-
-## =====================
-## .NET
-## =====================
-
-## dotnet-test
-DOTNET_TEST_TOOL = xunit
-DOTNET_TEST_SP_PATH = ./
-DOTNET_TEST_VERBOSITY = --normal
-DOTNET_TEST_ADDITIONAL_FLAGS :=
-
-## =====================
-## Java
-## =====================
-
-## maven-validate
-MAVEN_VALIDATE_PROJECT_PATH = ./
-MAVEN_VALIDATE_VERBOSITY = --errors
-MAVEN_VALIDATE_ADDITIONAL_PARAMETERS :=
-
-## maven-test
-MAVEN_TEST_PROJECT_PATH = ./
-MAVEN_TEST_VERBOSITY = --errors
-MAVEN_TEST_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
 #  CLEAN
@@ -88,9 +61,20 @@ MAVEN_CLEAN_PROJECT_PATH = ./
 MAVEN_CLEAN_VERBOSITY = --errors
 MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
 
+
 ## ----------------------------------
 #  PUBLISH
 ## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-publish
+DOTNET_PUBLISH_SP_PATH =
+DOTNET_PUBLISH_OUTPUT_PATH =
+DOTNET_PUBLISH_VERBOSITY =
+DOTNET_PUBLISH_ADDITIONAL_FLAGS :=
 
 ## =====================
 ## Java
@@ -105,6 +89,16 @@ MAVEN_PACKAGE_ADDITIONAL_PARAMETERS :=
 MAVEN_DEPLOY_PROJECT_PATH = ./
 MAVEN_DEPLOY_VERBOSITY = --errors
 MAVEN_DEPLOY_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Docker
+## =====================
+
+## tar-docker-push
+TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH = ./app_image.tar
+TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME = app_image:v1.0
+TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME = app_image:v1.0
+
 
 ## ----------------------------------
 #  SECURITY
@@ -158,3 +152,31 @@ GITLEAKS_REPO_SCAN_OUTPUT_FORMAT = json
 GITLEAKS_REPO_SCAN_OUTPUT_FILE = ./gitleaks-repo-scan-report.json
 GITLEAKS_REPO_SCAN_EXIT_CODE = 1
 GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## ----------------------------------
+#  TEST
+## ----------------------------------
+
+## =====================
+## .NET
+## =====================
+
+## dotnet-test
+DOTNET_TEST_TOOL = xunit
+DOTNET_TEST_SP_PATH = ./
+DOTNET_TEST_VERBOSITY = --normal
+DOTNET_TEST_ADDITIONAL_FLAGS :=
+
+## =====================
+## Java
+## =====================
+
+## maven-validate
+MAVEN_VALIDATE_PROJECT_PATH = ./
+MAVEN_VALIDATE_VERBOSITY = --errors
+MAVEN_VALIDATE_ADDITIONAL_PARAMETERS :=
+
+## maven-test
+MAVEN_TEST_PROJECT_PATH = ./
+MAVEN_TEST_VERBOSITY = --errors
+MAVEN_TEST_ADDITIONAL_PARAMETERS :=
