@@ -18,7 +18,7 @@
 ##
 .PHONY: dotnet-publish
 dotnet-publish:
-	$(MAKE) _dotnet-publish
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _dotnet-publish
 
 .PHONY: _dotnet-publish
 _dotnet-publish:
@@ -35,7 +35,7 @@ _dotnet-publish:
 ##
 .PHONY: tar-docker-push
 docker-push:
-	$(MAKE) _docker-push
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _docker-push
 
 .PHONY: _docker-push
 _docker-push:
