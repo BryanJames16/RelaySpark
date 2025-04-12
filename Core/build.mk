@@ -22,7 +22,7 @@ dotnet-build:
 _dotnet-build:
 	@echo "Performing dotnet build..."
 	dotnet build $(DOTNET_BUILD_SP_PATH) -v $(DOTNET_BUILD_VERBOSITY) $(DOTNET_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed dotbet build!"
+	@echo "Completed dotnet build!"
 
 ##
 # @function     maven-compile
@@ -39,7 +39,7 @@ maven-compile:
 _maven-compile:
 	@echo "Performing maven compile..."
 	mvn $(MAVEN_BUILD_VERBOSITY) compile $(MAVEN_BUILD_PROJECT_PATH) $(MAVEN_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed dotbet build!"
+	@echo "Completed maven compile!"
 
 ##
 # @function     docker-build
