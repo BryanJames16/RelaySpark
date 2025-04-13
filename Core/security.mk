@@ -143,11 +143,29 @@ _gitleaks-dir-scan:
 # @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PNONY: gitleaks-repo-scan
-gitleaks-dir-scan:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-dir-scan
+gitleaks-repo-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-repo-scan
 
-.PHONY: _gitleaks-dir-scan
-_gitleaks-dir-scan:
+.PHONY: _gitleaks-repo-scan
+_gitleaks-repo-scan:
 	@echo "Performing gitleaks scan..."
 	gitleaks dir $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed gitleaks scan!"
+
+## ----------------------------------
+#  Kubesec Scan
+## ----------------------------------
+
+##
+# @function     kubesec-scan
+# @brief        Kubernetes SAST manifest scanning
+# @param[in]    KUBESEC_MANIFEST_SCAN_IMAGE_NAME               Kubesec image name
+# @param[in]    KUBESEC_MANIFEST_SCAN_IMAGE_TAG                Kubesec image tag
+# @param[in]    KUBESEC_MANIFEST_SCAN_PATH                     Path to scan YAML file
+# @param[in]    KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+##
+.PNONY: kubesec-scan
+kubesec-scan:
+	@echo "Performing Kubesec scan..."
+	docker run -i $(KUBESEC_MANIFEST_SCAN_IMAGE_NAME):$(KUBESEC_MANIFEST_SCAN_IMAGE_TAG) scan $(KUBESEC_MANIFEST_SCAN_PATH) $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "Completed Kubesec scan!"

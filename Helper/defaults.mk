@@ -16,6 +16,7 @@ CONTAINER_COMMAND_PARAMETER = --rm
 CONTAINER_COMMAND_SERVICE = alpine
 RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
 RELAYSPARK_FOLDER_FILE = Core Helper pipeline.mk
+ECHO_VAR = World
 
 ## ----------------------------------
 #  BUILD
@@ -171,6 +172,14 @@ GITLEAKS_REPO_SCAN_OUTPUT_FORMAT = json
 GITLEAKS_REPO_SCAN_OUTPUT_FILE = ./gitleaks-repo-scan-report.json
 GITLEAKS_REPO_SCAN_EXIT_CODE = 1
 GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Kubesec
+## =====================
+KUBESEC_MANIFEST_SCAN_IMAGE_NAME = kubesec/kubesec
+KUBESEC_MANIFEST_SCAN_IMAGE_TAG = v2
+KUBESEC_MANIFEST_SCAN_PATH = ./Test
+KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
 #  TEST
