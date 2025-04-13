@@ -143,11 +143,69 @@ _gitleaks-dir-scan:
 # @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
 .PNONY: gitleaks-repo-scan
-gitleaks-dir-scan:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-dir-scan
+gitleaks-repo-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-repo-scan
 
-.PHONY: _gitleaks-dir-scan
-_gitleaks-dir-scan:
+.PHONY: _gitleaks-repo-scan
+_gitleaks-repo-scan:
 	@echo "Performing gitleaks scan..."
 	gitleaks dir $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed gitleaks scan!"
+
+## ----------------------------------
+#  Kubesec Scan
+## ----------------------------------
+
+##
+# @function     kubesec-scan
+# @brief        Wrapper for kubesec scanning
+# @param[in]    KUBESEC_SCAN_TYPE                     Type of scanning to be done. Valid values are `manifest` and `helm`
+##
+.PNONY: kubesec-scan
+kubesec-scan:
+	@echo "Kubesec scan selected: $(KUBESEC_SCAN_TYPE)"
+	@if [ "$(KUBESEC_SCAN_TYPE)" = "manifest" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-manifest-scan; \
+	elif [ "$(KUBESEC_SCAN_TYPE)" = "helm" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-helm-scan; \
+	else \
+		echo "Unknown KUBESEC_SCAN_TYPE: $(KUBESEC_SCAN_TYPE)"; \
+		exit 1; \
+	fi
+
+##
+# @function     kubesec-manifest-scan
+# @brief        Kubernetes SAST manifest scanning
+# @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
+# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart
+# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+##
+.PNONY: kubesec-manifest-scan
+kubesec-manifest-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-manifest-scan
+
+.PNONY: _kubesec-manifest-scan
+_kubesec-manifest-scan:
+	@echo "🔍 Performing Kubesec scan..."
+	@find $(KUBESEC_MANIFEST_SCAN_PATH) -type f \( -name "*.yaml" -o -name "*.yml" \) | while read file; do \
+		echo "▶️  Scanning $$file"; \
+		kubesec scan "$$file" $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS) || echo "❌ Scan failed for: $$file"; \
+	done
+	@echo "✅ Completed Kubesec scan!"
+
+##
+# @function     kubesec-helm-scan
+# @brief        Kubernetes SAST helm scanning
+# @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
+# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values
+# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+##
+.PNONY: kubesec-helm-scan
+kubesec-helm-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-helm-scan
+
+.PNONY: _kubesec-helm-scan
+_kubesec-helm-scan:
+	@echo "🔍 Performing Kubesec helm scan..."
+	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdn $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed Kubesec helm scan!"
