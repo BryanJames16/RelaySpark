@@ -20,9 +20,9 @@ dotnet-build:
 
 .PHONY: _dotnet-build
 _dotnet-build:
-	@echo "Performing dotnet build..."
+	@echo "🔨 Performing dotnet build..."
 	dotnet build $(DOTNET_BUILD_SP_PATH) -v $(DOTNET_BUILD_VERBOSITY) $(DOTNET_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed dotnet build!"
+	@echo "✅ Completed dotnet build!"
 
 ##
 # @function     maven-compile
@@ -37,9 +37,9 @@ maven-compile:
 
 .PHONY: _maven-compile
 _maven-compile:
-	@echo "Performing maven compile..."
+	@echo "🔨 Performing maven compile..."
 	mvn $(MAVEN_BUILD_VERBOSITY) compile $(MAVEN_BUILD_PROJECT_PATH) $(MAVEN_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed maven compile!"
+	@echo "✅ Completed maven compile!"
 
 ##
 # @function     npm-build
@@ -53,9 +53,9 @@ npm-build:
 
 .PHONY: _npm-build
 _npm-build:
-	@echo "Performing npm build..."
+	@echo "🔨 Performing npm build..."
 	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed npm build!"
+	@echo "✅ Completed npm build!"
 
 ##
 # @function     docker-build
@@ -71,6 +71,6 @@ docker-build:
 
 .PHONY: _docker-build
 _docker-build:
-	@echo "Performing docker build..."
+	@echo "🔨 Performing docker build..."
 	docker build -t $(CONTAINER_BUILD_IMAGE_NAME):$(CONTAINER_BUILD_IMAGE_TAG) $(DOCKERFILE_PATH) $(CONTAINER_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "Completed docker build!"
+	@echo "✅ Completed docker build!"
