@@ -157,12 +157,16 @@ _gitleaks-repo-scan:
 ## ----------------------------------
 
 ##
-# @function     kubesec-scan
+# @function     kubesec-manifest-scan
 # @brief        Kubernetes SAST manifest scanning
 # @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
 # @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart
 # @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
 ##
+.PNONY: kubesec-manifest-scan
+kubesec-manifest-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-manifest-scan
+
 .PNONY: _kubesec-manifest-scan
 _kubesec-manifest-scan:
 	@echo "🔍 Performing Kubesec scan..."
@@ -172,7 +176,6 @@ _kubesec-manifest-scan:
 	done
 	@echo "✅ Completed Kubesec scan!"
 
-
 ##
 # @function     kubesec-helm-scan
 # @brief        Kubernetes SAST helm scanning
@@ -180,6 +183,10 @@ _kubesec-manifest-scan:
 # @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values
 # @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
 ##
+.PNONY: kubesec-helm-scan
+kubesec-helm-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-helm-scan
+
 .PNONY: _kubesec-helm-scan
 _kubesec-helm-scan:
 	@echo "🔍 Performing Kubesec helm scan..."
