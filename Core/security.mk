@@ -163,8 +163,8 @@ _gitleaks-repo-scan:
 # @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart
 # @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
 ##
-.PNONY: kubesec-manifest-scan
-kubesec-scan:
+.PNONY: _kubesec-manifest-scan
+_kubesec-manifest-scan:
 	@echo "Performing Kubesec scan..."
 	docker run -i $(KUBESEC_MANIFEST_SCAN_IMAGE_NAME):$(KUBESEC_MANIFEST_SCAN_IMAGE_TAG) scan $(KUBESEC_MANIFEST_SCAN_PATH) $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed Kubesec scan!"
