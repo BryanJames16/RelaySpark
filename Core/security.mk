@@ -157,6 +157,23 @@ _gitleaks-repo-scan:
 ## ----------------------------------
 
 ##
+# @function     kubesec-scan
+# @brief        Wrapper for kubesec scanning
+# @param[in]    KUBESEC_SCAN_TYPE                     Type of scanning to be done. Valid values are `manifest` and `helm`
+##
+.PNONY: kubesec-scan
+kubesec-scan:
+	@echo "Kubesec scan selected: $(KUBESEC_SCAN_TYPE)"
+	@if [ "$(KUBESEC_SCAN_TYPE)" = "manifest" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-manifest-scan; \
+	elif [ "$(KUBESEC_SCAN_TYPE)" = "helm" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-helm-scan; \
+	else \
+		echo "Unknown KUBESEC_SCAN_TYPE: $(KUBESEC_SCAN_TYPE)"; \
+		exit 1; \
+	fi
+
+##
 # @function     kubesec-manifest-scan
 # @brief        Kubernetes SAST manifest scanning
 # @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart

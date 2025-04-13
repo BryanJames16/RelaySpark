@@ -177,6 +177,9 @@ GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS :=
 ## Kubesec
 ## =====================
 
+## kubesec-scan
+KUBESEC_SCAN_TYPE = manifest
+
 ## kubesec-manifest-scan
 KUBESEC_MANIFEST_SCAN_PATH = ./Test
 KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS :=
