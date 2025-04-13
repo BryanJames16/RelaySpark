@@ -159,13 +159,26 @@ _gitleaks-repo-scan:
 ##
 # @function     kubesec-scan
 # @brief        Kubernetes SAST manifest scanning
-# @param[in]    KUBESEC_MANIFEST_SCAN_IMAGE_NAME               Kubesec image name
-# @param[in]    KUBESEC_MANIFEST_SCAN_IMAGE_TAG                Kubesec image tag
-# @param[in]    KUBESEC_MANIFEST_SCAN_PATH                     Path to scan YAML file
-# @param[in]    KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+# @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
+# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart
+# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
 ##
-.PNONY: kubesec-scan
+.PNONY: kubesec-manifest-scan
 kubesec-scan:
 	@echo "Performing Kubesec scan..."
 	docker run -i $(KUBESEC_MANIFEST_SCAN_IMAGE_NAME):$(KUBESEC_MANIFEST_SCAN_IMAGE_TAG) scan $(KUBESEC_MANIFEST_SCAN_PATH) $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "Completed Kubesec scan!"
+
+
+##
+# @function     kubesec-helm-scan
+# @brief        Kubernetes SAST helm scanning
+# @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
+# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values
+# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+##
+.PNONY: _kubesec-helm-scan
+_kubesec-helm-scan:
+	@echo "Performing Kubesec helm scan..."
+	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdn $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "Completed Kubesec helm scan!"
