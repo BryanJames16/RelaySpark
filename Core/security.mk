@@ -165,9 +165,12 @@ _gitleaks-repo-scan:
 ##
 .PNONY: _kubesec-manifest-scan
 _kubesec-manifest-scan:
-	@echo "Performing Kubesec scan..."
-	docker run -i $(KUBESEC_MANIFEST_SCAN_IMAGE_NAME):$(KUBESEC_MANIFEST_SCAN_IMAGE_TAG) scan $(KUBESEC_MANIFEST_SCAN_PATH) $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed Kubesec scan!"
+	@echo "🔍 Performing Kubesec scan..."
+	@find $(KUBESEC_MANIFEST_SCAN_PATH) -type f \( -name "*.yaml" -o -name "*.yml" \) | while read file; do \
+		echo "▶️  Scanning $$file"; \
+		kubesec scan "$$file" $(KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS) || echo "❌ Scan failed for: $$file"; \
+	done
+	@echo "✅ Completed Kubesec scan!"
 
 
 ##
@@ -179,6 +182,6 @@ _kubesec-manifest-scan:
 ##
 .PNONY: _kubesec-helm-scan
 _kubesec-helm-scan:
-	@echo "Performing Kubesec helm scan..."
+	@echo "🔍 Performing Kubesec helm scan..."
 	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdn $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed Kubesec helm scan!"
+	@echo "✅ Completed Kubesec helm scan!"
