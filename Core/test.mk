@@ -23,13 +23,13 @@ dotnet-test:
 .PHONY: _dotnet-test
 _dotnet-test:
 	@if [ "$(DOTNET_TEST_TOOL)" = "xunit" ]; then \
-		echo "Installing xUnit 3 templates..."; \
+		echo "🔧 Installing xUnit 3 templates..."; \
 		dotnet new install xunit.v3.templates; \
-		echo "Done installing xUnit 3 templates!"; \
+		echo "✅ Done installing xUnit 3 templates!"; \
 	fi
-	@echo "Performing unit testing..."
+	@echo "🧪 Performing unit testing..."
 	dotnet test $(DOTNET_TEST_SP_PATH) -v $(DOTNET_TEST_VERBOSITY) $(DOTNET_TEST_ADDITIONAL_FLAGS)
-	@echo "Unit test completed!"
+	@echo "✅ Unit test completed!"
 
 ##
 # @function     maven-validate
@@ -44,9 +44,9 @@ maven-validate:
 
 .PHONY: _maven-validate
 _maven-validate:
-	@echo "Performing maven validate..."
+	@echo "🧪 Performing maven validate..."
 	mvn $(MAVEN_VALIDATE_VERBOSITY) validate $(MAVEN_VALIDATE_PROJECT_PATH) $(MAVEN_VALIDATE_ADDITIONAL_PARAMETERS)
-	@echo "Completed maven validate!"
+	@echo "✅ Completed maven validate!"
 
 ##
 # @function     maven-test
@@ -61,6 +61,6 @@ maven-test:
 
 .PHONY: _maven-test
 _maven-test:
-	@echo "Performing maven test..."
+	@echo "🧪 Performing maven test..."
 	mvn $(MAVEN_TEST_VERBOSITY) test $(MAVEN_TEST_PROJECT_PATH) $(MAVEN_TEST_ADDITIONAL_PARAMETERS)
-	@echo "Completed maven test!"
+	@echo "✅ Completed maven test!"
