@@ -14,7 +14,7 @@
 # @param[in]    DOTNET_TEST_TOOL                     Tools for .NET unit testing: `xunit`, `nunit`, and `mstest`.
 # @param[in]    DOTNET_TEST_SP_PATH                  Path where the project or the solution file is placed.
 # @param[in]    DOTNET_TEST_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
-# @param[in]    DOTNET_TEST_ADDITIONAL_FLAGS         Additional parameters to pass to `dotnet clean`.
+# @param[in]    DOTNET_TEST_ADDITIONAL_FLAGS         Additional parameters to pass to `dotnet test`.
 ##
 .PHONY: dotnet-test
 dotnet-test:
@@ -36,7 +36,7 @@ _dotnet-test:
 # @brief        Job for validating Maven configurations
 # @param[in]    MAVEN_VALIDATE_PROJECT_PATH             Path where the project is located.
 # @param[in]    MAVEN_VALIDATE_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
-# @param[in]    MAVEN_VALIDATE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    MAVEN_VALIDATE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `mvn`.
 ##
 .PHONY: maven-validate
 maven-validate:
@@ -53,7 +53,7 @@ _maven-validate:
 # @brief        Job for testing Maven applications
 # @param[in]    MAVEN_TEST_PROJECT_PATH             Path where the project is located.
 # @param[in]    MAVEN_TEST_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
-# @param[in]    MAVEN_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    MAVEN_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to `mvn`.
 ##
 .PHONY: maven-test
 maven-test:
@@ -70,7 +70,7 @@ _maven-test:
 # @brief        Job for Pa11y accessibility scanning
 # @param[in]    PA11Y_CI_CONFIG                 Path where the configuration is located.
 # @param[in]    PA11Y_CI_SITEMAP                URL for the sitemap
-# @param[in]    PA11Y_CI_ADDITIONAL_CONFIG      Additional parameters to pass to `dotnet build`.
+# @param[in]    PA11Y_CI_ADDITIONAL_CONFIG      Additional parameters to pass to `pa11y-ci`.
 ##
 .PHONY: pa11y-ci-test
 maven-test:
