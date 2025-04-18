@@ -64,3 +64,21 @@ _maven-test:
 	@echo "🧪 Performing maven test..."
 	mvn $(MAVEN_TEST_VERBOSITY) test $(MAVEN_TEST_PROJECT_PATH) $(MAVEN_TEST_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed maven test!"
+
+##
+# @function     pa11y-ci-test
+# @brief        Job for Pa11y accessibility scanning
+# @param[in]    PA11Y_CI_CONFIG                 Path where the configuration is located.
+# @param[in]    PA11Y_CI_SITEMAP                URL for the sitemap
+# @param[in]    PA11Y_CI_ADDITIONAL_CONFIG      Additional parameters to pass to `dotnet build`.
+##
+.PHONY: pa11y-ci-test
+maven-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _pa11y-ci-test
+
+.PHONY: _pa11y-ci-test
+_pa11y-ci-test:
+	@echo "🧪 Performing Pa11y CI Test..."
+	pa11y-ci --version
+	pa11y-ci --json --config $(PA11Y_CI_CONFIG) --sitemap $(PA11Y_CI_SITEMAP) $(PA11Y_CI_ADDITIONAL_CONFIG)
+	@echo "✅ Completed Pa11y CI Test!"
