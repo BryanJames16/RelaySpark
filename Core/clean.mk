@@ -21,9 +21,9 @@ dotnet-clean:
 
 .PHONY: _dotnet-clean
 _dotnet-clean:
-	@echo "Performing clean up..."
+	@echo "🧹 Performing clean up..."
 	dotnet clean $(DOTNET_CLEAN_SP_PATH) -v $(DOTNET_CLEAN_VERBOSITY) $(DOTNET_CLEAN_ADDITIONAL_PARAMETERS)
-	@echo "Clean up done!"
+	@echo "✅ Clean up done!"
 
 ##
 # @function     maven-clean
@@ -38,6 +38,6 @@ maven-clean:
 
 .PHONY: _maven-clean
 _maven-clean:
-	@echo "Performing maven clean..."
+	@echo "🧹 Performing maven clean..."
 	mvn $(MAVEN_CLEAN_VERBOSITY) clean $(MAVEN_CLEAN_PROJECT_PATH) $(MAVEN_CLEAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed maven clean!"
+	@echo "✅ Completed maven clean!"

@@ -216,3 +216,12 @@ MAVEN_VALIDATE_ADDITIONAL_PARAMETERS :=
 MAVEN_TEST_PROJECT_PATH = ./
 MAVEN_TEST_VERBOSITY = --errors
 MAVEN_TEST_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Accessibility
+## =====================
+
+## Pa11y
+PA11Y_CI_CONFIG = ./
+PA11Y_CI_SITEMAP = https://127.0.0.1/sitemap
+PA11Y_CI_ADDITIONAL_CONFIG :=

@@ -42,7 +42,7 @@ relayspark-clone:
 
 .PHONY: _relayspark-clone
 _relayspark-clone:
-	@echo "Cloning RelaySpark repository..."
+	@echo "⚡ Cloning RelaySpark repository..."
 	mkdir -p .relayspark
 	cd .relayspark
 	git init
@@ -50,4 +50,4 @@ _relayspark-clone:
 	git sparse-checkout init --no-cone
 	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE)
 	git pull --depth=1 origin main
-	@echo "Done cloning RelaySpark repository!"
+	@echo "✅ Done cloning RelaySpark repository!"

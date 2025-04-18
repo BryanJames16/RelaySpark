@@ -18,7 +18,7 @@
 ##
 .PHONY: trivy-scan
 trivy-scan:
-	@echo "Trivy scan selected: $(TRIVY_SCAN_TYPE)"
+	@echo "🧭 Trivy scan selected: $(TRIVY_SCAN_TYPE)"
 	@if [ "$(TRIVY_SCAN_TYPE)" = "sast" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) trivy-fs-scan; \
 	elif [ "$(TRIVY_SCAN_TYPE)" = "container" ] || [ "$(TRIVY_SCAN_TYPE)" = "cs" ] || [ "$(TRIVY_SCAN_TYPE)" = "image" ]; then \
@@ -26,7 +26,7 @@ trivy-scan:
 	elif [ "$(TRIVY_SCAN_TYPE)" = "repo" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) trivy-repo-scan; \
 	else \
-		echo "Unknown TRIVY_SCAN_TYPE: $(TRIVY_SCAN_TYPE)"; \
+		echo "❌ Unknown TRIVY_SCAN_TYPE: $(TRIVY_SCAN_TYPE)"; \
 		exit 1; \
 	fi
 
@@ -45,11 +45,11 @@ trivy-image-scan:
 
 .PHONY: _trivy-image-scan
 _trivy-image-scan:
-	@echo "Performing trivy scan..."
+	@echo "🔍 Performing trivy scan..."
 	trivy --version
 	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) --output $(TRIVY_IMAGE_SCAN_OUTPUT_FILE) --quiet $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
 	trivy image $(TRIVY_IMAGE_SCAN_IMAGE_URL) --format $(TRIVY_IMAGE_SCAN_OUTPUT_FORMAT) --exit-code $(TRIVY_IMAGE_SCAN_EXIT_CODE) $(TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed trivy scan!"
+	@echo "✅ Completed trivy scan!"
 
 ##
 # @function     trivy-fs-scan
@@ -66,11 +66,11 @@ trivy-fs-scan:
 
 .PHONY: _trivy-fs-scan
 _trivy-fs-scan:
-	@echo "Performing trivy scan..."
+	@echo "🔍 Performing trivy scan..."
 	trivy --version
 	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) --output $(TRIVY_FS_SCAN_OUTPUT_FILE) --quiet $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
 	trivy fs $(TRIVY_FS_SCAN_PATH) --format $(TRIVY_FS_SCAN_OUTPUT_FORMAT) --exit-code $(TRIVY_FS_SCAN_EXIT_CODE) $(TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed trivy scan!"
+	@echo "✅ Completed trivy scan!"
 
 ##
 # @function     trivy-repo-scan
@@ -87,11 +87,11 @@ trivy-repo-scan:
 
 .PHONY: _trivy-repo-scan
 _trivy-repo-scan:
-	@echo "Performing trivy scan..."
+	@echo "🔍 Performing trivy scan..."
 	trivy --version
 	trivy repo $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) --output $(TRIVY_REPO_SCAN_OUTPUT_FILE) --quiet $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	trivy repo $(TRIVY_REPO_SCAN_URL) --format $(TRIVY_REPO_SCAN_OUTPUT_FORMAT) --exit-code $(TRIVY_REPO_SCAN_EXIT_CODE) $(TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed trivy scan!"
+	@echo "✅ Completed trivy scan!"
 
 ## ----------------------------------
 #  Gitleaks Scan
@@ -104,13 +104,13 @@ _trivy-repo-scan:
 ##
 .PHONY: gitleaks-scan
 gitleaks-scan:
-	@echo "GitLeaks scan selected: $(GITLEAKS_SCAN_TYPE)"
+	@echo "🧭 GitLeaks scan selected: $(GITLEAKS_SCAN_TYPE)"
 	@if [ "$(GITLEAKS_SCAN_TYPE)" = "dir" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "directory" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "folder" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) gitleaks-dir-scan; \
 	elif [ "$(GITLEAKS_SCAN_TYPE)" = "repo" ] || [ "$(GITLEAKS_SCAN_TYPE)" = "git" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) gitleaks-repo-scan; \
 	else \
-		echo "Unknown GITLEAKS_SCAN_TYPE: $(GITLEAKS_SCAN_TYPE)"; \
+		echo "❌ Unknown GITLEAKS_SCAN_TYPE: $(GITLEAKS_SCAN_TYPE)"; \
 		exit 1; \
 	fi
 
@@ -129,9 +129,9 @@ gitleaks-dir-scan:
 
 .PHONY: _gitleaks-dir-scan
 _gitleaks-dir-scan:
-	@echo "Performing gitleaks scan..."
+	@echo "🔍 Performing gitleaks scan..."
 	gitleaks dir $(GITLEAKS_DIR_SCAN_PATH) --report-format $(GITLEAKS_DIR_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_DIR_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_DIR_SCAN_EXIT_CODE) -v $(GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed gitleaks scan!"
+	@echo "✅ Completed gitleaks scan!"
 
 ##
 # @function     gitleaks-repo-scan
@@ -148,9 +148,9 @@ gitleaks-repo-scan:
 
 .PHONY: _gitleaks-repo-scan
 _gitleaks-repo-scan:
-	@echo "Performing gitleaks scan..."
+	@echo "🔍 Performing gitleaks scan..."
 	gitleaks dir $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
-	@echo "Completed gitleaks scan!"
+	@echo "✅ Completed gitleaks scan!"
 
 ## ----------------------------------
 #  Kubesec Scan
@@ -163,13 +163,13 @@ _gitleaks-repo-scan:
 ##
 .PNONY: kubesec-scan
 kubesec-scan:
-	@echo "Kubesec scan selected: $(KUBESEC_SCAN_TYPE)"
+	@echo "🧭 Kubesec scan selected: $(KUBESEC_SCAN_TYPE)"
 	@if [ "$(KUBESEC_SCAN_TYPE)" = "manifest" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-manifest-scan; \
 	elif [ "$(KUBESEC_SCAN_TYPE)" = "helm" ]; then \
 		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) kubesec-helm-scan; \
 	else \
-		echo "Unknown KUBESEC_SCAN_TYPE: $(KUBESEC_SCAN_TYPE)"; \
+		echo "❌ Unknown KUBESEC_SCAN_TYPE: $(KUBESEC_SCAN_TYPE)"; \
 		exit 1; \
 	fi
 

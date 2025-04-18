@@ -22,9 +22,9 @@ dotnet-publish:
 
 .PHONY: _dotnet-publish
 _dotnet-publish:
-	@echo "Building and publishing dotnet application..."
+	@echo "📜 Building and publishing dotnet application..."
 	dotnet publish $(DOTNET_PUBLISH_SP_PATH) --output $(DOTNET_PUBLISH_OUTPUT_PATH) --verbosity $(DOTNET_PUBLISH_VERBOSITY) $(DOTNET_PUBLISH_ADDITIONAL_FLAGS)
-	@echo "Build and publish done!"
+	@echo "✅ Build and publish done!"
 
 ##
 # @function     maven-package
@@ -39,9 +39,9 @@ maven-package:
 
 .PHONY: _maven-package
 _maven-package:
-	@echo "Packaging your maven application..."
+	@echo "📦 Packaging your maven application..."
 	mvn $(MAVEN_PACKAGE_VERBOSITY) package $(MAVEN_PACKAGE_PROJECT_PATH) $(MAVEN_PACKAGE_ADDITIONAL_PARAMETERS)
-	@echo "Completed packaging your maven application!"
+	@echo "✅ Completed packaging your maven application!"
 
 ##
 # @function     maven-deploy
@@ -56,9 +56,9 @@ maven-deploy:
 
 .PHONY: _maven-deploy
 _maven-deploy:
-	@echo "Deploying your maven application..."
+	@echo "🚗 Deploying your maven application..."
 	mvn $(MAVEN_DEPLOY_VERBOSITY) deploy $(MAVEN_DEPLOY_PROJECT_PATH) $(MAVEN_DEPLOY_ADDITIONAL_PARAMETERS)
-	@echo "Completed deploying your maven application!"
+	@echo "✅ Completed deploying your maven application!"
 
 ##
 # @function     docker-load-push
@@ -73,8 +73,8 @@ tar-docker-push:
 
 .PHONY: _tar-docker-push
 _tar-docker-push:
-	@echo "Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
+	@echo "☁️ Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
-	@echo "Completed pushing image!"
+	@echo "✅ Completed pushing image!"
