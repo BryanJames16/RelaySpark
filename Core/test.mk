@@ -96,7 +96,7 @@ _maven-test:
 # @param[in]    PA11Y_CI_ADDITIONAL_CONFIG      Additional parameters to pass to `pa11y-ci`.
 ##
 .PHONY: pa11y-ci-test
-maven-test:
+pa11y-ci-test:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _pa11y-ci-test
 
 .PHONY: _pa11y-ci-test
