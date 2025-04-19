@@ -9,6 +9,29 @@
 ##
 
 ##
+# @function     axe-scan
+# @brief        Job for scanning accessibility violations via axe-scan
+# @param[in]    AXE_SCAN_RESULTS_CSV                 CSV file for Axe Scan results.
+# @param[in]    AXE_SCAN_ADDITIONAL_PARAMTERS        Additional parameters to pass to axe-scan run command.
+# @param[in]    AXE_SCAN_SUMMARY_ENABLED             Toggle if axe scan summary command is enabled.
+# @param[in]    AXE_SCAN_SUMMARY_ADDITIONAL_PARAMTERS   Additional parameters to pass to axe-scan summary command.
+##
+.PHONY: axe-scan
+axe-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _axe-scan
+
+.PHONY: _axe-scan
+_axe-scan:
+	@echo "🧪 Performing axe scanning..."
+	axe-scan --version
+	axe-scan run $(AXE_SCAN_ADDITIONAL_PARAMTERS) > $(AXE_SCAN_RESULTS_CSV)
+	@if [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "true" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "True" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "t" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "T" ]; then \
+		axe-scan summary $(AXE_SCAN_ADDITIONAL_PARAMTERS);
+	fi
+	axe-scan summary $(AXE_SCAN_ADDITIONAL_PARAMTERS)
+	@echo "✅ Axe scan completed!"
+
+##
 # @function     dotnet-test
 # @brief        Job for cleaning .NET project or solution (.NET Core)
 # @param[in]    DOTNET_TEST_TOOL                     Tools for .NET unit testing: `xunit`, `nunit`, and `mstest`.
