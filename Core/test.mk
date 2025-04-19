@@ -26,7 +26,7 @@ _axe-scan:
 	axe-scan --version
 	axe-scan run $(AXE_SCAN_ADDITIONAL_PARAMTERS) > $(AXE_SCAN_RESULTS_CSV)
 	@if [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "true" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "True" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "t" ] || [ "$(AXE_SCAN_SUMMARY_ENABLED)" = "T" ]; then \
-		axe-scan summary $(AXE_SCAN_ADDITIONAL_PARAMTERS);
+		axe-scan summary $(AXE_SCAN_ADDITIONAL_PARAMTERS); \ 
 	fi
 	axe-scan summary $(AXE_SCAN_ADDITIONAL_PARAMTERS)
 	@echo "✅ Axe scan completed!"
