@@ -60,9 +60,9 @@ kaniko-build:
 .PHONY: _kaniko-build
 _kaniko-build:
 	@if [ "$(KANIKO_DOCKER_AUTH_CONFIG_ENABLED)" = "true" ] || [ "$(KANIKO_DOCKER_AUTH_CONFIG_ENABLED)" = "True" ] || [ "$(KANIKO_DOCKER_AUTH_CONFIG_ENABLED)" = "t" ] || [ "$(KANIKO_DOCKER_AUTH_CONFIG_ENABLED)" = "T" ]; then \
-		@echo "🔑 Seeding remote authentication credentials..."; \
-		@echo $(KANIKO_DOCKER_AUTH_CONFIG) > /kaniko/.docker/config.json; \
-		@echo "✅ Completed seeding remote authentication credentials!"; \
+		echo "🔑 Seeding remote authentication credentials..."; \
+		echo $(KANIKO_DOCKER_AUTH_CONFIG) > /kaniko/.docker/config.json; \
+		echo "✅ Completed seeding remote authentication credentials!"; \
 	fi
 	@echo "🔨 Performing kaniko build..."
 	/kaniko/executor \

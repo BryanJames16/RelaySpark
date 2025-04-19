@@ -61,7 +61,7 @@ _maven-deploy:
 	@echo "✅ Completed deploying your maven application!"
 
 ##
-# @function     docker-load-push
+# @function     tar-docker-push
 # @brief        Job pushing container image tar file into an image registry
 # @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file
 # @param[in]    TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME       Source image name and tag of the container image
@@ -77,4 +77,29 @@ _tar-docker-push:
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
+	@echo "✅ Completed pushing image!"
+
+##
+# @function     tar-crane-push
+# @brief        Job pushing container image tar file into an image registry using crane
+# @param[in]    TAR_CRANE_DOCKER_AUTH_CONFIG_ENABLED        Enable seeding of remote authentication credentials
+# @param[in]    TAR_CRANE_DOCKER_AUTH_CONFIG                Docker authentication configuration
+# @param[in]    TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH         Location and full file name of the container image file
+# @param[in]    TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME       Destination image name and tag of the container image
+# @param[in]    TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS        Additional parameters for crane
+##
+.PHONY: tar-crane-push
+tar-crane-push:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tar-crane-push
+
+.PHONY: _tar-crane-push
+_tar-crane-push:
+	@if [ "$(TAR_CRANE_DOCKER_AUTH_CONFIG_ENABLED)" = "true" ] || [ "$(TAR_CRANE_DOCKER_AUTH_CONFIG_ENABLED)" = "True" ] || [ "$(TAR_CRANE_DOCKER_AUTH_CONFIG_ENABLED)" = "t" ] || [ "$(TAR_CRANE_DOCKER_AUTH_CONFIG_ENABLED)" = "T" ]; then \
+		echo "🔑 Seeding remote authentication credentials..."; \
+		DOCKER_CONFIG=/kaniko/.docker; \
+		echo $(TAR_CRANE_DOCKER_AUTH_CONFIG) > /kaniko/.docker/config.json; \
+		echo "✅ Completed seeding remote authentication credentials!"; \
+	fi
+	@echo "☁️ Pushing container image to $(TAR_KANIKO_PUSH_DESTINATION_IMAGE_NAME)..."
+	crane push $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed pushing image!"
