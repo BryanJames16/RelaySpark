@@ -221,7 +221,7 @@ MAVEN_TEST_ADDITIONAL_PARAMETERS :=
 ## Accessibility
 ## =====================
 
-## Pa11y
+## pa11y
 PA11Y_CI_CONFIG = ./
 PA11Y_CI_SITEMAP = https://127.0.0.1/sitemap
 PA11Y_CI_ADDITIONAL_CONFIG :=
