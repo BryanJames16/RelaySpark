@@ -244,6 +244,20 @@ MAVEN_TEST_VERBOSITY = --errors
 MAVEN_TEST_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Docker
+## =====================
+
+## helm-lint
+HELM_CHART_PACKAGE_LINT_PATH = ./
+HELM_CHART_PACKAGE_LINT_NAME = helm_app
+HELM_CHART_PACKAGE_LINT_ADDITIONAL_PARAMETERS :=
+
+## helm-template
+HELM_CHART_PACKAGE_TEMPLATE_PATH = ./
+HELM_CHART_PACKAGE_TEMPLATE_NAME = helm_app
+HELM_CHART_PACKAGE_TEMPLATE_ADDITIONAL_PARAMETERS :=
+
+## =====================
 ## Accessibility
 ## =====================
 
