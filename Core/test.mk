@@ -91,6 +91,26 @@ _helm-template:
 	@echo "✅ Completed helm template!"
 
 ##
+# @function     helm-test
+# @brief        Job for testing Helm charts
+# @param[in]    HELM_CHART_TEST_PATH                 Path where the helm chart is located.
+# @param[in]    HELM_CHART_TEST_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
+# @param[in]    HELM_CHART_TEST_NAMESPACE            Namespace where the helm chart wil be installed.
+# @param[in]    HELM_CHART_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+##
+.PHONY: helm-test
+helm-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _helm-test
+
+.PHONY: _helm-test
+_helm-test:
+	@echo "🔨 Performing helm test..."
+	sed -i "s/helm_chart_name/$(HELM_CHART_TEST_NAME)/" Chart.yaml
+	helm install $(HELM_CHART_TEST_NAME) $(HELM_CHART_TEST_PATH) --namespace $(HELM_CHART_TEST_NAMESPACE)
+	helm test $(HELM_CHART_TEST_PATH) $(HELM_CHART_TEST_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed helm test!"
+
+##
 # @function     maven-validate
 # @brief        Job for validating Maven configurations
 # @param[in]    MAVEN_VALIDATE_PROJECT_PATH             Path where the project is located.
