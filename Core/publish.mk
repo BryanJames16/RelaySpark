@@ -27,6 +27,28 @@ _dotnet-publish:
 	@echo "✅ Build and publish done!"
 
 ##
+# @function     helm-package
+# @brief        Job for packaging Helm charts
+# @param[in]    HELM_CHART_PACKAGE_PATH                 Path where the helm chart is located.
+# @param[in]    HELM_CHART_PACKAGE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
+# @param[in]    HELM_CHART_PACKAGE_VERSION              Version of the helm chart,
+# @param[in]    HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+##
+.PHONY: helm-package
+helm-package:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _helm-package
+
+.PHONY: _helm-package
+_helm-package:
+	@echo "🔨 Performing helm package..."
+	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_NAME)/" Chart.yaml
+	helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed helm package!"
+	@echo "🔨 Performing post-packaging verification..."
+	helm inspect chart $(HELM_CHART_PACKAGE_PATH)-*.tgz
+	@echo "✅ Completed post-packaging verification!"
+
+##
 # @function     maven-package
 # @brief        Job for packaging maven projects
 # @param[in]    MAVEN_PACKAGE_PROJECT_PATH             Path where the project is placed.
