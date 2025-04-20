@@ -140,6 +140,12 @@ TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH = ./app_image.tar
 TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME = app_image:v1.0.0
 TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS :=
 
+## helm-push
+HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED = false
+HELM_CHART_PUSH_REG_AUTH_CONFIG :=
+HELM_CHART_PUSH_PATH = ./helm_app-v1.0.0.tgz
+HELM_CHART_PUSH_REMOTE_URL = https://artifacthub.io/
+
 ## ----------------------------------
 #  SECURITY
 ## ----------------------------------

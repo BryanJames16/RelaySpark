@@ -31,7 +31,7 @@ _dotnet-publish:
 # @brief        Job for packaging Helm charts
 # @param[in]    HELM_CHART_PACKAGE_PATH                 Path where the helm chart is located.
 # @param[in]    HELM_CHART_PACKAGE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
-# @param[in]    HELM_CHART_PACKAGE_VERSION              Version of the helm chart,
+# @param[in]    HELM_CHART_PACKAGE_VERSION              Version of the helm chart.
 # @param[in]    HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
 ##
 .PHONY: helm-package
@@ -47,6 +47,30 @@ _helm-package:
 	@echo "🔨 Performing post-packaging verification..."
 	helm inspect chart $(HELM_CHART_PACKAGE_PATH)-*.tgz
 	@echo "✅ Completed post-packaging verification!"
+
+##
+# @function     helm-push
+# @brief        Job for pushing Helm charts to repository
+# @param[in]    HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED  Flag for enabling authentication to chart registry.
+# @param[in]    HELM_CHART_PUSH_REG_AUTH_CONFIG          Configuration for authentication to chart registry.
+# @param[in]    HELM_CHART_PUSH_PATH                     Path where the helm chart is located.
+# @param[in]    HELM_CHART_PUSH_REMOTE_URL               URL where the helm chart will be pushed.
+# @param[in]    HELM_CHART_PUSH_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+##
+.PHONY: helm-push
+helm-push:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _helm-push
+
+.PHONY: _helm-push
+_helm-push:
+	@if [ "$(HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED)" = "true" ] || [ "$(HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED)" = "True" ] || [ "$(HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED)" = "t" ] || [ "$(HELM_CHART_PUSH_REG_AUTH_CONFIG_ENABLED)" = "T" ]; then \
+		echo "🔑 Seeding remote authentication credentials..."; \
+		echo $(HELM_CHART_PUSH_REG_AUTH_CONFIG) > ~/.config/helm/registry/config.json; \
+		echo "✅ Completed seeding remote authentication credentials!"; \
+	fi
+	@echo "☁️ Pushing helm chart to $(HELM_CHART_PUSH_REMOTE_URL)..."
+	helm push $(HELM_CHART_PUSH_PATH) $(HELM_CHART_PUSH_REMOTE_URL) $(HELM_CHART_PUSH_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed pushing helm chart!"
 
 ##
 # @function     maven-package
