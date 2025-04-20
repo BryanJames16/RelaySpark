@@ -43,6 +43,28 @@ _dotnet-build:
 	@echo "✅ Completed dotnet build!"
 
 ##
+# @function     helm-build
+# @brief        Job for building Helm charts
+# @param[in]    HELM_CHART_BUILD_PATH                 Path where the helm chart is located.
+# @param[in]    HELM_CHART_BUILD_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
+# @param[in]    HELM_CHART_BUILD_VERSION              Version of the helm chart,
+# @param[in]    HELM_CHART_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+##
+.PHONY: helm-build
+helm-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _helm-build
+
+.PHONY: _helm-build
+_helm-build:
+	@echo "🔨 Performing helm build..."
+	sed -i "s/helm_chart_name/$(HELM_CHART_BUILD_NAME)/" Chart.yaml
+	helm package $(HELM_CHART_BUILD_PATH) --version $(HELM_CHART_BUILD_VERSION) $(HELM_CHART_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed helm build!"
+	@echo "🔨 Performing post-build verification..."
+	helm inspect chart $(HELM_CHART_BUILD_PATH)-*.tgz
+	@echo "✅ Completed post build verification!"
+
+##
 # @function     kaniko-build
 # @brief        Job for building container images using Kaniko
 # @param[in]    KANIKO_BUILD_IMAGE_NAME                  The full container image name.
