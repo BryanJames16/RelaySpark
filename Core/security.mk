@@ -216,7 +216,7 @@ _kubesec-helm-scan:
 
 ##
 # @function     cosign-container-image-tar-signing
-# @brief        Certificate signing for container images
+# @brief        Certificate signing for container images in tar format
 # @param[in]    COSIGN_CONTAINER_SIGNING_KEY_PATH                     Path where the key can be found
 # @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file
 ##
