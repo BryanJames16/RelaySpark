@@ -241,7 +241,7 @@ cosign-blob-signing:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cosign-blob-signing
 
 .PNONY: _cosign-blob-signing
-blob-signing:
+_cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
 	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_PATH)
 	@echo "✅ Completed blbb signing!"

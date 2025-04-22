@@ -215,6 +215,20 @@ KUBESEC_HELM_VALUES_SCAN_PATH = values.yaml
 KUBESEC_HELM_SCAN_PATH = ./
 KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS :=
 
+## =====================
+## Cosign
+## =====================
+
+## cosign-container-image-tar-signing
+COSIGN_CONTAINER_SIGNING_KEY_PATH = ./cosign.key
+COSIGN_CONTAINER_IMAGE_PATH = ./app_image.tar
+
+## cosign-blob-signing
+COSIGN_BLOB_SIGNING_KEY_PATH = ./cosign.key
+COSIGN_BLOB_FILE = ./README.md
+
+##
+
 ## ----------------------------------
 #  TEST
 ## ----------------------------------
