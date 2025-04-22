@@ -219,6 +219,7 @@ _kubesec-helm-scan:
 # @brief        Container signing for container images in tar format
 # @param[in]    COSIGN_CONTAINER_SIGNING_KEY_PATH                     Path where the key can be found
 # @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file
+# @param[in]    COSIGN_CONTAINER_IMAGE_ADDITIONAL_PARAMETERS                Additional parameters for cosign command
 ##
 .PNONY: cosign-container-image-tar-signing
 cosign-container-image-tar-signing:
@@ -227,7 +228,7 @@ cosign-container-image-tar-signing:
 .PNONY: _cosign-container-image-tar-signing
 _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
-	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_IMAGE_PATH)
+	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_IMAGE_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
 	@echo "✅ Completed container signing!"
 
 ##
@@ -235,6 +236,7 @@ _cosign-container-image-tar-signing:
 # @brief        Job for blob signing through cosign
 # @param[in]    COSIGN_BLOB_SIGNING_KEY_PATH                     Path where the key can be found
 # @param[in]    COSIGN_BLOB_FILE                                 Full path and file to the blob
+# @param[in]    COSIGN_BLOB_ADDITIONAL_PARAMETERS                Additional parameters for cosign command
 ##
 .PNONY: cosign-blob-signing
 cosign-blob-signing:
@@ -243,5 +245,5 @@ cosign-blob-signing:
 .PNONY: _cosign-blob-signing
 _cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
-	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_PATH)
+	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_PATH)
 	@echo "✅ Completed blbb signing!"
