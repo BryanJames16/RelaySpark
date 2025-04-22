@@ -112,6 +112,9 @@ _maven-deploy:
 # @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file
 # @param[in]    TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME       Source image name and tag of the container image
 # @param[in]    TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME  Destination image name and tag of the container image
+# @param[in]    TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED       Flag for enabling container signing
+# @param[in]    TAR_DOCKER_PUSH_COSIGN_KEY_PATH         Path of the Cosign key to use for image signing
+# @param[in]    TAR_DOCKER_PUSH_COSIGN_ADDITIONAL_PARAMETERS    Additional parameters for cosign container scanning
 ##
 .PHONY: tar-docker-push
 tar-docker-push:
@@ -122,6 +125,9 @@ _tar-docker-push:
 	@echo "☁️ Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
+	@if [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "true" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "True" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "t" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "T" ]; then \
+		cosign sign --key $(TAR_DOCKER_PUSH_COSIGN_KEY_PATH) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME);
+	fi
 	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	@echo "✅ Completed pushing image!"
 
