@@ -139,6 +139,9 @@ _tar-docker-push:
 # @param[in]    TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH         Location and full file name of the container image file
 # @param[in]    TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME       Destination image name and tag of the container image
 # @param[in]    TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS        Additional parameters for crane
+# @param[in]    TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED    Flag for enabling container signing
+# @param[in]    TAR_CRANE_PUSH_COSIGN_KEY_PATH              Path where Cosign key can be found
+# @param[in]    TAR_CRANE_PUSH_SIGN_ADDITIONAL_PARAMETERS   Additional Parameters for Cosign
 ##
 .PHONY: tar-crane-push
 tar-crane-push:
@@ -153,5 +156,9 @@ _tar-crane-push:
 		echo "✅ Completed seeding remote authentication credentials!"; \
 	fi
 	@echo "☁️ Pushing container image to $(TAR_KANIKO_PUSH_DESTINATION_IMAGE_NAME)..."
-	crane push $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
+	crane load -t $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH)
+	@if [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "true" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "True" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "t" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "T" ]; then \
+		cosign sign --key $(TAR_CRANE_PUSH_COSIGN_KEY_PATH) $(TAR_CRANE_PUSH_SIGN_ADDITIONAL_PARAMETERS) $(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME); \
+	fi
+	crane push "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed pushing image!"
