@@ -33,6 +33,9 @@ _dotnet-publish:
 # @param[in]    HELM_CHART_PACKAGE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
 # @param[in]    HELM_CHART_PACKAGE_VERSION              Version of the helm chart.
 # @param[in]    HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    HELM_CHART_PACKAGE_SIGNING_ENABLED      Flag for enabling helm chart signing.
+# @param[in]    HELM_CHART_PACKAGE_KEY                  Signing key.
+# @param[in]    HELM_CHART_PACKAGE_KEYRING              Signing keyring.
 ##
 .PHONY: helm-package
 helm-package:
@@ -42,7 +45,12 @@ helm-package:
 _helm-package:
 	@echo "🔨 Performing helm package..."
 	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_NAME)/" Chart.yaml
-	helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS)
+	@if [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "true" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "True" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "t" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "T" ]; then \
+		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) --key $(HELM_CHART_PACKAGE_KEY) --keyring $(HELM_CHART_PACKAGE_KEYRING) --destination ./ $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
+	else
+		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
+	fi
+
 	@echo "✅ Completed helm package!"
 	@echo "🔨 Performing post-packaging verification..."
 	helm inspect chart $(HELM_CHART_PACKAGE_PATH)-*.tgz
