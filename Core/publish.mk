@@ -33,6 +33,9 @@ _dotnet-publish:
 # @param[in]    HELM_CHART_PACKAGE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
 # @param[in]    HELM_CHART_PACKAGE_VERSION              Version of the helm chart.
 # @param[in]    HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    HELM_CHART_PACKAGE_SIGNING_ENABLED      Flag for enabling helm chart signing.
+# @param[in]    HELM_CHART_PACKAGE_KEY                  Signing key.
+# @param[in]    HELM_CHART_PACKAGE_KEYRING              Signing keyring.
 ##
 .PHONY: helm-package
 helm-package:
@@ -42,7 +45,12 @@ helm-package:
 _helm-package:
 	@echo "🔨 Performing helm package..."
 	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_NAME)/" Chart.yaml
-	helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS)
+	@if [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "true" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "True" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "t" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "T" ]; then \
+		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) --key $(HELM_CHART_PACKAGE_KEY) --keyring $(HELM_CHART_PACKAGE_KEYRING) --destination ./ $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
+	else
+		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
+	fi
+
 	@echo "✅ Completed helm package!"
 	@echo "🔨 Performing post-packaging verification..."
 	helm inspect chart $(HELM_CHART_PACKAGE_PATH)-*.tgz
@@ -112,6 +120,9 @@ _maven-deploy:
 # @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file
 # @param[in]    TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME       Source image name and tag of the container image
 # @param[in]    TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME  Destination image name and tag of the container image
+# @param[in]    TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED       Flag for enabling container signing
+# @param[in]    TAR_DOCKER_PUSH_COSIGN_KEY_PATH         Path of the Cosign key to use for image signing
+# @param[in]    TAR_DOCKER_PUSH_COSIGN_ADDITIONAL_PARAMETERS    Additional parameters for cosign container scanning
 ##
 .PHONY: tar-docker-push
 tar-docker-push:
@@ -122,6 +133,9 @@ _tar-docker-push:
 	@echo "☁️ Pushing container image to $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)..."
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
+	@if [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "true" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "True" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "t" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "T" ]; then \
+		cosign sign --key $(TAR_DOCKER_PUSH_COSIGN_KEY_PATH) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME);
+	fi
 	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	@echo "✅ Completed pushing image!"
 
@@ -133,6 +147,9 @@ _tar-docker-push:
 # @param[in]    TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH         Location and full file name of the container image file
 # @param[in]    TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME       Destination image name and tag of the container image
 # @param[in]    TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS        Additional parameters for crane
+# @param[in]    TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED    Flag for enabling container signing
+# @param[in]    TAR_CRANE_PUSH_COSIGN_KEY_PATH              Path where Cosign key can be found
+# @param[in]    TAR_CRANE_PUSH_SIGN_ADDITIONAL_PARAMETERS   Additional Parameters for Cosign
 ##
 .PHONY: tar-crane-push
 tar-crane-push:
@@ -147,5 +164,9 @@ _tar-crane-push:
 		echo "✅ Completed seeding remote authentication credentials!"; \
 	fi
 	@echo "☁️ Pushing container image to $(TAR_KANIKO_PUSH_DESTINATION_IMAGE_NAME)..."
-	crane push $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
+	crane load -t $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH)
+	@if [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "true" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "True" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "t" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "T" ]; then \
+		cosign sign --key $(TAR_CRANE_PUSH_COSIGN_KEY_PATH) $(TAR_CRANE_PUSH_SIGN_ADDITIONAL_PARAMETERS) $(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME); \
+	fi
+	crane push "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed pushing image!"
