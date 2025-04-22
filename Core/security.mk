@@ -216,7 +216,7 @@ _kubesec-helm-scan:
 
 ##
 # @function     cosign-container-image-tar-signing
-# @brief        Certificate signing for container images in tar format
+# @brief        Container signing for container images in tar format
 # @param[in]    COSIGN_CONTAINER_SIGNING_KEY_PATH                     Path where the key can be found
 # @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file
 ##
@@ -229,3 +229,19 @@ _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
 	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_IMAGE_PATH)
 	@echo "✅ Completed container signing!"
+
+##
+# @function     cosign-blob-signing
+# @brief        Job for blob signing through cosign
+# @param[in]    COSIGN_BLOB_SIGNING_KEY_PATH                     Path where the key can be found
+# @param[in]    COSIGN_BLOB_FILE                                 Full path and file to the blob
+##
+.PNONY: cosign-blob-signing
+cosign-blob-signing:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cosign-blob-signing
+
+.PNONY: _cosign-blob-signing
+blob-signing:
+	@echo "✒️ Performing blob signing..."
+	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_PATH)
+	@echo "✅ Completed blbb signing!"
