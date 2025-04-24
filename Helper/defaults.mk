@@ -231,6 +231,17 @@ KUBESEC_HELM_SCAN_PATH = ./
 KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Horusec
+## =====================
+
+## horusec-scan
+HORUSEC_SCAN_CONFIG_FILE_PATH = ./
+HORUSEC_SCAN_PATH = ./
+HORUSEC_SCAN_LOG_FILE_PATH = ./horusec.log
+HORUSEC_SCAN_LOG_LEVEL = info
+HORUSEC_SCAN_ADDITIONAL_PARAMETERS :=
+
+## =====================
 ## Cosign
 ## =====================
 
