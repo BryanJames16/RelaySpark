@@ -232,7 +232,7 @@ _horusec-scan:
 	@echo "🔍 Performing horusec scanning..."
 	horusec version
 	horusec start -p="$(HORUSEC_SCAN_CONFIG_FILE_PATH)" --log-file-path $(HORUSEC_SCAN_LOG_FILE_PATH) --log-level $(HORUSEC_SCAN_LOG_LEVEL) $(HORUSEC_SCAN_ADDITIONAL_PARAMETERS) $(HORUSEC_SCAN_PATH)
-	@echo "✅ Completed container signing!"
+	@echo "✅ Completed horusec scanning!"
 
 ## ----------------------------------
 #  Cosign
