@@ -211,6 +211,30 @@ _kubesec-helm-scan:
 	@echo "✅ Completed Kubesec helm scan!"
 
 ## ----------------------------------
+#  Horusec
+## ----------------------------------
+
+##
+# @function     horusec-scan
+# @brief        SAST scanning through Horusec
+# @param[in]    HORUSEC_SCAN_CONFIG_FILE_PATH               Path where horusec configuration can be found.
+# @param[in]    HORUSEC_SCAN_PATH                           Path where horusec will start scanning
+# @param[in]    HORUSEC_SCAN_LOG_FILE_PATH                  Path and filename of the log file
+# @param[in]    HORUSEC_SCAN_LOG_LEVEL                      Log level of horusec. Valid values are: `panic`, `fatal`, `error`, `warn`, `info`, `debug`, and `trace`.
+# @param[in]    HORUSEC_SCAN_ADDITIONAL_PARAMETERS          Additional parameters for horusec.
+##
+.PNONY: horusec-scan
+horusec-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _horusec-scan
+
+.PNONY: _horusec-scan
+_horusec-scan:
+	@echo "🔍 Performing horusec scanning..."
+	horusec version
+	horusec start -p="$(HORUSEC_SCAN_CONFIG_FILE_PATH)" --log-file-path $(HORUSEC_SCAN_LOG_FILE_PATH) --log-level $(HORUSEC_SCAN_LOG_LEVEL) $(HORUSEC_SCAN_ADDITIONAL_PARAMETERS) $(HORUSEC_SCAN_PATH)
+	@echo "✅ Completed container signing!"
+
+## ----------------------------------
 #  Cosign
 ## ----------------------------------
 
