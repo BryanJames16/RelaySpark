@@ -10,9 +10,9 @@
 
 ##
 # @function     dotnet-clean
-# @brief        Job for cleaning .NET project or solution (.NET Core)
+# @brief        Job for cleaning .NET project or solution (.NET Core).
 # @param[in]    DOTNET_CLEAN_SP_PATH                  Path where the project or the solution file is placed.
-# @param[in]    DOTNET_CLEAN_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
+# @param[in]    DOTNET_CLEAN_VERBOSITY                Verbosity of the command output. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
 # @param[in]    DOTNET_CLEAN_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet clean`.
 ##
 .PHONY: dotnet-clean
@@ -27,9 +27,9 @@ _dotnet-clean:
 
 ##
 # @function     maven-clean
-# @brief        Job for cleaning Maven projects
+# @brief        Job for cleaning Maven projects.
 # @param[in]    MAVEN_CLEAN_PROJECT_PATH             Path where the project is placed.
-# @param[in]    MAVEN_CLEAN_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_CLEAN_VERBOSITY                Verbosity of the command output. Available potions are: `--errors`, `--debug`, and `--quiet`.
 # @param[in]    MAVEN_CLEAN_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
 ##
 .PHONY: maven-clean

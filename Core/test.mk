@@ -10,7 +10,7 @@
 
 ##
 # @function     axe-scan
-# @brief        Job for scanning accessibility violations via axe-scan
+# @brief        Job for scanning accessibility violations via axe-scan.
 # @param[in]    AXE_SCAN_RESULTS_CSV                 CSV file for Axe Scan results.
 # @param[in]    AXE_SCAN_ADDITIONAL_PARAMTERS        Additional parameters to pass to axe-scan run command.
 # @param[in]    AXE_SCAN_SUMMARY_ENABLED             Toggle if axe scan summary command is enabled.
@@ -33,11 +33,11 @@ _axe-scan:
 
 ##
 # @function     dotnet-test
-# @brief        Job for cleaning .NET project or solution (.NET Core)
+# @brief        Job for cleaning .NET project or solution (.NET Core).
 # @param[in]    DOTNET_TEST_TOOL                     Tools for .NET unit testing: `xunit`, `nunit`, and `mstest`.
 # @param[in]    DOTNET_TEST_SP_PATH                  Path where the project or the solution file is placed.
-# @param[in]    DOTNET_TEST_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
-# @param[in]    DOTNET_TEST_ADDITIONAL_FLAGS         Additional parameters to pass to `dotnet test`.
+# @param[in]    DOTNET_TEST_VERBOSITY                Verbosity of the command output. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
+# @param[in]    DOTNET_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet test`.
 ##
 .PHONY: dotnet-test
 dotnet-test:
@@ -51,15 +51,15 @@ _dotnet-test:
 		echo "✅ Done installing xUnit 3 templates!"; \
 	fi
 	@echo "🧪 Performing unit testing..."
-	dotnet test $(DOTNET_TEST_SP_PATH) -v $(DOTNET_TEST_VERBOSITY) $(DOTNET_TEST_ADDITIONAL_FLAGS)
+	dotnet test $(DOTNET_TEST_SP_PATH) -v $(DOTNET_TEST_VERBOSITY) $(DOTNET_TEST_ADDITIONAL_PARAMETERS)
 	@echo "✅ Unit test completed!"
 
 ##
 # @function     helm-lint
-# @brief        Job for linting Helm charts
-# @param[in]    HELM_CHART_PACKAGE_LINT_PATH                 Path where the helm chart is located.
-# @param[in]    HELM_CHART_PACKAGE_LINT_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
-# @param[in]    HELM_CHART_PACKAGE_LINT_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @brief        Job for linting Helm charts.
+# @param[in]    HELM_CHART_LINT_PATH                 Path where the helm chart is located.
+# @param[in]    HELM_CHART_LINT_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
+# @param[in]    HELM_CHART_LINT_ADDITIONAL_PARAMETERS    Additional parameters to pass to command.
 ##
 .PHONY: helm-lint
 helm-lint:
@@ -68,16 +68,16 @@ helm-lint:
 .PHONY: _helm-lint
 _helm-lint:
 	@echo "🧪 Performing helm linting..."
-	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_LINT_NAME)/" Chart.yaml
-	helm lint $(HELM_CHART_PACKAGE_LINT_PATH) $(HELM_CHART_PACKAGE_LINT_ADDITIONAL_PARAMETERS)
+	sed -i "s/helm_chart_name/$(HELM_CHART_LINT_NAME)/" Chart.yaml
+	helm lint $(HELM_CHART_LINT_PATH) $(HELM_CHART_LINT_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm linting!"
 
 ##
 # @function     helm-template
-# @brief        Job for validating kubernetes manifests from Helm charts
-# @param[in]    HELM_CHART_PACKAGE_TEMPLATE_PATH                 Path where the helm chart is located.
-# @param[in]    HELM_CHART_PACKAGE_TEMPLATE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
-# @param[in]    HELM_CHART_PACKAGE_TEMPLATE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @brief        Job for validating kubernetes manifests from Helm charts.
+# @param[in]    HELM_CHART_TEMPLATE_PATH                 Path where the helm chart is located.
+# @param[in]    HELM_CHART_TEMPLATE_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
+# @param[in]    HELM_CHART_TEMPLATE_ADDITIONAL_PARAMETERS    Additional parameters to pass to comamnd.
 ##
 .PHONY: helm-template
 helm-template:
@@ -86,17 +86,17 @@ helm-template:
 .PHONY: _helm-template
 _helm-template:
 	@echo "🧪 Performing helm tempalte..."
-	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_TEMPLATE_NAME)/" Chart.yaml
-	helm template $(HELM_CHART_PACKAGE_TEMPLATE_PATH) $(HELM_CHART_PACKAGE_TEMPLATE_ADDITIONAL_PARAMETERS)
+	sed -i "s/helm_chart_name/$(HELM_CHART_TEMPLATE_NAME)/" Chart.yaml
+	helm template $(HELM_CHART_TEMPLATE_PATH) $(HELM_CHART_TEMPLATE_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm template!"
 
 ##
 # @function     helm-test
-# @brief        Job for testing Helm charts
+# @brief        Job for testing Helm charts.
 # @param[in]    HELM_CHART_TEST_PATH                 Path where the helm chart is located.
 # @param[in]    HELM_CHART_TEST_NAME                 The name of the chart. Replaces `helm_chart_name` from the Chart.yaml file.
 # @param[in]    HELM_CHART_TEST_NAMESPACE            Namespace where the helm chart wil be installed.
-# @param[in]    HELM_CHART_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
+# @param[in]    HELM_CHART_TEST_ADDITIONAL_PARAMETERS    Additional parameters to pass to command.
 ##
 .PHONY: helm-test
 helm-test:
@@ -112,10 +112,10 @@ _helm-test:
 
 ##
 # @function     yaml-schema-lint
-# @brief        Job for linting yaml schema
+# @brief        Job for linting yaml schema.
 # @param[in]    YAML_SCHEMA_LINT_SCHEMA_PATH                 Full path and file name of schema file.
 # @param[in]    YAML_SCHEMA_LINT_SCAN_PATH                   Full path and file name of the YAML file to be scanned.
-# @param[in]    YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS       Additional parameters for scanning yamale.
+# @param[in]    YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS       Additional parameters for scanning through yamale.
 ##
 .PHONY: yaml-schema-lint
 helm-test:
@@ -129,7 +129,7 @@ _yaml-schema-lint:
 
 ##
 # @function     maven-validate
-# @brief        Job for validating Maven configurations
+# @brief        Job for validating Maven configurations.
 # @param[in]    MAVEN_VALIDATE_PROJECT_PATH             Path where the project is located.
 # @param[in]    MAVEN_VALIDATE_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
 # @param[in]    MAVEN_VALIDATE_ADDITIONAL_PARAMETERS    Additional parameters to pass to `mvn`.
@@ -163,10 +163,10 @@ _maven-test:
 
 ##
 # @function     pa11y-ci-test
-# @brief        Job for Pa11y accessibility scanning
+# @brief        Job for Pa11y accessibility scanning.
 # @param[in]    PA11Y_CI_CONFIG                 Path where the configuration is located.
-# @param[in]    PA11Y_CI_SITEMAP                URL for the sitemap
-# @param[in]    PA11Y_CI_ADDITIONAL_CONFIG      Additional parameters to pass to `pa11y-ci`.
+# @param[in]    PA11Y_CI_SITEMAP                URL for the sitemap.
+# @param[in]    PA11Y_CI_ADDITIONAL_PARAMETERS  Additional parameters to pass to `pa11y-ci`.
 ##
 .PHONY: pa11y-ci-test
 pa11y-ci-test:
@@ -176,5 +176,5 @@ pa11y-ci-test:
 _pa11y-ci-test:
 	@echo "🧪 Performing Pa11y CI Test..."
 	pa11y-ci --version
-	pa11y-ci --json --config $(PA11Y_CI_CONFIG) --sitemap $(PA11Y_CI_SITEMAP) $(PA11Y_CI_ADDITIONAL_CONFIG)
+	pa11y-ci --json --config $(PA11Y_CI_CONFIG) --sitemap $(PA11Y_CI_SITEMAP) $(PA11Y_CI_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed Pa11y CI Test!"
