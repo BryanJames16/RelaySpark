@@ -29,7 +29,7 @@ _docker-build:
 # @function     dotnet-build
 # @brief        Job for building .NET application (.NET Core).
 # @param[in]    DOTNET_BUILD_SP_PATH                  Path where the project or the solution file is placed.
-# @param[in]    DOTNET_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
+# @param[in]    DOTNET_BUILD_VERBOSITY                Verbosity of the command output. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
 # @param[in]    DOTNET_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
 ##
 .PHONY: dotnet-build
@@ -78,7 +78,7 @@ _kaniko-build:
 # @function     maven-compile
 # @brief        Job for building Maven-based application.
 # @param[in]    MAVEN_BUILD_PROJECT_PATH             Path where the project is located.
-# @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
+# @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the command output. Available potions are: `--errors`, `--debug`, and `--quiet`.
 # @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
 ##
 .PHONY: maven-compile

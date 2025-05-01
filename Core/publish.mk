@@ -10,11 +10,11 @@
 
 ##
 # @function     dotnet-publish
-# @brief        Job for cleaning .NET project or solution (.NET Core)
+# @brief        Job for publishing .NET project or solution (.NET Core).
 # @param[in]    DOTNET_PUBLISH_SP_PATH               Path where the project or the solution file is placed.
-# @param[in]    DOTNET_PUBLISH_OUTPUT_PATH           Output directory where the binaries will be stored
-# @param[in]    DOTNET_PUBLISH_VERBOSITY             Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
-# @param[in]    DOTNET_PUBLISH_ADDITIONAL_FLAGS      Additional parameters to pass to `dotnet clean`.
+# @param[in]    DOTNET_PUBLISH_OUTPUT_PATH           Output directory where the binaries will be stored.
+# @param[in]    DOTNET_PUBLISH_VERBOSITY             Verbosity of the command output. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
+# @param[in]    DOTNET_PUBLISH_ADDITIONAL_FLAGS      Additional parameters to pass to `dotnet publish`.
 ##
 .PHONY: dotnet-publish
 dotnet-publish:
