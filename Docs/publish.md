@@ -1,7 +1,6 @@
 # 📖 Pipeline Publish Jobs
 
 ## 📜 dotnet-publish
-
 Job for publishing .NET project or solution (.NET Core).
 
 ### 🗃️ Variables
@@ -25,7 +24,6 @@ make _dotnet-publish
 ---
 
 ## 📜 helm-package
-
 Job for packaging Helm charts.
 
 ### 🗃️ Variables
@@ -53,7 +51,6 @@ make _helm-package
 ---
 
 ## 📜 helm-push
-
 Job for pushing Helm charts to repository.
 
 ### 🗃️ Variables
@@ -78,7 +75,6 @@ make _helm-push
 ---
 
 ## 📜 maven-package
-
 Job for packaging maven projects.
 
 ### 🗃️ Variables
@@ -101,7 +97,6 @@ make _maven-package
 ---
 
 ## 📜 maven-deploy
-
 Job for deploying maven projects.
 
 ### 🗃️ Variables
@@ -124,7 +119,6 @@ make _maven-deploy
 ---
 
 ## 📜 tar-docker-push
-
 Job pushing container image tar file into an image registry.
 
 ### 🗃️ Variables
@@ -150,7 +144,6 @@ make _tar-docker-push
 ---
 
 ## 📜 tar-crane-push
-
 Job pushing container image tar file into an image registry using crane.
 
 ### 🗃️ Variables
@@ -174,5 +167,3 @@ make _tar-crane-push
 
 ### 🕶️ Requirements
 - Container image with crane and cosign installed.
-
----

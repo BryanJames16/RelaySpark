@@ -9,7 +9,7 @@
 
 ##
 # @function     startup
-# @brief        Startup banner for RelaySpark
+# @brief        Start up banner for RelaySpark.
 ##
 .PHONY: startup
 startup:
@@ -23,8 +23,8 @@ startup:
 
 ##
 # @function     print-echo
-# @brief        Print a specific passed string
-# @param[in]    ECHO_VAR               Variable to echo
+# @brief        Print a specific passed string.
+# @param[in]    ECHO_VAR               Variable to echo.
 ##
 .PHONY: print-echo
 print-echo:
@@ -32,9 +32,9 @@ print-echo:
 
 ##
 # @function     relayspark-clone
-# @brief        Job for thin-cloning relayspark
-# @param[in]    RELAYSPARK_GIT_URL                    Git URL for RelaySpark
-# @param[in]    RELAYSPARK_FOLDER_FILE                Folders and file to clone
+# @brief        Job for thin-cloning relayspark.
+# @param[in]    RELAYSPARK_GIT_URL                    Git URL for RelaySpark.
+# @param[in]    RELAYSPARK_FOLDER_FILE                Folders and file to clone.
 ##
 .PHONY: relayspark-clone
 relayspark-clone:
