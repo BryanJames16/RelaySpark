@@ -305,6 +305,11 @@ HELM_CHART_TEST_NAME = helm_app
 HELM_CHART_TEST_NAMESPACE = default
 HELM_CHART_TEST_ADDITIONAL_PARAMETERS :=
 
+## yaml-schema-lint
+YAML_SCHEMA_LINT_SCHEMA_PATH = ./schema.yaml
+YAML_SCHEMA_LINT_SCAN_PATH = ./values.yaml
+YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS :=
+
 ## =====================
 ## Accessibility
 ## =====================
