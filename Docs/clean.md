@@ -1,7 +1,6 @@
 # 🧼 Pipeline Clean Jobs
 
 ## 🧹 dotnet-clean
-
 Job for cleaning .NET project or solution (.NET Core).
 
 ### 🗃️ Variables
@@ -24,7 +23,6 @@ make _dotnet-clean
 ---
 
 ## 🧹 maven-clean
-
 Job for cleaning Maven projects.
 
 ### 🗃️ Variables

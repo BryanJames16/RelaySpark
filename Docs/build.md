@@ -1,7 +1,6 @@
 # 🛠️ Pipeline Build Jobs
 
 ## 🔨 docker-build
-
 Job for building container images using Docker.
 
 ### 🗃️ Variables
@@ -25,7 +24,6 @@ make _docker-build
 ---
 
 ## 🔨 dotnet-build
-
 Job for building .NET application (.NET Core).
 
 ### 🗃️ Variables
@@ -48,7 +46,6 @@ make _dotnet-build
 ---
 
 ## 🔨 kaniko-build
-
 Job for building container images using Kaniko executor.
 
 ### 🗃️ Variables
@@ -75,7 +72,6 @@ make _kaniko-build
 ---
 
 ## 🔨 maven-compile
-
 Job for building Maven-based application.
 
 ### 🗃️ Variables
@@ -99,7 +95,6 @@ make _maven-compile
 ---
 
 ## 🔨 npm-build
-
 Build node applications.
 
 ### 🗃️ Variables
