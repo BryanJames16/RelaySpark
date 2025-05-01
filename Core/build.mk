@@ -51,7 +51,7 @@ _dotnet-build:
 # @param[in]    KANIKO_DOCKER_AUTH_CONFIG                Docker authentication configuration
 # @param[in]    KANIKO_DOCKERFILE_PATH                   Full path and filename of the Dockerfile.
 # @param[in]    KANIKO_BUILD_PROJECT_DIR                 Path of the project directory.
-# @param[in]    KANIKO_BUILD_ADDITIONAL_PARAMETERS       Additional docker build parameters
+# @param[in]    KANIKO_BUILD_ADDITIONAL_PARAMETERS       Additional kaniko build parameters.
 ##
 .PHONY: kaniko-build
 kaniko-build:
