@@ -67,7 +67,7 @@ helm-lint:
 
 .PHONY: _helm-lint
 _helm-lint:
-	@echo "🔨 Performing helm linting..."
+	@echo "🧪 Performing helm linting..."
 	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_LINT_NAME)/" Chart.yaml
 	helm lint $(HELM_CHART_PACKAGE_LINT_PATH) $(HELM_CHART_PACKAGE_LINT_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm linting!"
@@ -85,7 +85,7 @@ helm-template:
 
 .PHONY: _helm-template
 _helm-template:
-	@echo "🔨 Performing helm tempalte..."
+	@echo "🧪 Performing helm tempalte..."
 	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_TEMPLATE_NAME)/" Chart.yaml
 	helm template $(HELM_CHART_PACKAGE_TEMPLATE_PATH) $(HELM_CHART_PACKAGE_TEMPLATE_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm template!"
@@ -104,11 +104,28 @@ helm-test:
 
 .PHONY: _helm-test
 _helm-test:
-	@echo "🔨 Performing helm test..."
+	@echo "🧪 Performing helm test..."
 	sed -i "s/helm_chart_name/$(HELM_CHART_TEST_NAME)/" Chart.yaml
 	helm install $(HELM_CHART_TEST_NAME) $(HELM_CHART_TEST_PATH) --namespace $(HELM_CHART_TEST_NAMESPACE)
 	helm test $(HELM_CHART_TEST_PATH) $(HELM_CHART_TEST_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm test!"
+
+##
+# @function     yaml-schema-lint
+# @brief        Job for linting yaml schema
+# @param[in]    YAML_SCHEMA_LINT_SCHEMA_PATH                 Full path and file name of schema file.
+# @param[in]    YAML_SCHEMA_LINT_SCAN_PATH                   Full path and file name of the YAML file to be scanned.
+# @param[in]    YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS       Additional parameters for scanning yamale.
+##
+.PHONY: yaml-schema-lint
+helm-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _yaml-schema-lint
+
+.PHONY: _yaml-schema-lint
+_yaml-schema-lint:
+	@echo "🧪 Performing YAML schema linting..."
+	yamale --schema $(YAML_SCHEMA_LINT_SCHEMA_PATH) $(YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS) $(YAML_SCHEMA_LINT_SCAN_PATH)
+	@echo "✅ Completed YAML schema lint!"
 
 ##
 # @function     maven-validate
