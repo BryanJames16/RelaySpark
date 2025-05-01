@@ -34,7 +34,7 @@ No special requirements for this job.
 
 ---
 
-## 🚁 startuprelayspark-clone
+## 🚁 relayspark-clone
 Job for thin-cloning relayspark.
 
 ### 🗃️ Variables
@@ -52,5 +52,3 @@ make _relayspark-clone
 
 ### 🕶️ Requirements
 - Container image with `git` installed.
-
----

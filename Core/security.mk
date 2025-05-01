@@ -13,7 +13,7 @@
 
 ##
 # @function     trivy-scan
-# @brief        Wrapper for all trivy scans
+# @brief        Wrapper for all trivy scans.
 # @param[in]    TRIVY_SCAN_TYPE                  Type of scan to perform. Allowed values are: `sast`, `cs`, `container`, `image`, and `repo`.
 ##
 .PHONY: trivy-scan
@@ -32,10 +32,10 @@ trivy-scan:
 
 ##
 # @function     trivy-image-scan
-# @brief        Trivy container image scanning
+# @brief        Trivy container image scanning.
 # @param[in]    TRIVY_IMAGE_SCAN_IMAGE_URL                  Full image name and tag for sccanning. You can also instead use `--input <TAR_FILE>` if you want to scan a tar file.
 # @param[in]    TRIVY_IMAGE_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
-# @param[in]    TRIVY_IMAGE_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
+# @param[in]    TRIVY_IMAGE_SCAN_EXIT_CODE                  Exit code for trivy scan (`1` for vulnerabilities detected, `0` for none).
 # @param[in]    TRIVY_IMAGE_SCAN_OUTPUT_FILE                Output file for trivy scan.
 # @param[in]    TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
@@ -53,10 +53,10 @@ _trivy-image-scan:
 
 ##
 # @function     trivy-fs-scan
-# @brief        Trivy filesyste, scanning
+# @brief        Trivy filesystem scanning.
 # @param[in]    TRIVY_FS_SCAN_PATH                       Path where trivy will start scanning.
 # @param[in]    TRIVY_FS_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
-# @param[in]    TRIVY_FS_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
+# @param[in]    TRIVY_FS_SCAN_EXIT_CODE                  Exit code for trivy scan (`1` for vulnerabilities detected, `0` for none)
 # @param[in]    TRIVY_FS_SCAN_OUTPUT_FILE                Output file for trivy scan.
 # @param[in]    TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
@@ -74,10 +74,10 @@ _trivy-fs-scan:
 
 ##
 # @function     trivy-repo-scan
-# @brief        Trivy repository scanning
-# @param[in]    TRIVY_REPO_SCAN_URL                        Repository URL to scan (can be remote or local repo)
+# @brief        Trivy repository scanning.
+# @param[in]    TRIVY_REPO_SCAN_URL                        Repository URL to scan (can be remote or local repo).
 # @param[in]    TRIVY_REPO_SCAN_OUTPUT_FORMAT              Output format for Trivy. Allowed values are: `table`, `json`, `template`, `sarif`, `cyclonedx`, `spdx`, `spdx-json`, `github`, and `cosign-vuln`.
-# @param[in]    TRIVY_REPO_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
+# @param[in]    TRIVY_REPO_SCAN_EXIT_CODE                  Exit code for trivy scan (`1` for vulnerabilities detected, `0` for none)
 # @param[in]    TRIVY_REPO_SCAN_OUTPUT_FILE                Output file for trivy scan.
 # @param[in]    TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
 ##
@@ -116,12 +116,12 @@ gitleaks-scan:
 
 ##
 # @function     gitleaks-dir-scan
-# @brief        Gitleaks Directory Scanning
+# @brief        Gitleaks directory scanning.
 # @param[in]    GITLEAKS_DIR_SCAN_PATH                       Path where Gitleaks will scan for exposed secrets.
 # @param[in]    GITLEAKS_DIR_SCAN_OUTPUT_FORMAT              Output format for Gitleaks. Allowed values are: `json`, `csv`, `junit`, `sarif`, `template`.
-# @param[in]    GITLEAKS_DIR_SCAN_OUTPUT_FILE                Path and file name for report output
-# @param[in]    GITLEAKS_DIR_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
-# @param[in]    GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
+# @param[in]    GITLEAKS_DIR_SCAN_OUTPUT_FILE                Path and file name for report output.
+# @param[in]    GITLEAKS_DIR_SCAN_EXIT_CODE                  Exit code for gitleaks scan (`1` for vulnerabilities detected, `0` for none).
+# @param[in]    GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS      Any additional gitleaks scan parameters.
 ##
 .PNONY: gitleaks-dir-scan
 gitleaks-dir-scan:
@@ -135,12 +135,12 @@ _gitleaks-dir-scan:
 
 ##
 # @function     gitleaks-repo-scan
-# @brief        Gitleaks Git Reepository Scanning
+# @brief        Gitleaks git repository scanning.
 # @param[in]    GITLEAKS_REPO_SCAN_PATH                       Path where Gitleaks will scan for exposed secrets.
 # @param[in]    GITLEAKS_REPO_SCAN_OUTPUT_FORMAT              Output format for Gitleaks. Allowed values are: `json`, `csv`, `junit`, `sarif`, `template`.
-# @param[in]    GITLEAKS_REPO_SCAN_OUTPUT_FILE                Path and file name for report output
-# @param[in]    GITLEAKS_REPO_SCAN_EXIT_CODE                  Exit code for trivy scan (1 for vulnerabilities detected, 0 for none)
-# @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional trivy scan parameters.
+# @param[in]    GITLEAKS_REPO_SCAN_OUTPUT_FILE                Path and file name for report output.
+# @param[in]    GITLEAKS_REPO_SCAN_EXIT_CODE                  Exit code for gitleaks scan (`1` for vulnerabilities detected, `0` for none).
+# @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional gitleaks scan parameters.
 ##
 .PNONY: gitleaks-repo-scan
 gitleaks-repo-scan:
@@ -158,8 +158,8 @@ _gitleaks-repo-scan:
 
 ##
 # @function     kubesec-scan
-# @brief        Wrapper for kubesec scanning
-# @param[in]    KUBESEC_SCAN_TYPE                     Type of scanning to be done. Valid values are `manifest` and `helm`
+# @brief        Wrapper for kubesec scanning.
+# @param[in]    KUBESEC_SCAN_TYPE                     Type of scanning to be done. Valid values are `manifest` and `helm`.
 ##
 .PNONY: kubesec-scan
 kubesec-scan:
@@ -175,10 +175,9 @@ kubesec-scan:
 
 ##
 # @function     kubesec-manifest-scan
-# @brief        Kubernetes SAST manifest scanning
-# @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
-# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart
-# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+# @brief        Kubernetes SAST manifest scanning.
+# @param[in]    KUBESEC_MANIFEST_SCAN_PATH                     Path to scan YAML manifest files.
+# @param[in]    KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec.
 ##
 .PNONY: kubesec-manifest-scan
 kubesec-manifest-scan:
@@ -195,10 +194,10 @@ _kubesec-manifest-scan:
 
 ##
 # @function     kubesec-helm-scan
-# @brief        Kubernetes SAST helm scanning
+# @brief        Kubernetes SAST helm scanning.
 # @param[in]    KUBESEC_HELM_SCAN_PATH                     Path to scan helm chart
-# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values
-# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec
+# @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values.
+# @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec.
 ##
 .PNONY: kubesec-helm-scan
 kubesec-helm-scan:
@@ -216,10 +215,10 @@ _kubesec-helm-scan:
 
 ##
 # @function     horusec-scan
-# @brief        SAST scanning through Horusec
+# @brief        SAST scanning through Horusec.
 # @param[in]    HORUSEC_SCAN_CONFIG_FILE_PATH               Path where horusec configuration can be found.
-# @param[in]    HORUSEC_SCAN_PATH                           Path where horusec will start scanning
-# @param[in]    HORUSEC_SCAN_LOG_FILE_PATH                  Path and filename of the log file
+# @param[in]    HORUSEC_SCAN_PATH                           Path where horusec will start scanning.
+# @param[in]    HORUSEC_SCAN_LOG_FILE_PATH                  Path and filename of the log file.
 # @param[in]    HORUSEC_SCAN_LOG_LEVEL                      Log level of horusec. Valid values are: `panic`, `fatal`, `error`, `warn`, `info`, `debug`, and `trace`.
 # @param[in]    HORUSEC_SCAN_ADDITIONAL_PARAMETERS          Additional parameters for horusec.
 ##
@@ -240,10 +239,10 @@ _horusec-scan:
 
 ##
 # @function     cosign-container-image-tar-signing
-# @brief        Container signing for container images in tar format
-# @param[in]    COSIGN_CONTAINER_SIGNING_KEY_PATH                     Path where the key can be found
-# @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file
-# @param[in]    COSIGN_CONTAINER_IMAGE_ADDITIONAL_PARAMETERS                Additional parameters for cosign command
+# @brief        Container signing for container images in tar format.
+# @param[in]    COSIGN_CONTAINER_SIGNING_KEY_PATH                     Path where the key can be found.
+# @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file.
+# @param[in]    COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS        Additional parameters for cosign command.
 ##
 .PNONY: cosign-container-image-tar-signing
 cosign-container-image-tar-signing:
@@ -252,15 +251,15 @@ cosign-container-image-tar-signing:
 .PNONY: _cosign-container-image-tar-signing
 _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
-	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_IMAGE_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
+	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
 	@echo "✅ Completed container signing!"
 
 ##
 # @function     cosign-blob-signing
-# @brief        Job for blob signing through cosign
-# @param[in]    COSIGN_BLOB_SIGNING_KEY_PATH                     Path where the key can be found
-# @param[in]    COSIGN_BLOB_FILE                                 Full path and file to the blob
-# @param[in]    COSIGN_BLOB_ADDITIONAL_PARAMETERS                Additional parameters for cosign command
+# @brief        Job for blob signing through cosign.
+# @param[in]    COSIGN_BLOB_SIGNING_KEY_PATH                     Path where the key can be found.
+# @param[in]    COSIGN_BLOB_FILE                                 Full path and file to the blob.
+# @param[in]    COSIGN_BLOB_ADDITIONAL_PARAMETERS                Additional parameters for cosign command.
 ##
 .PNONY: cosign-blob-signing
 cosign-blob-signing:
