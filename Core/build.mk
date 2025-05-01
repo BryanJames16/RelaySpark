@@ -9,11 +9,11 @@
 
 ##
 # @function     docker-build
-# @brief        Job for building container images using Docker
+# @brief        Job for building container images using Docker.
 # @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.
 # @param[in]    CONTAINER_BUILD_IMAGE_TAG                Tag of the container image to use.
 # @param[in]    DOCKERFILE_PATH                          Path of the Dockerfile.
-# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS    Additional docker build parameters
+# @param[in]    CONTAINER_BUILD_ADDITIONAL_PARAMETERS    Additional docker build parameters.
 ##
 .PHONY: docker-build
 docker-build:
@@ -27,9 +27,9 @@ _docker-build:
 
 ##
 # @function     dotnet-build
-# @brief        Job for building .NET application (.NET Core)
+# @brief        Job for building .NET application (.NET Core).
 # @param[in]    DOTNET_BUILD_SP_PATH                  Path where the project or the solution file is placed.
-# @param[in]    DOTNET_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`
+# @param[in]    DOTNET_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `q[uiet]`, `m[inimal]`, `n[ormal]`, `d[etailed]`, and `diag[nostic]`.
 # @param[in]    DOTNET_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to `dotnet build`.
 ##
 .PHONY: dotnet-build
@@ -44,11 +44,11 @@ _dotnet-build:
 
 ##
 # @function     kaniko-build
-# @brief        Job for building container images using Kaniko
+# @brief        Job for building container images using Kaniko.
 # @param[in]    KANIKO_BUILD_IMAGE_NAME                  The full container image name.
 # @param[in]    KANIKO_BUILD_IMAGE_TAG                   Tag of the container image to use.
-# @param[in]    KANIKO_DOCKER_AUTH_CONFIG_ENABLED        Enable seeding of remote authentication credentials
-# @param[in]    KANIKO_DOCKER_AUTH_CONFIG                Docker authentication configuration
+# @param[in]    KANIKO_DOCKER_AUTH_CONFIG_ENABLED        Enable seeding of remote authentication credentials.
+# @param[in]    KANIKO_DOCKER_AUTH_CONFIG                Docker authentication configuration.
 # @param[in]    KANIKO_DOCKERFILE_PATH                   Full path and filename of the Dockerfile.
 # @param[in]    KANIKO_BUILD_PROJECT_DIR                 Path of the project directory.
 # @param[in]    KANIKO_BUILD_ADDITIONAL_PARAMETERS       Additional kaniko build parameters.
@@ -76,7 +76,7 @@ _kaniko-build:
 
 ##
 # @function     maven-compile
-# @brief        Job for building Maven-based application
+# @brief        Job for building Maven-based application.
 # @param[in]    MAVEN_BUILD_PROJECT_PATH             Path where the project is located.
 # @param[in]    MAVEN_BUILD_VERBOSITY                Verbosity of the build. Available potions are: `--errors`, `--debug`, and `--quiet`.
 # @param[in]    MAVEN_BUILD_ADDITIONAL_PARAMETERS    Additional parameters to pass to maven.
@@ -93,7 +93,7 @@ _maven-compile:
 
 ##
 # @function     npm-build
-# @brief        Build node application
+# @brief        Build node application.
 # @param[in]    NPM_BUILD_DIRECTORY                  Path where the project is located.
 # @param[in]    NPM_BUILD_ADDITIONAL_PARAMETERS      Additional parameters to pass to NPM.
 ##

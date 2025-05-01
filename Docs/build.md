@@ -2,7 +2,7 @@
 
 ## 🔨 docker-build
 
-Job for building container images using Docker
+Job for building container images using Docker.
 
 ### 🗃️ Variables
 - `CONTAINER_IMAGE_NAME`: The full container image name.
@@ -26,7 +26,7 @@ make _docker-build
 
 ## 🔨 dotnet-build
 
-Job for building .NET application (.NET Core)
+Job for building .NET application (.NET Core).
 
 ### 🗃️ Variables
 - `DOTNET_BUILD_SP_PATH`: Path where the project or the solution file is placed.
@@ -49,7 +49,7 @@ make _dotnet-build
 
 ## 🔨 kaniko-build
 
-Job for building container images using Kaniko executor
+Job for building container images using Kaniko executor.
 
 ### 🗃️ Variables
 - `KANIKO_BUILD_IMAGE_NAME`: The full container image name.
@@ -94,7 +94,7 @@ make _maven-compile
 
 ### 🕶️ Requirements
 - Container image with maven installed.
-- Any maven dependencies (java, compiler, toolchains, etc...)
+- Any maven dependencies (java, compiler, toolchains, etc...).
 
 ---
 
