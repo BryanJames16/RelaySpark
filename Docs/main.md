@@ -8,7 +8,7 @@ Maintaining a reusable pipeline and jobs speeds up the development process and a
 
 **RelaySpark** offers a way to define pipelines and reusable jobs you can use to make your pipeline reusable. RelaySpark uses *three musketeers* pattern to define the jobs. This makes your pipeline jobs reusable and portable to CI/CD platforms. In fact, you don't even need a CI/CD platform to run the jobs!
 
-## Usage
+## 🧰 Usage
 RelaySpark is meant to be cloned thinly on your pipeline and cached between jobs. This will ensure that you can minimize bandwidth costs and consumption within your pipeline run. On a high-level the workflow looks like this:
 
 ```text
@@ -49,9 +49,9 @@ There are default initial variables you may need to define on your `Makefile` or
 ## 📚 Job References
 
 You can refer to these files for job references:
-- [🛠️ Build Jobs](./build.md)
-- [🧼 Clean Jobs](./clean.md)
-- [📖 Publish Jobs](./publish.md)
-- [🔒 Security Jobs](./security.md)
-- [🚁 Startup Jobs](./startup.md)
-- [🧪 Test Jobs](./test.md)
+- 🛠️ [Build Jobs](./build.md)
+- 🧼 [Clean Jobs](./clean.md)
+- 📖 [Publish Jobs](./publish.md)
+- 🔒 [Security Jobs](./security.md)
+- 🚁 [Startup Jobs](./startup.md)
+- 🧪 [Test Jobs](./test.md)
