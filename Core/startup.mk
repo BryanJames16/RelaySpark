@@ -56,7 +56,8 @@ _relayspark-clone:
 # @function     tofu-init
 # @brief        OpenTofu initialization job.
 # @param[in]    TOFU_INIT_ADDITIONAL_PARAMETERS       OpenTofu initialization additional parameters.
-# @param[in]    RELAYSPARK_FOLDER_FILE                Folders and file to clone.
+# @param[in]    TOFU_INIT_ENABLE_WORKSPACE            Flag for enabling OpenTofu workspace.
+# @param[in]    TOFU_INIT_TARGET_WORKSPACE            Target workspace name for the job.
 ##
 .PHONY: tofu-init
 relayspark-clone:
@@ -67,4 +68,7 @@ _tofu-init:
 	@echo "🔌 Performing OpenTofu initialization...."
 	tofu version
 	tofu init $(TOFU_INIT_ADDITIONAL_PARAMETERS)
+	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
+		terraform workspace select $(TOFU_INIT_TARGET_WORKSPACE) || terraform workspace new $(TOFU_INIT_TARGET_WORKSPACE)
+	fi
 	@echo "✅ Done initializint OpenTofu!"
