@@ -52,3 +52,25 @@ make _relayspark-clone
 
 ### 🕶️ Requirements
 - Container image with `git` installed.
+
+---
+
+## 🚁 tofu-init
+OpenTofu initialization job.
+
+### 🗃️ Variables
+- `TOFU_INIT_ADDITIONAL_PARAMETERS`: OpenTofu initialization additional parameters.
+- `TOFU_INIT_ENABLE_WORKSPACE`: Flag for enabling OpenTofu workspace.
+- `TOFU_INIT_TARGET_WORKSPACE`: Target workspace name for the job.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make tofu-init
+
+# Job Call
+make _tofu-init
+```
+
+### 🕶️ Requirements
+- Container image with `OpenTofu` installed.
