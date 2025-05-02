@@ -59,6 +59,7 @@ make _relayspark-clone
 OpenTofu initialization job.
 
 ### 🗃️ Variables
+- `TOFU_INIT_BACKEND_CONFIG_FILE`: Full path and file name of OpenTofu backend config file.
 - `TOFU_INIT_ADDITIONAL_PARAMETERS`: OpenTofu initialization additional parameters.
 - `TOFU_INIT_ENABLE_WORKSPACE`: Flag for enabling OpenTofu workspace.
 - `TOFU_INIT_TARGET_WORKSPACE`: Target workspace name for the job.
