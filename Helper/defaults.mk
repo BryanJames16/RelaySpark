@@ -14,9 +14,6 @@ MAKE = make
 CONTAINER_COMMAND_BASE = docker compose run
 CONTAINER_COMMAND_PARAMETER = --rm
 CONTAINER_COMMAND_SERVICE = alpine
-RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
-RELAYSPARK_FOLDER_FILE = Core Helper pipeline.mk
-ECHO_VAR = World
 
 ## ----------------------------------
 #  BUILD
@@ -255,7 +252,16 @@ COSIGN_BLOB_SIGNING_KEY_PATH = ./cosign.key
 COSIGN_BLOB_FILE = ./README.md
 COSIGN_BLOB_ADDITIONAL_PARAMETERS :=
 
-##
+## ----------------------------------
+#  START UP
+## ----------------------------------
+
+## print-echo
+ECHO_VAR = World
+
+## relayspark-clone
+RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
+RELAYSPARK_FOLDER_FILE = ./.relayspark
 
 ## ----------------------------------
 #  TEST
