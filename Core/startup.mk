@@ -77,4 +77,4 @@ _tofu-init:
 	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
 		terraform workspace select $(TOFU_INIT_TARGET_WORKSPACE) || terraform workspace new $(TOFU_INIT_TARGET_WORKSPACE); \
 	fi
-	@echo "✅ Done initializint OpenTofu!"
+	@echo "✅ Done initializing OpenTofu!"
