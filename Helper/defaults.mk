@@ -264,6 +264,7 @@ RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
 RELAYSPARK_FOLDER_FILE = ./.relayspark
 
 ## tofu-init
+TOFU_INIT_ENABLE_CLEAN_FOLDER := False
 TOFU_INIT_BACKEND_CONFIG_FILE = ./development.conf
 TOFU_INIT_ADDITIONAL_PARAMETERS :=
 TOFU_INIT_ENABLE_WORKSPACE = False
