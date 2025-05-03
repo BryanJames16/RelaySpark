@@ -68,6 +68,8 @@ relayspark-clone:
 _tofu-init:
 	@echo "🔌 Performing OpenTofu initialization...."
 	tofu version
+	rm -rf .terraform || true
+	rm -rf .tofu || true
 	tofu init -backend-config=$(TOFU_INIT_BACKEND_CONFIG_FILE) $(TOFU_INIT_ADDITIONAL_PARAMETERS)
 	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
 		terraform workspace select $(TOFU_INIT_TARGET_WORKSPACE) || terraform workspace new $(TOFU_INIT_TARGET_WORKSPACE)
