@@ -55,6 +55,8 @@ _relayspark-clone:
 ##
 # @function     tofu-init
 # @brief        OpenTofu initialization job.
+# @param[in]    TOFU_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
+# @param[in]    TOFU_INIT_BACKEND_CONFIG_FILE         Full path and file name of OpenTofu backend config file.
 # @param[in]    TOFU_INIT_ADDITIONAL_PARAMETERS       OpenTofu initialization additional parameters.
 # @param[in]    TOFU_INIT_ENABLE_WORKSPACE            Flag for enabling OpenTofu workspace.
 # @param[in]    TOFU_INIT_TARGET_WORKSPACE            Target workspace name for the job.
@@ -67,8 +69,12 @@ relayspark-clone:
 _tofu-init:
 	@echo "🔌 Performing OpenTofu initialization...."
 	tofu version
-	tofu init $(TOFU_INIT_ADDITIONAL_PARAMETERS)
-	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
-		terraform workspace select $(TOFU_INIT_TARGET_WORKSPACE) || terraform workspace new $(TOFU_INIT_TARGET_WORKSPACE)
+	@if [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "true" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "True" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "t" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "T" ]; then \
+		rm -rf .terraform || true; \
+		rm -rf .tofu || true; \
 	fi
-	@echo "✅ Done initializint OpenTofu!"
+	tofu init -backend-config=$(TOFU_INIT_BACKEND_CONFIG_FILE) $(TOFU_INIT_ADDITIONAL_PARAMETERS)
+	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
+		terraform workspace select $(TOFU_INIT_TARGET_WORKSPACE) || terraform workspace new $(TOFU_INIT_TARGET_WORKSPACE); \
+	fi
+	@echo "✅ Done initializing OpenTofu!"
