@@ -62,7 +62,7 @@ _relayspark-clone:
 # @param[in]    TOFU_INIT_TARGET_WORKSPACE            Target workspace name for the job.
 ##
 .PHONY: tofu-init
-relayspark-clone:
+tofu-init:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-init
 
 .PHONY: _tofu-init
