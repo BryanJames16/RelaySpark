@@ -337,3 +337,10 @@ AXE_SCAN_RESULTS_CSV = ./results.csv
 AXE_SCAN_ADDITIONAL_PARAMTERS :=
 AXE_SCAN_SUMMARY_ENABLED = false
 AXE_SCAN_SUMMARY_ADDITIONAL_PARAMTERS :=
+
+## =====================
+## Infrastructure-as-Code
+## =====================
+
+## tofu-validate
+TOFU_VALIDATE_ADDITIONAL_PARAMETERS := 

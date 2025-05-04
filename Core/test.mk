@@ -178,3 +178,18 @@ _pa11y-ci-test:
 	pa11y-ci --version
 	pa11y-ci --json --config $(PA11Y_CI_CONFIG) --sitemap $(PA11Y_CI_SITEMAP) $(PA11Y_CI_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed Pa11y CI Test!"
+
+##
+# @function     tofu-validate
+# @brief        OpenTofu validation command.
+# @param[in]    TOFU_VALIDATE_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu validate.
+##
+.PHONY: tofu-validate
+tofu-validate:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-validate
+
+.PHONY: _tofu-validate
+_tofu-validate:
+	@echo "🧪 Performing OpenTofu validation..."
+	tofu validate $(TOFU_VALIDATE_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed OpenTofu validation!"
