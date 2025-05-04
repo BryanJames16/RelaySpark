@@ -201,3 +201,23 @@ make _pa11y-ci-test
 
 ### 🕶️ Requirements
 - Container image with pa11y-ci installed.
+
+---
+
+## 🧪 tofu-validate
+OpenTofu validation command.
+
+### 🗃️ Variables
+- `TOFU_VALIDATE_ADDITIONAL_PARAMETERS`: Additional parameters to pass to OpenTofu validate.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make tofu-validate
+
+# Job Call
+make _tofu-validate
+```
+
+### 🕶️ Requirements
+- Container image with OpenTofu installed.
