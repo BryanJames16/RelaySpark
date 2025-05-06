@@ -56,6 +56,10 @@ _relayspark-clone:
 # @function     tofu-init
 # @brief        OpenTofu initialization job.
 # @param[in]    TOFU_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
+# @param[in]    TOFU_INIT_ENABLE_TF_CREDS             Flag for enabling OpenTofu credentials.
+# @param[in]    TOFU_INIT_TF_CREDS                    Flag for enabling OpenTofu credentials.
+# @param[in]    TOFU_INIT_ENABLE_TF_RC                Flag for enabling OpenTofu remote credentials.
+# @param[in]    TOFU_INIT_TF_RC                       OpenTofu remote credentials. Stored
 # @param[in]    TOFU_INIT_BACKEND_CONFIG_FILE         Full path and file name of OpenTofu backend config file.
 # @param[in]    TOFU_INIT_ADDITIONAL_PARAMETERS       OpenTofu initialization additional parameters.
 # @param[in]    TOFU_INIT_ENABLE_WORKSPACE            Flag for enabling OpenTofu workspace.
@@ -72,6 +76,12 @@ _tofu-init:
 	@if [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "true" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "True" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "t" ] || [ "$(TOFU_INIT_ENABLE_CLEAN_FOLDER)" = "T" ]; then \
 		rm -rf .terraform || true; \
 		rm -rf .tofu || true; \
+	fi
+	@if [ "$(TOFU_INIT_ENABLE_TF_CREDS)" = "true" ] || [ "$(TOFU_INIT_ENABLE_TF_CREDS)" = "True" ] || [ "$(TOFU_INIT_ENABLE_TF_CREDS)" = "t" ] || [ "$(TOFU_INIT_ENABLE_TF_CREDS)" = "T" ]; then \
+		echo $(TOFU_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
+	fi
+	@if [ "$(TOFU_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "T" ]; then \
+		echo $(TOFU_INIT_TF_RC) > /root/.teraformrc; \
 	fi
 	tofu init -backend-config=$(TOFU_INIT_BACKEND_CONFIG_FILE) $(TOFU_INIT_ADDITIONAL_PARAMETERS)
 	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
