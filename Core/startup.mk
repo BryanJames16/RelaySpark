@@ -57,7 +57,7 @@ _relayspark-clone:
 # @brief        OpenTofu initialization job.
 # @param[in]    TOFU_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
 # @param[in]    TOFU_INIT_ENABLE_TF_CREDS             Flag for enabling OpenTofu credentials.
-# @param[in]    TOFU_INIT_TF_CREDS                    OpenTofu Credentials.
+# @param[in]    TOFU_INIT_TF_CREDS                    OpenTofu credentials.
 # @param[in]    TOFU_INIT_ENABLE_TF_RC                Flag for enabling OpenTofu remote credentials.
 # @param[in]    TOFU_INIT_TF_RC                       OpenTofu remote credentials.
 # @param[in]    TOFU_INIT_BACKEND_CONFIG_FILE         Full path and file name of OpenTofu backend config file.
