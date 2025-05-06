@@ -60,6 +60,10 @@ OpenTofu initialization job.
 
 ### 🗃️ Variables
 - `TOFU_INIT_ENABLE_CLEAN_FOLDER`: Flag for enabling clean up of .terraform and .tofu folders.
+- `TOFU_INIT_ENABLE_TF_CREDS`: Flag for enabling OpenTofu credentials.
+- `TOFU_INIT_TF_CREDS`: OpenTofu credentials.
+- `TOFU_INIT_ENABLE_TF_RC`: Flag for enabling OpenTofu remote credentials.
+- `TOFU_INIT_TF_RC`: OpenTofu remote credentials
 - `TOFU_INIT_BACKEND_CONFIG_FILE`: Full path and file name of OpenTofu backend config file.
 - `TOFU_INIT_ADDITIONAL_PARAMETERS`: OpenTofu initialization additional parameters.
 - `TOFU_INIT_ENABLE_WORKSPACE`: Flag for enabling OpenTofu workspace.
