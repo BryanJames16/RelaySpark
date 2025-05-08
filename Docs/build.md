@@ -112,3 +112,24 @@ make _npm-build
 
 ### 🕶️ Requirements
 - Container image with NodeJS installed, particularly `npm` command.
+
+---
+
+## 🔨 tofu-plan
+Job for building OpenTofu plan file.
+
+### 🗃️ Variables
+- `TOFU_PLAN_PLAN_FILE_NAME`: File name of OpenTofu plan file.
+- `TOFU_PLAN_ADDITIONAL_PARAMETERS`: Additional parameters for plan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make tofu-plan
+
+# Job Call
+make _tofu-plan
+```
+
+### 🕶️ Requirements
+- Container image with OpenTofu installed, specifically `tofu` command.

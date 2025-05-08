@@ -106,3 +106,19 @@ _npm-build:
 	@echo "🔨 Performing npm build..."
 	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed npm build!"
+
+##
+# @function     tofu-plan
+# @brief        Job for building OpenTofu plan file.
+# @param[in]    TOFU_PLAN_PLAN_FILE_NAME                 File name of OpenTofu plan file.
+# @param[in]    TOFU_PLAN_ADDITIONAL_PARAMETERS          Additional parameters for plan.
+##
+.PHONY: tofu-plan
+tofu-plan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-plan
+
+.PHONY: _tofu-plan
+_tofu-plan:
+	@echo "🔨 Performing tofu plan..."
+	terraform plan -out="$(TOFU_PLAN_PLAN_FILE_NAME)" $(TOFU_PLAN_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed tofu plan!"
