@@ -70,6 +70,13 @@ KANIKO_DOCKERFILE_PATH = ./Dockerfile
 KANIKO_BUILD_PROJECT_DIR = ./
 KANIKO_BUILD_ADDITIONAL_PARAMETERS :=
 
+## ======================
+## Infrastructure as Code
+## ======================
+
+TOFU_PLAN_PLAN_FILE_NAME = planfile
+TOFU_PLAN_ADDITIONAL_PARAMETERS := 
+
 ## ----------------------------------
 #  CLEAN
 ## ----------------------------------
@@ -268,7 +275,7 @@ TOFU_INIT_ENABLE_CLEAN_FOLDER := False
 TOFU_INIT_ENABLE_TF_CREDS = False
 TOFU_INIT_TF_CREDS :=
 TOFU_INIT_ENABLE_TF_RC = False
-TOFU_INIT_TF_RC := 
+TOFU_INIT_TF_RC :=
 TOFU_INIT_BACKEND_CONFIG_FILE = ./development.conf
 TOFU_INIT_ADDITIONAL_PARAMETERS :=
 TOFU_INIT_ENABLE_WORKSPACE = False
