@@ -115,6 +115,27 @@ make _npm-build
 
 ---
 
+## 🔨 tofu-apply
+Job for applying plan files for OpenTofu.
+
+### 🗃️ Variables
+- `TOFU_APPLY_PLAN_FILE_NAME`: File name of OpenTofu plan file.
+- `TOFU_APPLY_ADDITIONAL_PARAMETERS`: Additional parameters for apply.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make tofu-apply
+
+# Job Call
+make _tofu-apply
+```
+
+### 🕶️ Requirements
+- Container image with OpenTofu installed, specifically `tofu` command.
+
+---
+
 ## 🔨 tofu-plan
 Job for building OpenTofu plan file.
 
