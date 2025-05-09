@@ -108,6 +108,22 @@ _npm-build:
 	@echo "✅ Completed npm build!"
 
 ##
+# @function     tofu-apply
+# @brief        Job for applying plan files for OpenTofu.
+# @param[in]    TOFU_APPLY_PLAN_FILE_NAME                 File name of OpenTofu plan file.
+# @param[in]    TOFU_APPLY_ADDITIONAL_PARAMETERS          Additional parameters for apply.
+##
+.PHONY: tofu-apply
+tofu-apply:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-apply
+
+.PHONY: _tofu-apply
+_tofu-apply:
+	@echo "🔨 Performing tofu plan..."
+	tofu apply -auto-approve -input=false $(TOFU_APPLY_PLAN_FILE_NAME) $(TOFU_APPLY_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed tofu plan!"
+
+##
 # @function     tofu-plan
 # @brief        Job for building OpenTofu plan file.
 # @param[in]    TOFU_PLAN_PLAN_FILE_NAME                 File name of OpenTofu plan file.
@@ -120,5 +136,5 @@ tofu-plan:
 .PHONY: _tofu-plan
 _tofu-plan:
 	@echo "🔨 Performing tofu plan..."
-	terraform plan -out="$(TOFU_PLAN_PLAN_FILE_NAME)" $(TOFU_PLAN_ADDITIONAL_PARAMETERS)
+	tofu plan -out="$(TOFU_PLAN_PLAN_FILE_NAME)" $(TOFU_PLAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed tofu plan!"
