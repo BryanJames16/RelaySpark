@@ -119,9 +119,9 @@ tofu-apply:
 
 .PHONY: _tofu-apply
 _tofu-apply:
-	@echo "🔨 Performing tofu plan..."
+	@echo "🔨 Performing tofu apply..."
 	tofu apply -auto-approve -input=false $(TOFU_APPLY_PLAN_FILE_NAME) $(TOFU_APPLY_ADDITIONAL_PARAMETERS)
-	@echo "✅ Completed tofu plan!"
+	@echo "✅ Completed tofu apply!"
 
 ##
 # @function     tofu-plan
