@@ -74,8 +74,13 @@ KANIKO_BUILD_ADDITIONAL_PARAMETERS :=
 ## Infrastructure as Code
 ## ======================
 
+## tofu-apply
+TOFU_APPLY_PLAN_FILE_NAME = planfile
+TOFU_APPLY_ADDITIONAL_PARAMETERS := 
+
+## tofu-plan
 TOFU_PLAN_PLAN_FILE_NAME = planfile
-TOFU_PLAN_ADDITIONAL_PARAMETERS := 
+TOFU_PLAN_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
 #  CLEAN
