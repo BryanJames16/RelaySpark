@@ -45,7 +45,7 @@ _maven-clean:
 ##
 # @function     tofu-destroy
 # @brief        Job for performing tofu destroy.
-# @param[in]    TOFU_DESTROYY_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu.
+# @param[in]    TOFU_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu.
 ##
 .PHONY: tofu-destroy
 maven-clean:
@@ -53,6 +53,6 @@ maven-clean:
 
 .PHONY: _tofu-destroy
 _maven-clean:
-	@echo "🧹 Performing maven clean..."
-	tofu destroy -auto-approve $(TOFU_DESTROYY_ADDITIONAL_PARAMETERS)
-	@echo "✅ Completed maven clean!"
+	@echo "🧹 Performing tofu destroy..."
+	tofu destroy -auto-approve $(TOFU_DESTROY_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed tofu destroy!"
