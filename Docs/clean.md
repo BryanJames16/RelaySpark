@@ -41,3 +41,23 @@ make _maven-clean
 
 ### 🕶️ Requirements
 - Container image with Maven installed.
+
+---
+
+## 🧹 tofu-destroyy
+Job for performing tofu destroy.
+
+### 🗃️ Variables
+- `TOFU_DESTROY_ADDITIONAL_PARAMETERS`: Additional parameters to pass to OpenTofu.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make tofu-destroy
+
+# Job Call
+make _tofu-destroy
+```
+
+### 🕶️ Requirements
+- Container image with OpenTofu installed, specifically `tofu` command.

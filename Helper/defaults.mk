@@ -76,7 +76,7 @@ KANIKO_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## tofu-apply
 TOFU_APPLY_PLAN_FILE_NAME = planfile
-TOFU_APPLY_ADDITIONAL_PARAMETERS := 
+TOFU_APPLY_ADDITIONAL_PARAMETERS :=
 
 ## tofu-plan
 TOFU_PLAN_PLAN_FILE_NAME = planfile
@@ -103,6 +103,13 @@ DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
 MAVEN_CLEAN_PROJECT_PATH = ./
 MAVEN_CLEAN_VERBOSITY = --errors
 MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
+
+## ======================
+## Infrastructure as Code
+## ======================
+
+## tofu-destroy
+TOFU_DESTROYY_ADDITIONAL_PARAMETERS :=
 
 
 ## ----------------------------------
