@@ -48,11 +48,11 @@ _maven-clean:
 # @param[in]    TOFU_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu.
 ##
 .PHONY: tofu-destroy
-maven-clean:
+tofu-destroy:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-destroy
 
 .PHONY: _tofu-destroy
-_maven-clean:
+_tofu-destroy:
 	@echo "🧹 Performing tofu destroy..."
 	tofu destroy -auto-approve $(TOFU_DESTROY_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed tofu destroy!"
