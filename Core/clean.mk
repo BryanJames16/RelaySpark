@@ -56,3 +56,18 @@ _tofu-destroy:
 	@echo "🧹 Performing tofu destroy..."
 	tofu destroy -auto-approve $(TOFU_DESTROY_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed tofu destroy!"
+
+##
+# @function     terraform-destroy
+# @brief        Job for performing terraform destroy.
+# @param[in]    TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to terraform.
+##
+.PHONY: terraform-destroy
+terraform-destroy:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _terraform-destroy
+
+.PHONY: _terraform-destroy
+_terraform-destroy:
+	@echo "🧹 Performing terraform destroy..."
+	terraform destroy -auto-approve $(TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed terraform destroy!"
