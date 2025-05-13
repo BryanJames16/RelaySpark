@@ -44,7 +44,27 @@ make _maven-clean
 
 ---
 
-## 🧹 tofu-destroyy
+## 🧹 terraform-destroy
+Job for performing terraform destroy.
+
+### 🗃️ Variables
+- `TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS`: Additional parameters to pass to terraform.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make terraform-destroy
+
+# Job Call
+make _terraform-destroy
+```
+
+### 🕶️ Requirements
+- Container image with terraform installed.
+
+---
+
+## 🧹 tofu-destroy
 Job for performing tofu destroy.
 
 ### 🗃️ Variables

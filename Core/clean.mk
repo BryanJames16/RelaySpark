@@ -43,21 +43,6 @@ _maven-clean:
 	@echo "✅ Completed maven clean!"
 
 ##
-# @function     tofu-destroy
-# @brief        Job for performing tofu destroy.
-# @param[in]    TOFU_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu.
-##
-.PHONY: tofu-destroy
-tofu-destroy:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-destroy
-
-.PHONY: _tofu-destroy
-_tofu-destroy:
-	@echo "🧹 Performing tofu destroy..."
-	tofu destroy -auto-approve $(TOFU_DESTROY_ADDITIONAL_PARAMETERS)
-	@echo "✅ Completed tofu destroy!"
-
-##
 # @function     terraform-destroy
 # @brief        Job for performing terraform destroy.
 # @param[in]    TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to terraform.
@@ -71,3 +56,18 @@ _terraform-destroy:
 	@echo "🧹 Performing terraform destroy..."
 	terraform destroy -auto-approve $(TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed terraform destroy!"
+
+##
+# @function     tofu-destroy
+# @brief        Job for performing tofu destroy.
+# @param[in]    TOFU_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu.
+##
+.PHONY: tofu-destroy
+tofu-destroy:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _tofu-destroy
+
+.PHONY: _tofu-destroy
+_tofu-destroy:
+	@echo "🧹 Performing tofu destroy..."
+	tofu destroy -auto-approve $(TOFU_DESTROY_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed tofu destroy!"
