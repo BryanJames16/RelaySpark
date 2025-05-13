@@ -108,6 +108,9 @@ MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
 ## Infrastructure as Code
 ## ======================
 
+## terraform-destroy
+TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS := 
+
 ## tofu-destroy
 TOFU_DESTROYY_ADDITIONAL_PARAMETERS :=
 
