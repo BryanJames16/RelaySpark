@@ -73,19 +73,19 @@ terraform-init:
 _terraform-init:
 	@echo "🔌 Performing Terraform initialization...."
 	terraform version
-	@if [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "T" ]; then \
+	@if [ "$(TERRAFORM_INIT_ENABLE_CLEAN_FOLDER)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_CLEAN_FOLDER)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_CLEAN_FOLDER)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_CLEAN_FOLDER)" = "T" ]; then \
 		rm -rf .terraform || true; \
 		rm -rf .tofu || true; \
 	fi
-	@if [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "T" ]; then \
-		echo $(TERRAFROM_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
+	@if [ "$(TERRAFORM_INIT_ENABLE_TF_CREDS)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_CREDS)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_CREDS)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_CREDS)" = "T" ]; then \
+		echo $(TERRAFORM_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
 	fi
-	@if [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "T" ]; then \
-		echo $(TERRAFROM_INIT_TF_RC) > /root/.teraformrc; \
+	@if [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "T" ]; then \
+		echo $(TERRAFORM_INIT_TF_RC) > /root/.teraformrc; \
 	fi
-	terraform init -backend-config=$(TERRAFROM_INIT_BACKEND_CONFIG_FILE) $(TERRAFROM_INIT_ADDITIONAL_PARAMETERS)
-	@if [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
-		terraform workspace select $(TERRAFROM_INIT_TARGET_WORKSPACE) || terraform workspace new $(TERRAFROM_INIT_TARGET_WORKSPACE); \
+	terraform init -backend-config=$(TERRAFORM_INIT_BACKEND_CONFIG_FILE) $(TERRAFORM_INIT_ADDITIONAL_PARAMETERS)
+	@if [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
+		terraform workspace select $(TERRAFORM_INIT_TARGET_WORKSPACE) || terraform workspace new $(TERRAFORM_INIT_TARGET_WORKSPACE); \
 	fi
 	@echo "✅ Done initializing Terraform!"
 
