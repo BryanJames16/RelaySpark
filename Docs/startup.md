@@ -79,7 +79,7 @@ make _terraform-init
 ```
 
 ### 🕶️ Requirements
-- Container image with `Terraform` installed.
+- Container image with `terraform` installed.
 
 ---
 

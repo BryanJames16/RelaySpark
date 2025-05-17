@@ -60,7 +60,7 @@ make _terraform-destroy
 ```
 
 ### 🕶️ Requirements
-- Container image with terraform installed.
+- Container image with `terraform` installed.
 
 ---
 
