@@ -136,6 +136,27 @@ make _terraform-plan
 
 ---
 
+## 🔨 terraform-apply
+Job for applying plan files for Terraform.
+
+### 🗃️ Variables
+- `TERRAFORM_APPLY_PLAN_FILE_NAME`: File name of Terraform plan file.
+- `TERRAFORM_APPLY_ADDITIONAL_PARAMETERS`: Additional parameters for apply.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make terraform-apply
+
+# Job Call
+make _terraform-apply
+```
+
+### 🕶️ Requirements
+- Container image with Terraform installed, specifically `terraform` command.
+
+---
+
 ## 🔨 tofu-apply
 Job for applying plan files for OpenTofu.
 
