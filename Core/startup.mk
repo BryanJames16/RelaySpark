@@ -53,6 +53,43 @@ _relayspark-clone:
 	@echo "✅ Done cloning RelaySpark repository!"
 
 ##
+# @function     terraform-init
+# @brief        Terraform initialization job.
+# @param[in]    TERRAFORM_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
+# @param[in]    TERRAFORM_INIT_ENABLE_TF_CREDS             Flag for enabling Terraform credentials.
+# @param[in]    TERRAFORM_INIT_TF_CREDS                    Terraform credentials.
+# @param[in]    TERRAFORM_INIT_ENABLE_TF_RC                Flag for enabling Terraform remote credentials.
+# @param[in]    TERRAFORM_INIT_TF_RC                       Terraform remote credentials.
+# @param[in]    TERRAFORM_INIT_BACKEND_CONFIG_FILE         Full path and file name of Terraform backend config file.
+# @param[in]    TERRAFORM_INIT_ADDITIONAL_PARAMETERS       Terraform initialization additional parameters.
+# @param[in]    TERRAFORM_INIT_ENABLE_WORKSPACE            Flag for enabling Terraform workspace.
+# @param[in]    TERRAFORM_INIT_TARGET_WORKSPACE            Target workspace name for the job.
+##
+.PHONY: terraform-init
+terraform-init:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _terraform-init
+
+.PHONY: _terraform-init
+_terraform-init:
+	@echo "🔌 Performing Terraform initialization...."
+	terraform version
+	@if [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_CLEAN_FOLDER)" = "T" ]; then \
+		rm -rf .terraform || true; \
+		rm -rf .tofu || true; \
+	fi
+	@if [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_CREDS)" = "T" ]; then \
+		echo $(TERRAFROM_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
+	fi
+	@if [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_TF_RC)" = "T" ]; then \
+		echo $(TERRAFROM_INIT_TF_RC) > /root/.teraformrc; \
+	fi
+	terraform init -backend-config=$(TERRAFROM_INIT_BACKEND_CONFIG_FILE) $(TERRAFROM_INIT_ADDITIONAL_PARAMETERS)
+	@if [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TERRAFROM_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
+		terraform workspace select $(TERRAFROM_INIT_TARGET_WORKSPACE) || terraform workspace new $(TERRAFROM_INIT_TARGET_WORKSPACE); \
+	fi
+	@echo "✅ Done initializing Terraform!"
+
+##
 # @function     tofu-init
 # @brief        OpenTofu initialization job.
 # @param[in]    TOFU_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
