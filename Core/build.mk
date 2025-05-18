@@ -124,6 +124,22 @@ _tofu-apply:
 	@echo "✅ Completed tofu apply!"
 
 ##
+# @function     terraform-plan
+# @brief        Job for building Terraform plan file.
+# @param[in]    TERRAFORM_PLAN_PLAN_FILE_NAME                 File name of Terraform plan file.
+# @param[in]    TERRAFORM_PLAN_ADDITIONAL_PARAMETERS          Additional parameters for plan.
+##
+.PHONY: terraform-plan
+terraform-plan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _terraform-plan
+
+.PHONY: _terraform-plan
+_terraform-plan:
+	@echo "🔨 Performing terraform plan..."
+	tofu plan -out="$(TERRAFORM_PLAN_PLAN_FILE_NAME)" $(TERRAFORM_PLAN_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed terraform plan!"
+
+##
 # @function     tofu-plan
 # @brief        Job for building OpenTofu plan file.
 # @param[in]    TOFU_PLAN_PLAN_FILE_NAME                 File name of OpenTofu plan file.
