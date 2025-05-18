@@ -115,6 +115,27 @@ make _npm-build
 
 ---
 
+## 🔨 terraform-plan
+Job for building Terraform plan file.
+
+### 🗃️ Variables
+- `TERRAFORM_PLAN_PLAN_FILE_NAME`: File name of Terraform plan file.
+- `TERRAFORM_PLAN_ADDITIONAL_PARAMETERS`: Additional parameters for plan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make terraform-plan
+
+# Job Call
+make _terraform-plan
+```
+
+### 🕶️ Requirements
+- Container image with Terraform installed, specifically `terraform` command.
+
+---
+
 ## 🔨 tofu-apply
 Job for applying plan files for OpenTofu.
 
