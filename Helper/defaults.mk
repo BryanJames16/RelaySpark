@@ -74,6 +74,10 @@ KANIKO_BUILD_ADDITIONAL_PARAMETERS :=
 ## Infrastructure as Code
 ## ======================
 
+## terraform-plan
+TERRAFORM_PLAN_PLAN_FILE_NAME = planfile
+TERRAFORM_PLAN_ADDITIONAL_PARAMETERS :=
+
 ## tofu-apply
 TOFU_APPLY_PLAN_FILE_NAME = planfile
 TOFU_APPLY_ADDITIONAL_PARAMETERS :=
