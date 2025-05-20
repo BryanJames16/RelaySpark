@@ -180,6 +180,21 @@ _pa11y-ci-test:
 	@echo "✅ Completed Pa11y CI Test!"
 
 ##
+# @function     terraform-validate
+# @brief        Terraform validation command.
+# @param[in]    TERRAFORM_VALIDATE_ADDITIONAL_PARAMETERS  Additional parameters to pass to Terraform validate.
+##
+.PHONY: terraform-validate
+terraform-validate:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _terraform-validate
+
+.PHONY: _terraform-validate
+_terraform-validate:
+	@echo "🧪 Performing Terraform validation..."
+	terraform validate $(TERRAFORM_VALIDATE_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed Terraform validation!"
+
+##
 # @function     tofu-validate
 # @brief        OpenTofu validation command.
 # @param[in]    TOFU_VALIDATE_ADDITIONAL_PARAMETERS  Additional parameters to pass to OpenTofu validate.
