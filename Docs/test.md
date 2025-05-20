@@ -204,6 +204,26 @@ make _pa11y-ci-test
 
 ---
 
+## 🧪 terraform-validate
+OpenTofu validation command.
+
+### 🗃️ Variables
+- `TERRAFORM_VALIDATE_ADDITIONAL_PARAMETERS`: Additional parameters to pass to Terraform validate.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make terraform-validate
+
+# Job Call
+make _terraform-validate
+```
+
+### 🕶️ Requirements
+- Container image with Terraform installed.
+
+---
+
 ## 🧪 tofu-validate
 OpenTofu validation command.
 

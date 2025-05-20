@@ -387,5 +387,8 @@ AXE_SCAN_SUMMARY_ADDITIONAL_PARAMTERS :=
 ## Infrastructure-as-Code
 ## =====================
 
+## terraform-validate
+TERRAFORM_VALIDATE_ADDITIONAL_PARAMETERS :=
+
 ## tofu-validate
 TOFU_VALIDATE_ADDITIONAL_PARAMETERS :=
