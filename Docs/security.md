@@ -320,3 +320,24 @@ make _osv-container-tar-scan
 
 ### 🕶️ Requirements
 - Container image with OSV scanner installed.
+
+---
+
+## 🔍 osv-source-scan
+Job for OSV conatiner tar scan.
+
+### 🗃️ Variables
+- `OSV_SOURCE_SCAN_PATH`: Path of the source code repository to recursively scan.
+- `OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS`: Additional parameters for OSV source scan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make osv-source-scan
+
+# Job Call
+make _osv-source-scan
+```
+
+### 🕶️ Requirements
+- Container image with OSV scanner installed.
