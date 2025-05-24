@@ -123,7 +123,7 @@ gitleaks-scan:
 # @param[in]    GITLEAKS_DIR_SCAN_EXIT_CODE                  Exit code for gitleaks scan (`1` for vulnerabilities detected, `0` for none).
 # @param[in]    GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS      Any additional gitleaks scan parameters.
 ##
-.PNONY: gitleaks-dir-scan
+.PHONY: gitleaks-dir-scan
 gitleaks-dir-scan:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-dir-scan
 
@@ -142,7 +142,7 @@ _gitleaks-dir-scan:
 # @param[in]    GITLEAKS_REPO_SCAN_EXIT_CODE                  Exit code for gitleaks scan (`1` for vulnerabilities detected, `0` for none).
 # @param[in]    GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS      Any additional gitleaks scan parameters.
 ##
-.PNONY: gitleaks-repo-scan
+.PHONY: gitleaks-repo-scan
 gitleaks-repo-scan:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _gitleaks-repo-scan
 
@@ -161,7 +161,7 @@ _gitleaks-repo-scan:
 # @brief        Wrapper for kubesec scanning.
 # @param[in]    KUBESEC_SCAN_TYPE                     Type of scanning to be done. Valid values are `manifest` and `helm`.
 ##
-.PNONY: kubesec-scan
+.PHONY: kubesec-scan
 kubesec-scan:
 	@echo "🧭 Kubesec scan selected: $(KUBESEC_SCAN_TYPE)"
 	@if [ "$(KUBESEC_SCAN_TYPE)" = "manifest" ]; then \
@@ -179,11 +179,11 @@ kubesec-scan:
 # @param[in]    KUBESEC_MANIFEST_SCAN_PATH                     Path to scan YAML manifest files.
 # @param[in]    KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec.
 ##
-.PNONY: kubesec-manifest-scan
+.PHONY: kubesec-manifest-scan
 kubesec-manifest-scan:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-manifest-scan
 
-.PNONY: _kubesec-manifest-scan
+.PHONY: _kubesec-manifest-scan
 _kubesec-manifest-scan:
 	@echo "🔍 Performing Kubesec scan..."
 	@find $(KUBESEC_MANIFEST_SCAN_PATH) -type f \( -name "*.yaml" -o -name "*.yml" \) | while read file; do \
@@ -199,11 +199,11 @@ _kubesec-manifest-scan:
 # @param[in]    KUBESEC_HELM_VALUES_SCAN_PATH              Path to scan helm chart values.
 # @param[in]    KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for kubesec.
 ##
-.PNONY: kubesec-helm-scan
+.PHONY: kubesec-helm-scan
 kubesec-helm-scan:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _kubesec-helm-scan
 
-.PNONY: _kubesec-helm-scan
+.PHONY: _kubesec-helm-scan
 _kubesec-helm-scan:
 	@echo "🔍 Performing Kubesec helm scan..."
 	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdn $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
@@ -222,11 +222,11 @@ _kubesec-helm-scan:
 # @param[in]    HORUSEC_SCAN_LOG_LEVEL                      Log level of horusec. Valid values are: `panic`, `fatal`, `error`, `warn`, `info`, `debug`, and `trace`.
 # @param[in]    HORUSEC_SCAN_ADDITIONAL_PARAMETERS          Additional parameters for horusec.
 ##
-.PNONY: horusec-scan
+.PHONY: horusec-scan
 horusec-scan:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _horusec-scan
 
-.PNONY: _horusec-scan
+.PHONY: _horusec-scan
 _horusec-scan:
 	@echo "🔍 Performing horusec scanning..."
 	horusec version
@@ -244,11 +244,11 @@ _horusec-scan:
 # @param[in]    COSIGN_CONTAINER_IMAGE_PATH                           Path to the container image tar file.
 # @param[in]    COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS        Additional parameters for cosign command.
 ##
-.PNONY: cosign-container-image-tar-signing
+.PHONY: cosign-container-image-tar-signing
 cosign-container-image-tar-signing:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cosign-container-image-tar-signing
 
-.PNONY: _cosign-container-image-tar-signing
+.PHONY: _cosign-container-image-tar-signing
 _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
 	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
@@ -261,12 +261,13 @@ _cosign-container-image-tar-signing:
 # @param[in]    COSIGN_BLOB_FILE                                 Full path and file to the blob.
 # @param[in]    COSIGN_BLOB_ADDITIONAL_PARAMETERS                Additional parameters for cosign command.
 ##
-.PNONY: cosign-blob-signing
+.PHONY: cosign-blob-signing
 cosign-blob-signing:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cosign-blob-signing
 
-.PNONY: _cosign-blob-signing
+.PHONY: _cosign-blob-signing
 _cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
 	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_PATH)
 	@echo "✅ Completed blbb signing!"
+
