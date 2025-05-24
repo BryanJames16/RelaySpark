@@ -282,6 +282,15 @@ COSIGN_BLOB_SIGNING_KEY_PATH = ./cosign.key
 COSIGN_BLOB_FILE = ./README.md
 COSIGN_BLOB_ADDITIONAL_PARAMETERS :=
 
+## =====================
+## Google OSV
+## =====================
+
+## osv-container-image-scan
+OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME = alpine
+OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG = 3.18
+OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS :=
+
 ## ----------------------------------
 #  START UP
 ## ----------------------------------
