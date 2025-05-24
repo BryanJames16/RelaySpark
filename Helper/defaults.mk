@@ -299,6 +299,10 @@ OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS :=
 OSV_SOURCE_SCAN_PATH = ./
 OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS :=
 
+## osv-license-scan
+OSV_LICENSE_SCAN_PATH = ./
+OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS := 
+
 ## ----------------------------------
 #  START UP
 ## ----------------------------------
