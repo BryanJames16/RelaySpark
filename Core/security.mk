@@ -276,18 +276,18 @@ _cosign-blob-signing:
 ## ----------------------------------
 
 ##
-# @function     osv-container-scan
+# @function     osv-container-image-scan
 # @brief        Job for OSV conatiner image scan.
 # @param[in]    OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME                     Container image name to be scanned.
 # @param[in]    OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG                      Container image tag to be scanned.
 # @param[in]    OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS          Additional parameters for OSV container image scan.
 ##
-.PHONY: osv-container-scan
-osv-container-scan:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _osv-container-scan
+.PHONY: osv-container-image-scan
+osv-container-image-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _osv-container-image-scan
 
-.PHONY: _osv-container-scan
-_osv-container-scan:
+.PHONY: _osv-container-image-scan
+_osv-container-image-scan:
 	@echo "🔍 Performing OSV container image scanning..."
 	osv-scanner scan image $(OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME):$(OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG) $(OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed OSV container image scanning!"
