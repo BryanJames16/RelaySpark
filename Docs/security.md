@@ -277,3 +277,25 @@ make _cosign-blob-signing
 ### 🕶️ Requirements
 - Container image with cosign installed.
 - Security key to be used by cosign.
+
+---
+
+## 🔍 osv-container-image-scan
+Job for OSV conatiner image scan.
+
+### 🗃️ Variables
+- `OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME`: Container image name to be scanned.
+- `OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS`: Container image tag to be scanned.
+- `COSIGN_BLOB_ADDITIONAL_PARAMETERS`: Additional parameters for OSV container image scan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make osv-container-image-scan
+
+# Job Call
+make _osv-container-image-scan
+```
+
+### 🕶️ Requirements
+- Container image with OSV scanner installed.
