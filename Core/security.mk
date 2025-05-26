@@ -291,3 +291,19 @@ _osv-container-image-scan:
 	@echo "🔍 Performing OSV container image scanning..."
 	osv-scanner scan image $(OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME):$(OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG) $(OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed OSV container image scanning!"
+
+##
+# @function     osv-container-tar-scan
+# @brief        Job for OSV conatiner tar scan.
+# @param[in]    OSV_CONTAINER_TAR_SCAN_PATH                           Full path and file name of the container image tar.
+# @param[in]    OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS          Additional parameters for OSV container tar scan.
+##
+.PHONY: osv-container-tar-scan
+osv-container-tar-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _osv-container-tar-scan
+
+.PHONY: _osv-container-tar-scan
+_osv-container-tar-scan:
+	@echo "🔍 Performing OSV container image (tar) scanning..."
+	osv-scanner scan image --archive $(OSV_CONTAINER_TAR_SCAN_PATH) $(OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed OSV container image (tar) scanning!"
