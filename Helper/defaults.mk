@@ -291,6 +291,10 @@ OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME = alpine
 OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG = 3.18
 OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS :=
 
+## osv-container-tar-scan
+OSV_CONTAINER_TAR_SCAN_PATH = ./app_image.tar
+OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS := 
+
 ## ----------------------------------
 #  START UP
 ## ----------------------------------
