@@ -299,3 +299,24 @@ make _osv-container-image-scan
 
 ### 🕶️ Requirements
 - Container image with OSV scanner installed.
+
+---
+
+## 🔍 osv-container-tar-scan
+Job for OSV conatiner tar scan.
+
+### 🗃️ Variables
+- `OSV_CONTAINER_TAR_SCAN_PATH`: Full path and file name of the container image tar.
+- `OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS`: Additional parameters for OSV container tar scan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make osv-container-tar-scan
+
+# Job Call
+make _osv-container-tar-scan
+```
+
+### 🕶️ Requirements
+- Container image with OSV scanner installed.
