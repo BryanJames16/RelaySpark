@@ -311,8 +311,8 @@ _osv-container-tar-scan:
 ##
 # @function     osv-source-scan
 # @brief        Job for OSV scan for source code repository.
-# @param[in]    OSV_SOURCE_SCAN_PATH                     Container image name to be scanned.
-# @param[in]    OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV container image scan.
+# @param[in]    OSV_SOURCE_SCAN_PATH                     Path of the source code repository to recursively scan.
+# @param[in]    OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV source scan.
 ##
 .PHONY: osv-source-scan
 osv-source-scan:
