@@ -323,3 +323,19 @@ _osv-source-scan:
 	@echo "🔍 Performing OSV source scanning..."
 	osv-scanner scan source -r $(OSV_SOURCE_SCAN_PATH) $(OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed OSV source scanning!"
+
+##
+# @function     osv-license-scan
+# @brief        Job for OSV scan for source code repository licenses.
+# @param[in]    OSV_LICENSE_SCAN_PATH                     Path of the source code repository to scan licenses.
+# @param[in]    OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV license scan.
+##
+.PHONY: osv-license-scan
+osv-license-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _osv-license-scan
+
+.PHONY: _osv-license-scan
+_osv-license-scan:
+	@echo "🔍 Performing OSV license scanning..."
+	osv-scanner scan --licenses $(OSV_LICENSE_SCAN_PATH) $(OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed OSV license scanning!"
