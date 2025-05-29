@@ -280,7 +280,7 @@ _cosign-blob-signing:
 # @brief        Wrapper job for OSV scans.
 # @param[in]    OSV_SCAN_TYPE                           Scan type for OSV. Valid values are `container_image`, `container_tar`, `source`, and `license`.
 ##
-.PHONY: osv-container-tar-scan
+.PHONY: osv-scan
 osv-scan:
 	@echo "🧭 OSV scan selected: $(OSV_SCAN_TYPE)"
 	@if [ "$(OSV_SCAN_TYPE)" = "container_image" ] || [ "$(OSV_SCAN_TYPE)" = "ci" ]; then \
