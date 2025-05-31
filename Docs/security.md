@@ -280,6 +280,26 @@ make _cosign-blob-signing
 
 ---
 
+## 🔍 osv-scan
+Wrapper job for OSV scans.
+
+### 🗃️ Variables
+- `OSV_SCAN_TYPE`: Scan type for OSV. Valid values are `container_image`, `container_tar`, `source`, and `license
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make osv-scan
+
+# Job Call
+make _osv-scan
+```
+
+### 🕶️ Requirements
+- Container image with OSV scanner installed.
+
+---
+
 ## 🔍 osv-container-image-scan
 Job for OSV conatiner image scan.
 
