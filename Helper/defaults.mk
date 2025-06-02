@@ -393,6 +393,11 @@ YAML_SCHEMA_LINT_SCAN_PATH = ./values.yaml
 YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## NodeJS
+## =====================
+NPM_TEST_ADDITIONAL_PARAMETERS := 
+
+## =====================
 ## Accessibility
 ## =====================
 
