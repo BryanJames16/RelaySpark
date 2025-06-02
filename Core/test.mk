@@ -162,6 +162,21 @@ _maven-test:
 	@echo "✅ Completed maven test!"
 
 ##
+# @function     npm-test
+# @brief        Perform NPM tests for node applications.
+# @param[in]    NPM_TEST_ADDITIONAL_PARAMETERS      Additional parameters to pass to npm test command.
+##
+.PHONY: npm-test
+npm-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _npm-test
+
+.PHONY: _npm-test
+_npm-test:
+	@echo "🧪 Performing NPM test..."
+	npm test $(NPM_TEST_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed NPM test!"
+
+##
 # @function     pa11y-ci-test
 # @brief        Job for Pa11y accessibility scanning.
 # @param[in]    PA11Y_CI_CONFIG                 Path where the configuration is located.
