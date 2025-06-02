@@ -182,6 +182,26 @@ make _maven-test
 
 ---
 
+## 🧪 npm-test
+Perform NPM tests for node applications.
+
+### 🗃️ Variables
+- `NPM_TEST_ADDITIONAL_PARAMETERS`: Additional parameters to pass to npm test command.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make npm-test
+
+# Job Call
+make _npm-test
+```
+
+### 🕶️ Requirements
+- Container image with `npm` and `node` installed.
+
+---
+
 ## 🧪 pa11y-ci-test
 Job for Pa11y accessibility scanning.
 
