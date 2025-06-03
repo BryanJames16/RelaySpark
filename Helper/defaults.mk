@@ -43,6 +43,7 @@ MAVEN_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## npm-build
 NPM_BUILD_DIRECTORY = ./
+NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS := 
 NPM_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
@@ -395,7 +396,7 @@ YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS :=
 ## =====================
 ## NodeJS
 ## =====================
-NPM_TEST_ADDITIONAL_PARAMETERS := 
+NPM_TEST_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## Accessibility
