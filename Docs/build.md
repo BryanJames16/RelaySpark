@@ -99,6 +99,7 @@ Build node applications.
 
 ### 🗃️ Variables
 - `NPM_BUILD_DIRECTORY`: Path where the project is located.
+- `NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS`: Additional parameters to pass to npm install.
 - `NPM_BUILD_ADDITIONAL_PARAMETERS`: Additional parameters to pass to NPM.
 
 ### 💻 Command
