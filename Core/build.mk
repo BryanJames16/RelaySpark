@@ -95,6 +95,7 @@ _maven-compile:
 # @function     npm-build
 # @brief        Build node application.
 # @param[in]    NPM_BUILD_DIRECTORY                  Path where the project is located.
+# @param[in]    NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS          Additional parameters to pass to npm install.
 # @param[in]    NPM_BUILD_ADDITIONAL_PARAMETERS      Additional parameters to pass to NPM.
 ##
 .PHONY: npm-build
@@ -104,6 +105,7 @@ npm-build:
 .PHONY: _npm-build
 _npm-build:
 	@echo "🔨 Performing npm build..."
+	npm install $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
 	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed npm build!"
 
