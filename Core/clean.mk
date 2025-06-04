@@ -45,7 +45,7 @@ _maven-clean:
 ##
 # @function     npm-clean
 # @brief        Clean NPM repository.
-# @param[in]    NPM_CLEAN_DIRECTORY                  Path where the node proejct is located.
+# @param[in]    NPM_CLEAN_DIRECTORY                  Path where the node project is located.
 ##
 .PHONY: npm-clean
 npm-clean:

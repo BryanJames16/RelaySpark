@@ -44,6 +44,26 @@ make _maven-clean
 
 ---
 
+## 🧹 npm-clean
+Clean NPM repository.
+
+### 🗃️ Variables
+- `NPM_CLEAN_DIRECTORY`: Path where the node project is located.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make npm-clean
+
+# Job Call
+make _npm-clean
+```
+
+### 🕶️ Requirements
+- Container image with `npm` and `node` installed.
+
+---
+
 ## 🧹 terraform-destroy
 Job for performing terraform destroy.
 
