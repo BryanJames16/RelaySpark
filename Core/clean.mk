@@ -43,6 +43,21 @@ _maven-clean:
 	@echo "✅ Completed maven clean!"
 
 ##
+# @function     npm-clean
+# @brief        Clean NPM repository.
+# @param[in]    NPM_CLEAN_DIRECTORY                  Path where the node proejct is located.
+##
+.PHONY: npm-clean
+npm-clean:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _npm-clean
+
+.PHONY: _npm-clean
+_npm-clean:
+	@echo "🧹 Performing clean up of NPM directory..."
+	rm -rf $(NPM_CLEAN_DIRECTORY)/node-modules/
+	@echo "✅ Completed clean up of NPM directory!"
+
+##
 # @function     terraform-destroy
 # @brief        Job for performing terraform destroy.
 # @param[in]    TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS  Additional parameters to pass to terraform.
