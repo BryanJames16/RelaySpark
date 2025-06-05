@@ -286,6 +286,9 @@ COSIGN_BLOB_ADDITIONAL_PARAMETERS :=
 ## Google OSV
 ## =====================
 
+## osv-scan
+OSV_SCAN_TYPE = source
+
 ## osv-container-image-scan
 OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME = alpine
 OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG = 3.18
@@ -301,7 +304,7 @@ OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS :=
 
 ## osv-license-scan
 OSV_LICENSE_SCAN_PATH = ./
-OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS := 
+OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS :=
 
 ## ----------------------------------
 #  START UP

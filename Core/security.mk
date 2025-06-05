@@ -276,6 +276,27 @@ _cosign-blob-signing:
 ## ----------------------------------
 
 ##
+# @function     osv-scan
+# @brief        Wrapper job for OSV scans.
+# @param[in]    OSV_SCAN_TYPE                           Scan type for OSV. Valid values are `container_image`, `container_tar`, `source`, and `license`.
+##
+.PHONY: osv-scan
+osv-scan:
+	@echo "🧭 OSV scan selected: $(OSV_SCAN_TYPE)"
+	@if [ "$(OSV_SCAN_TYPE)" = "container_image" ] || [ "$(OSV_SCAN_TYPE)" = "ci" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) osv-container-image-scan; \
+	elif [ "$(OSV_SCAN_TYPE)" = "container_tar" ] || [ "$(OSV_SCAN_TYPE)" = "ct" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) osv-container-tar-scan; \
+	elif [ "$(OSV_SCAN_TYPE)" = "source" ] || [ "$(OSV_SCAN_TYPE)" = "repo" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) osv-source-scan; \
+	elif [ "$(OSV_SCAN_TYPE)" = "license" ] || [ "$(OSV_SCAN_TYPE)" = "lic" ]; then \
+		$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) osv-license-scan; \
+	else \
+		echo "❌ Unknown OSV_SCAN_TYPE: $(OSV_SCAN_TYPE)"; \
+		exit 1; \
+	fi
+
+##
 # @function     osv-container-image-scan
 # @brief        Job for OSV conatiner image scan.
 # @param[in]    OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME                     Container image name to be scanned.
