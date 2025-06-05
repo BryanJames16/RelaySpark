@@ -284,7 +284,7 @@ make _cosign-blob-signing
 Wrapper job for OSV scans.
 
 ### 🗃️ Variables
-- `OSV_SCAN_TYPE`: Scan type for OSV. Valid values are `container_image`, `container_tar`, `source`, and `license
+- `OSV_SCAN_TYPE`: Scan type for OSV. Valid values are `container_image`, `container_tar`, `source`, and `license`.
 
 ### 💻 Command
 ```Shell
