@@ -116,6 +116,28 @@ make _npm-build
 
 ---
 
+## 🔨 npm-clean-build
+Performs npm clean install on your application.
+
+### 🗃️ Variables
+- `NPM_CLEAN_BUILD_DIRECTORY`: Path where the project is located.
+- `NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS`: Additional parameters to pass to npm clean install.
+- `NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS`: Additional parameters to pass to NPM.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make npm-clean-build
+
+# Job Call
+make _npm-clean-build
+```
+
+### 🕶️ Requirements
+- Container image with NodeJS installed, particularly `npm` command.
+
+---
+
 ## 🔨 terraform-plan
 Job for building Terraform plan file.
 

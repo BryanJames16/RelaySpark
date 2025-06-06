@@ -115,6 +115,22 @@ _maven-deploy:
 	@echo "✅ Completed deploying your maven application!"
 
 ##
+# @function     npm-publish
+# @brief        Publish NPM packages to repository.
+# @param[in]    NPM_PUBLISH_PACKAGE_SPEC             Path where the package is located.
+# @param[in]    NPM_PUBLISH_ADDITIONAL_PARAMETERS    Additional parameters to pass to npm.
+##
+.PHONY: npm-publish
+npm-publish:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _npm-publish
+
+.PHONY: _npm-publish
+_npm-publish:
+	@echo "🚗 Deploying your npm package..."
+	npm publish $(NPM_PUBLISH_PACKAGE_SPEC) $(NPM_PUBLISH_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed deploying your npm package!"
+
+##
 # @function     tar-docker-push
 # @brief        Job pushing container image tar file into an image registry.
 # @param[in]    TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH    Location and full file name of the container image file.
