@@ -110,6 +110,24 @@ _npm-build:
 	@echo "✅ Completed npm build!"
 
 ##
+# @function     npm-clean-build
+# @brief        Performs npm clean install on your application.
+# @param[in]    NPM_CLEAN_BUILD_DIRECTORY                  Path where the project is located.
+# @param[in]    NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS      Additional parameters to pass to npm clean install.
+# @param[in]    NPM_BUILD_ADDITIONAL_PARAMETERS            Additional parameters to pass to NPM.
+##
+.PHONY: npm-clean-build
+npm-clean-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _npm-clean-build
+
+.PHONY: _npm-clean-build
+_npm-clean-build:
+	@echo "🔨 Performing npm clean build..."
+	npm clean-install $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
+	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed npm clean build!"
+
+##
 # @function     terraform-plan
 # @brief        Job for building Terraform plan file.
 # @param[in]    TERRAFORM_PLAN_PLAN_FILE_NAME                 File name of Terraform plan file.
