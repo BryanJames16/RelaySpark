@@ -114,7 +114,7 @@ _npm-build:
 # @brief        Performs npm clean install on your application.
 # @param[in]    NPM_CLEAN_BUILD_DIRECTORY                  Path where the project is located.
 # @param[in]    NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS      Additional parameters to pass to npm clean install.
-# @param[in]    NPM_BUILD_ADDITIONAL_PARAMETERS            Additional parameters to pass to NPM.
+# @param[in]    NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS      Additional parameters to pass to NPM.
 ##
 .PHONY: npm-clean-build
 npm-clean-build:
@@ -123,8 +123,8 @@ npm-clean-build:
 .PHONY: _npm-clean-build
 _npm-clean-build:
 	@echo "🔨 Performing npm clean build..."
-	npm clean-install $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
-	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
+	npm clean-install $(NPM_CLEAN_BUILD_DIRECTORY) $(NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
+	npm run build $(NPM_CLEAN_BUILD_DIRECTORY) $(NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed npm clean build!"
 
 ##
