@@ -1,5 +1,28 @@
 # 📖 Pipeline Publish Jobs
 
+## 🔨 cargo-package
+Build Rust applications through cargo.
+
+### 🗃️ Variables
+- `CARGO_PUBLISH_MANIFEST_PATH`: Path where Cargo.toml is located.
+- `CARGO_PUBLISH_TYPE`: Actions of publishing to do. Valid values are `package-only` or `package-and-publish`. Default is `package-only`.
+- `CARGO_PACKAGE_ADDITIONAL_PARAMETERS`: Additional parameters for cargo package.
+- `CARGO_PUBLISH_ADDITIONAL_PARAMETERS`: Additional parameters for cargo publish.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make cargo-package
+
+# Job Call
+make _cargo-package
+```
+
+### 🕶️ Requirements
+- Container image with `rust` and `cargo` installed.
+
+---
+
 ## 📜 dotnet-publish
 Job for publishing .NET project or solution (.NET Core).
 
