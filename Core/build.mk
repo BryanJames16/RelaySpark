@@ -105,6 +105,7 @@ npm-build:
 .PHONY: _npm-build
 _npm-build:
 	@echo "🔨 Performing npm build..."
+	npm version
 	npm install $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
 	npm run build $(NPM_BUILD_DIRECTORY) $(NPM_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed npm build!"
@@ -123,6 +124,7 @@ npm-clean-build:
 .PHONY: _npm-clean-build
 _npm-clean-build:
 	@echo "🔨 Performing npm clean build..."
+	npm version
 	npm clean-install $(NPM_CLEAN_BUILD_DIRECTORY) $(NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS)
 	npm run build $(NPM_CLEAN_BUILD_DIRECTORY) $(NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed npm clean build!"
