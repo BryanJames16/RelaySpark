@@ -164,6 +164,14 @@ MAVEN_DEPLOY_VERBOSITY = --errors
 MAVEN_DEPLOY_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## NodeJS
+## =====================
+
+## npm-publish
+NPM_PUBLISH_PACKAGE_SPEC = ./
+NPM_PUBLISH_ADDITIONAL_PARAMETERS := 
+
+## =====================
 ## Docker
 ## =====================
 
