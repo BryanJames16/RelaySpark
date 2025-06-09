@@ -117,7 +117,7 @@ _maven-deploy:
 ##
 # @function     npm-publish
 # @brief        Publish NPM packages to repository.
-# @param[in]    NPM_PUBLISH_PACKAGE_SPEC             Path where the packages is located.
+# @param[in]    NPM_PUBLISH_PACKAGE_SPEC             Path where the package is located.
 # @param[in]    NPM_PUBLISH_ADDITIONAL_PARAMETERS    Additional parameters to pass to npm.
 ##
 .PHONY: npm-publish

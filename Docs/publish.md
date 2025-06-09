@@ -118,6 +118,27 @@ make _maven-deploy
 
 ---
 
+## 📜 npm-publish
+Publish NPM packages to repository.
+
+### 🗃️ Variables
+- `NPM_PUBLISH_PACKAGE_SPEC`: Path where the packages is located.
+- `NPM_PUBLISH_ADDITIONAL_PARAMETERS`: Additional parameters to pass to maven.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make npm-publish
+
+# Job Call
+make _npm-publish
+```
+
+### 🕶️ Requirements
+- Container image with `npm` and `node` installed.
+
+---
+
 ## 📜 tar-docker-push
 Job pushing container image tar file into an image registry.
 
