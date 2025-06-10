@@ -32,6 +32,26 @@ _axe-scan:
 	@echo "✅ Axe scan completed!"
 
 ##
+# @function     cargo-validate
+# @brief        Validate rust package and application. Performs formatting, linting, and checking.
+# @param[in]    CARGO_VALIDATE_APP_PATH                         Path where the rust application resides.
+# @param[in]    CARGO_VALIDATE_FMT_ADDITIONAL_PARAMETERS        Additional parameters for cargo fmt.
+# @param[in]    CARGO_VALIDATE_CHECK_ADDITIONAL_PARAMETERS      Additional parameters for cargo check.
+# @param[in]    CARGO_VALIDATE_CLIPPY_ADDITIONAL_PARAMETERS     Additional parameters for cargo clippy.
+##
+.PHONY: cargo-validate
+cargo-validate:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cargo-validate
+
+.PHONY: _cargo-validate
+_cargo-validate:
+	@echo "🧪 Performing rust (cargo) validation..."
+	cargo fmt --manifest-path $(CARGO_VALIDATE_APP_PATH) $(CARGO_VALIDATE_FMT_ADDITIONAL_PARAMETERS)
+	cargo check --manifest-path $(CARGO_VALIDATE_APP_PATH) $(CARGO_VALIDATE_CHECK_ADDITIONAL_PARAMETERS)
+	cargo clippy --manifest-path $(CARGO_VALIDATE_APP_PATH) $(CARGO_VALIDATE_CLIPPY_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed rust (cargo) validation!"
+
+##
 # @function     dotnet-test
 # @brief        Job for cleaning .NET project or solution (.NET Core).
 # @param[in]    DOTNET_TEST_TOOL                     Tools for .NET unit testing: `xunit`, `nunit`, and `mstest`.
