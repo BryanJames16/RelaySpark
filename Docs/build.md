@@ -1,5 +1,28 @@
 # 🛠️ Pipeline Build Jobs
 
+## 🔨 angular-build
+Build your Angular applications.
+
+### 🗃️ Variables
+- `ANGULAR_BUILD_APPLICATION_PATH`: Path where the Angular application is located.
+- `ANGULAR_BUILD_CONFIGURATION`: Configuration for building your app. Default is `production`.
+- `ANGULAR_BUILD_OUTPUT_PATH`: Output path where the application will be built.
+- `ANGULAR_BUILD_ADDITIONAL_PARAMETERS`: Additional `ng build` parameters.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make angular-build
+
+# Job Call
+make _angular-build
+```
+
+### 🕶️ Requirements
+- Container image with `angular` installed.
+
+---
+
 ## 🔨 cargo-build
 Build Rust applications through cargo.
 

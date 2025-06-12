@@ -7,6 +7,15 @@
 # This mk file contains variable definition for test jobs.
 ##
 
+## angular-lint
+ANGULAR_LINT_APP_PATH = ./
+ANGULAR_LINT_ADDITIONAL_PARAMETERS :=
+
+## angular-test
+ANGULAR_TEST_APP_PATH = ./
+ANGULAR_TEST_ENABLE_FILE_WATCHING = false
+ANGULAR_TEST_ADDITIONAL_PARAMETERS :=
+
 ## axe-scan
 AXE_SCAN_RESULTS_CSV = ./results.csv
 AXE_SCAN_ADDITIONAL_PARAMTERS :=
