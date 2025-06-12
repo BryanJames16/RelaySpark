@@ -91,6 +91,26 @@ _dotnet-test:
 	@echo "✅ Unit test completed!"
 
 ##
+# @function     go-test
+# @brief        Go unit testing job.
+# @param[in]    GO_TEST_APPLICATION_PATH                             Application path for your Go application / modules.
+# @param[in]    GO_TEST_COVER_PROFILE                                Cover profile for your test.
+# @param[in]    GO_TEST_TOOL_COVER_OUTPUT                            Generation of your coverge profile for output.
+# @param[in]    GO_TEST_ADDITIONAL_PARAMETERS                        Additional parameters for `go test`.
+# @param[in]    GO_TEST_TOOL_COVER_ADDITIONAL_PARAMETERS             Additional parameters for `go tool cover`.
+##
+.PHONY: go-test
+go-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _go-test
+
+.PHONY: _go-test
+_go-test:
+	@echo "🧪 Performing go unit testing..."
+	go test -v -coverprofile=$(GO_TEST_COVER_PROFILE) $(GO_TEST_APPLICATION_PATH) $(GO_TEST_ADDITIONAL_PARAMETERS)
+	go tool cover $(GO_TEST_TOOL_COVER_OUTPUT) $(GO_TEST_TOOL_COVER_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed go unit testing!"
+
+##
 # @function     helm-lint
 # @brief        Job for linting Helm charts.
 # @param[in]    HELM_CHART_LINT_PATH                 Path where the helm chart is located.

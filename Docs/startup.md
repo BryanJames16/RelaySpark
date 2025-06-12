@@ -55,6 +55,28 @@ make _relayspark-clone
 
 ---
 
+## 🚁 go-init
+Initialize go repository.
+
+### 🗃️ Variables
+- `GO_INIT_PATH`: Full path or URL of your Go module.
+- `GO_INIT_ADDITIONAL_PARAMETERS`: Additional parameters to pass to `got mod init`.
+- `GO_INIT_TIDY_ADDITIONAL_PARAMETERS`: Additional parameters to pass to `got mod tidy`.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make go-init
+
+# Job Call
+make _go-init
+```
+
+### 🕶️ Requirements
+- Container image with `go` installed.
+
+---
+
 ## 🚁 terraform-init
 Terraform initialization job.
 

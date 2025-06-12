@@ -29,6 +29,13 @@ DOTNET_BUILD_VERBOSITY = minimal
 DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Go
+## =====================
+GO_BUILD_APPLICATION_PATH = ./
+GO_BUILD_OUTPUT_PATH = ./publish
+GO_BUILD_ADDITIONAL_PARAMETERS :=
+
+## =====================
 ## Java
 ## =====================
 
@@ -355,6 +362,10 @@ ECHO_VAR = World
 RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
 RELAYSPARK_FOLDER_FILE = ./.relayspark
 
+## go-init
+GO_INIT_PATH = ./
+GO_INIT_ADDITIONAL_PARAMETERS :=
+
 ## terraform-init
 TERRAFORM_INIT_ENABLE_CLEAN_FOLDER := False
 TERRAFORM_INIT_ENABLE_TF_CREDS = False
@@ -390,6 +401,17 @@ DOTNET_TEST_TOOL = xunit
 DOTNET_TEST_SP_PATH = ./
 DOTNET_TEST_VERBOSITY = --normal
 DOTNET_TEST_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Go
+## =====================
+
+## go-test
+GO_TEST_APPLICATION_PATH = ./
+GO_TEST_COVER_PROFILE = coverage.out
+GO_TEST_TOOL_COVER_OUTPUT = -html=coverage.out
+GO_TEST_ADDITIONAL_PARAMETERS :=
+GO_TEST_TOOL_COVER_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## Java
