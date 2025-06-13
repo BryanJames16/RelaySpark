@@ -34,7 +34,7 @@ _axe-scan:
 ##
 # @function     cargo-validate
 # @brief        Validate rust package and application. Performs formatting, linting, and checking.
-# @param[in]    CARGO_VALIDATE_APP_PATH                         Path where the rust application resides.
+# @param[in]    CARGO_VALIDATE_APP_PATH                         Path where the rust application Config.toml resides.
 # @param[in]    CARGO_VALIDATE_FMT_ADDITIONAL_PARAMETERS        Additional parameters for cargo fmt.
 # @param[in]    CARGO_VALIDATE_CHECK_ADDITIONAL_PARAMETERS      Additional parameters for cargo check.
 # @param[in]    CARGO_VALIDATE_CLIPPY_ADDITIONAL_PARAMETERS     Additional parameters for cargo clippy.

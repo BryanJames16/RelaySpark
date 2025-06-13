@@ -27,7 +27,7 @@ make _axe-scan
 Validate rust package and application. Performs formatting, linting, and checking.
 
 ### 🗃️ Variables
-- `CARGO_VALIDATE_APP_PATH`: Path where the rust application resides.
+- `CARGO_VALIDATE_APP_PATH`: Path where the rust application Config.toml resides.
 - `CARGO_VALIDATE_FMT_ADDITIONAL_PARAMETERS`: Additional parameters for cargo fmt.
 - `CARGO_VALIDATE_CHECK_ADDITIONAL_PARAMETERS`: Additional parameters for cargo check.
 - `CARGO_VALIDATE_CLIPPY_ADDITIONAL_PARAMETERS`: Additional parameters for cargo clippy.
