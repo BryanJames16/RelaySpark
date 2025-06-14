@@ -23,6 +23,27 @@ make _axe-scan
 
 ---
 
+## 🧪 cargo-test
+Validate rust package and application. Performs formatting, linting, and checking.
+
+### 🗃️ Variables
+- `CARGO_TEST_APP_PATH`: Path where the rust application Config.toml resides.
+- `CARGO_TEST_ADDITIONAL_PARAMETERS`: Additional parameters for cargo test.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make cargo-test
+
+# Job Call
+make _cargo-test
+```
+
+### 🕶️ Requirements
+- Container image with `rust` and `cargo` installed.
+
+---
+
 ## 🧪 cargo-validate
 Validate rust package and application. Performs formatting, linting, and checking.
 
