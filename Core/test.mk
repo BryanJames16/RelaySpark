@@ -32,6 +32,22 @@ _axe-scan:
 	@echo "✅ Axe scan completed!"
 
 ##
+# @function     cargo-test
+# @brief        Perform rust unit testing.
+# @param[in]    CARGO_TEST_APP_PATH                             Path where the rust application Config.toml resides.
+# @param[in]    CARGO_TEST_ADDITIONAL_PARAMETERS                Additional parameters for cargo test.
+##
+.PHONY: cargo-test
+cargo-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cargo-test
+
+.PHONY: _cargo-test
+_cargo-test:
+	@echo "🧪 Performing rust unit testing..."
+	cargo test --manifest-path $(CARGO_TEST_APP_PATH) $(CARGO_TEST_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed rust unit testing!"
+
+##
 # @function     cargo-validate
 # @brief        Validate rust package and application. Performs formatting, linting, and checking.
 # @param[in]    CARGO_VALIDATE_APP_PATH                         Path where the rust application Config.toml resides.
