@@ -391,6 +391,10 @@ MAVEN_TEST_ADDITIONAL_PARAMETERS :=
 ## Rust
 ## =====================
 
+## cargo-test
+CARGO_TEST_APP_PATH = ./Cargo.toml
+CARGO_TEST_ADDITIONAL_PARAMETERS :=
+
 ## cargo-validate
 CARGO_VALIDATE_APP_PATH = ./Cargo.toml
 CARGO_VALIDATE_FMT_ADDITIONAL_PARAMETERS :=
