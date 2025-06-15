@@ -1,5 +1,26 @@
 # 🛠️ Pipeline Build Jobs
 
+## 🔨 cargo-build
+Build Rust applications through cargo.
+
+### 🗃️ Variables
+- `CARGO_BUILD_MANIFEST_PATH`: Path where Cargo.toml is located.
+- `CONTAINER_BUILD_ADDITIONAL_PARAMETERS`: Additional build parameters for cargo build.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make cargo-build
+
+# Job Call
+make _cargo-build
+```
+
+### 🕶️ Requirements
+- Container image with `rust` and `cargo` installed.
+
+---
+
 ## 🔨 docker-build
 Job for building container images using Docker.
 
