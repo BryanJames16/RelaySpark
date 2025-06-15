@@ -52,6 +52,14 @@ NPM_CLEAN_BUILD_INSTALL_ADDITIONAL_PARAMETERS :=
 NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Rust
+## =====================
+
+## cargo-build
+CARGO_BUILD_MANIFEST_PATH = ./Cargo.toml
+CARGO_BUILD_ADDITIONAL_PARAMETERS := 
+
+## =====================
 ## Docker
 ## =====================
 
