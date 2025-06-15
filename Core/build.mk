@@ -8,6 +8,22 @@
 ##
 
 ##
+# @function     cargo-build
+# @brief        Build Rust applications through cargo.
+# @param[in]    CARGO_BUILD_MANIFEST_PATH                Path where Cargo.toml is located.
+# @param[in]    CARGO_BUILD_ADDITIONAL_PARAMETERS        Additional build parameters for cargo build.
+##
+.PHONY: cargo-build
+cargo-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cargo-build
+
+.PHONY: _cargo-build
+_cargo-build:
+	@echo "🔨 Performing cargo build..."
+	cargo build --release --manifest-path $(CARGO_BUILD_MANIFEST_PATH) $(CARGO_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed cargo build!"
+
+##
 # @function     docker-build
 # @brief        Job for building container images using Docker.
 # @param[in]    CONTAINER_BUILD_IMAGE_NAME               The full container image name.
