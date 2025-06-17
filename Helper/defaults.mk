@@ -355,6 +355,10 @@ ECHO_VAR = World
 RELAYSPARK_GIT_URL = https://github.com/BryanJames16/RelaySpark.git
 RELAYSPARK_FOLDER_FILE = ./.relayspark
 
+## go-init
+GO_INIT_PATH = ./
+GO_INIT_ADDITIONAL_PARAMETERS := 
+
 ## terraform-init
 TERRAFORM_INIT_ENABLE_CLEAN_FOLDER := False
 TERRAFORM_INIT_ENABLE_TF_CREDS = False
