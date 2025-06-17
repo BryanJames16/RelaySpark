@@ -53,6 +53,22 @@ _relayspark-clone:
 	@echo "✅ Done cloning RelaySpark repository!"
 
 ##
+# @function     go-init
+# @brief        Initialize go repository.
+# @param[in]    GO_INIT_PATH                                 Full path or URL of your Go module.
+# @param[in]    GO_INIT_ADDITIONAL_PARAMETERS                Additional parameters to pass to `got mod init`.
+##
+.PHONY: go-init
+go-init:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _go-init
+
+.PHONY: _go-init
+_go-init:
+	@echo "🔌 Initializing Go repository..."
+	go mod init $(GO_INIT_PATH) $(GO_INIT_ADDITIONAL_PARAMETERS)
+	@echo "✅ Done initializing Go repository!"
+
+##
 # @function     terraform-init
 # @brief        Terraform initialization job.
 # @param[in]    TERRAFORM_INIT_ENABLE_CLEAN_FOLDER         Flag for enabling clean up of .terraform and .tofu folders.
