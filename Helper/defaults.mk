@@ -59,12 +59,6 @@ NPM_CLEAN_BUILD_ADDITIONAL_PARAMETERS :=
 CARGO_BUILD_MANIFEST_PATH = ./Cargo.toml
 CARGO_BUILD_ADDITIONAL_PARAMETERS :=
 
-## cargo-package
-CARGO_PUBLISH_MANIFEST_PATH = ./Cargo.toml
-CARGO_PUBLISH_TYPE = package-only
-CARGO_PACKAGE_ADDITIONAL_PARAMETERS :=
-CARGO_PUBLISH_ADDITIONAL_PARAMETERS := 
-
 ## =====================
 ## Docker
 ## =====================
@@ -184,6 +178,16 @@ MAVEN_DEPLOY_ADDITIONAL_PARAMETERS :=
 ## npm-publish
 NPM_PUBLISH_PACKAGE_SPEC = ./
 NPM_PUBLISH_ADDITIONAL_PARAMETERS :=
+
+## =====================
+## Rust
+## =====================
+
+## cargo-package
+CARGO_PUBLISH_MANIFEST_PATH = ./Cargo.toml
+CARGO_PUBLISH_TYPE = package-only
+CARGO_PACKAGE_ADDITIONAL_PARAMETERS :=
+CARGO_PUBLISH_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## Docker

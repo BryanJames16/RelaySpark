@@ -9,6 +9,29 @@
 ##
 
 ##
+# @function     cargo-publish
+# @brief        Package a rust application into a distributable crate.
+# @param[in]    CARGO_PUBLISH_MANIFEST_PATH                Path where Cargo.toml is located.
+# @param[in]    CARGO_PUBLISH_TYPE                         Actions of publishing to do. Valid values are `package-only` or `package-and-publish`. Default is `package-only`.
+# @param[in]    CARGO_PACKAGE_ADDITIONAL_PARAMETERS        Additional build parameters for cargo package.
+# @param[in]    CARGO_PUBLISH_ADDITIONAL_PARAMETERS        Additional build parameters for cargo publish.
+##
+.PHONY: cargo-package
+cargo-package:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _cargo-package
+
+.PHONY: _cargo-package
+_cargo-package:
+	@echo "🔨 Performing cargo package..."
+	cargo package --manifest-path $(CARGO_PUBLISH_MANIFEST_PATH) $(CARGO_PACKAGE_ADDITIONAL_PARAMETERS)
+	@if [ "$(CARGO_PUBLISH_TYPE)" = "package-and-publish" ]; then \
+		echo "📰 Publishing cargo package..."; \
+		cargo publish --manifest-path $(CARGO_PUBLISH_MANIFEST_PATH) $(CARGO_PUBLISH_ADDITIONAL_PARAMETERS); \
+		echo "✅ Completed publishing cargo package!"; \
+	fi
+	@echo "✅ Completed cargo package!"
+
+##
 # @function     dotnet-publish
 # @brief        Job for publishing .NET project or solution (.NET Core).
 # @param[in]    DOTNET_PUBLISH_SP_PATH               Path where the project or the solution file is placed.
