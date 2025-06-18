@@ -61,6 +61,7 @@ Initialize go repository.
 ### 🗃️ Variables
 - `GO_INIT_PATH`: Full path or URL of your Go module.
 - `GO_INIT_ADDITIONAL_PARAMETERS`: Additional parameters to pass to `got mod init`.
+- `GO_INIT_TIDY_ADDITIONAL_PARAMETERS`: Additional parameters to pass to `got mod tidy`.
 
 ### 💻 Command
 ```Shell

@@ -57,6 +57,7 @@ _relayspark-clone:
 # @brief        Initialize go repository.
 # @param[in]    GO_INIT_PATH                                 Full path or URL of your Go module.
 # @param[in]    GO_INIT_ADDITIONAL_PARAMETERS                Additional parameters to pass to `got mod init`.
+# @param[in]    GO_INIT_TIDY_ADDITIONAL_PARAMETERS           Additional parameters to pass to `got mod tidy`.
 ##
 .PHONY: go-init
 go-init:
@@ -66,6 +67,7 @@ go-init:
 _go-init:
 	@echo "🔌 Initializing Go repository..."
 	go mod init $(GO_INIT_PATH) $(GO_INIT_ADDITIONAL_PARAMETERS)
+	go mod tidy $(GO_INIT_PATH) $(GO_INIT_TIDY_ADDITIONAL_PARAMETERS)
 	@echo "✅ Done initializing Go repository!"
 
 ##
