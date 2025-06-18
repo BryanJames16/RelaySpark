@@ -59,6 +59,23 @@ _dotnet-build:
 	@echo "✅ Completed dotnet build!"
 
 ##
+# @function     go-build
+# @brief        Build your Go module(s) and application(s).
+# @param[in]    GO_BUILD_APPLICATION_PATH                Path where the Go application is located.
+# @param[in]    GO_BUILD_OUTPUT_PATH                     Tag of the container image to use.
+# @param[in]    GO_BUILD_ADDITIONAL_PARAMETERS           Additional go build parameters.
+##
+.PHONY: go-build
+go-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _go-build
+
+.PHONY: _go-build
+_go-build:
+	@echo "🔨 Performing Go build..."
+	go build -o $(GO_BUILD_OUTPUT_PATH) $(GO_BUILD_APPLICATION_PATH) $(GO_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed Go build!"
+
+##
 # @function     kaniko-build
 # @brief        Job for building container images using Kaniko.
 # @param[in]    KANIKO_BUILD_IMAGE_NAME                  The full container image name.
