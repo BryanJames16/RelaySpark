@@ -29,6 +29,13 @@ DOTNET_BUILD_VERBOSITY = minimal
 DOTNET_BUILD_ADDITIONAL_PARAMETERS :=
 
 ## =====================
+## Go
+## =====================
+GO_BUILD_APPLICATION_PATH = ./
+GO_BUILD_OUTPUT_PATH = ./publish
+GO_BUILD_ADDITIONAL_PARAMETERS := 
+
+## =====================
 ## Java
 ## =====================
 
@@ -357,7 +364,7 @@ RELAYSPARK_FOLDER_FILE = ./.relayspark
 
 ## go-init
 GO_INIT_PATH = ./
-GO_INIT_ADDITIONAL_PARAMETERS := 
+GO_INIT_ADDITIONAL_PARAMETERS :=
 
 ## terraform-init
 TERRAFORM_INIT_ENABLE_CLEAN_FOLDER := False
