@@ -62,7 +62,7 @@ _dotnet-build:
 # @function     go-build
 # @brief        Build your Go module(s) and application(s).
 # @param[in]    GO_BUILD_APPLICATION_PATH                Path where the Go application is located.
-# @param[in]    GO_BUILD_OUTPUT_PATH                     Tag of the container image to use.
+# @param[in]    GO_BUILD_OUTPUT_PATH                     Output path where the application will be built.
 # @param[in]    GO_BUILD_ADDITIONAL_PARAMETERS           Additional go build parameters.
 ##
 .PHONY: go-build

@@ -66,6 +66,28 @@ make _dotnet-build
 
 ---
 
+## 🔨 go-build
+Build your Go module(s) and application(s).
+
+### 🗃️ Variables
+- `GO_BUILD_APPLICATION_PATH`: Path where the Go application is located.
+- `GO_BUILD_OUTPUT_PATH`: Output path where the application will be built.
+- `GO_BUILD_ADDITIONAL_PARAMETERS`: Additional go build parameters.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make go-build
+
+# Job Call
+make _go-build
+```
+
+### 🕶️ Requirements
+- Container image with `go` installed.
+
+---
+
 ## 🔨 kaniko-build
 Job for building container images using Kaniko executor.
 
