@@ -90,6 +90,30 @@ make _dotnet-test
 
 ---
 
+## 🧪 go-test
+Go unit testing job. This job performs `go test` and `go tool cover` commands when executed.
+
+### 🗃️ Variables
+- `GO_TEST_APPLICATION_PATH`: Application path for your Go application / modules.
+- `GO_TEST_COVER_PROFILE`: Cover profile for your test.
+- `GO_TEST_TOOL_COVER_OUTPUT`: Generation of your coverge profile for output.
+- `GO_TEST_ADDITIONAL_PARAMETERS`: Additional parameters for `go test`.
+- `GO_TEST_TOOL_COVER_ADDITIONAL_PARAMETERS`: Additional parameters for `go tool cover`.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make go-test
+
+# Job Call
+make _go-test
+```
+
+### 🕶️ Requirements
+- Container image with `go` installed.
+
+---
+
 ## 🧪 helm-lint
 Job for linting Helm charts.
 
