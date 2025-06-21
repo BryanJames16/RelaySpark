@@ -1,0 +1,98 @@
+##
+# @file         default-security.mk
+# @brief        Default variable for security jobs.
+# @author       Bryan James
+# @date         2025-06-12
+#
+# This mk file contains variable definition for security jobs.
+##
+
+## cosign-container-image-tar-signing
+COSIGN_CONTAINER_SIGNING_KEY_PATH = ./cosign.key
+COSIGN_CONTAINER_IMAGE_PATH = ./app_image.tar
+COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS :=
+
+## cosign-blob-signing
+COSIGN_BLOB_SIGNING_KEY_PATH = ./cosign.key
+COSIGN_BLOB_FILE = ./README.md
+COSIGN_BLOB_ADDITIONAL_PARAMETERS :=
+
+## gitleaks-dir-scan
+GITLEAKS_DIR_SCAN_PATH = ./
+GITLEAKS_DIR_SCAN_OUTPUT_FORMAT = json
+GITLEAKS_DIR_SCAN_OUTPUT_FILE = ./gitleaks-dir-scan-report.json
+GITLEAKS_DIR_SCAN_EXIT_CODE = 1
+GITLEAKS_DIR_SCAN_ADDITIONAL_PARAMETERS :=
+
+## gitleaks-repo-scan
+GITLEAKS_REPO_SCAN_PATH = ./
+GITLEAKS_REPO_SCAN_OUTPUT_FORMAT = json
+GITLEAKS_REPO_SCAN_OUTPUT_FILE = ./gitleaks-repo-scan-report.json
+GITLEAKS_REPO_SCAN_EXIT_CODE = 1
+GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## gitleaks-scan
+GITLEAKS_SCAN_TYPE = file
+
+## horusec-scan
+HORUSEC_SCAN_CONFIG_FILE_PATH = ./
+HORUSEC_SCAN_PATH = ./
+HORUSEC_SCAN_LOG_FILE_PATH = ./horusec.log
+HORUSEC_SCAN_LOG_LEVEL = info
+HORUSEC_SCAN_ADDITIONAL_PARAMETERS :=
+
+## kubesec-helm-scan
+KUBESEC_HELM_VALUES_SCAN_PATH = values.yaml
+KUBESEC_HELM_SCAN_PATH = ./
+KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS :=
+
+## kubesec-manifest-scan
+KUBESEC_MANIFEST_SCAN_PATH = ./Test
+KUBESEC_MANIFEST_SCAN_ADDITIONAL_PARAMETERS :=
+
+## kubesec-scan
+KUBESEC_SCAN_TYPE = manifest
+
+## osv-container-image-scan
+OSV_CONTAINER_IMAGE_SCAN_IMAGE_NAME = alpine
+OSV_CONTAINER_IMAGE_SCAN_IMAGE_TAG = 3.18
+OSV_CONTAINER_IMAGE_SCAN_ADDITIONAL_PARAMETERS :=
+
+## osv-container-tar-scan
+OSV_CONTAINER_TAR_SCAN_PATH = ./app_image.tar
+OSV_CONTAINER_TAR_SCAN_ADDITIONAL_PARAMETERS :=
+
+## osv-license-scan
+OSV_LICENSE_SCAN_PATH = ./
+OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS :=
+
+## osv-source-scan
+OSV_SOURCE_SCAN_PATH = ./
+OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS :=
+
+## osv-scan
+OSV_SCAN_TYPE = source
+
+## trivy-fs-scan
+TRIVY_FS_SCAN_PATH = ./
+TRIVY_FS_SCAN_OUTPUT_FORMAT = json
+TRIVY_FS_SCAN_OUTPUT_FILE = ./trivy-fs-scan-report.json
+TRIVY_FS_SCAN_EXIT_CODE = 1
+TRIVY_FS_SCAN_ADDITIONAL_PARAMETERS :=
+
+## trivy-image-scan
+TRIVY_IMAGE_SCAN_IMAGE_URL = python:3.4-alpine
+TRIVY_IMAGE_SCAN_OUTPUT_FORMAT = json
+TRIVY_IMAGE_SCAN_OUTPUT_FILE = ./trivy-image-scan-report.json
+TRIVY_IMAGE_SCAN_EXIT_CODE = 1
+TRIVY_IMAGE_SCAN_ADDITIONAL_PARAMETERS :=
+
+## trivy-repo-scan
+TRIVY_REPO_SCAN_URL = ./
+TRIVY_REPO_SCAN_OUTPUT_FORMAT = json
+TRIVY_REPO_SCAN_OUTPUT_FILE = ./trivy-repo-scan-report.json
+TRIVY_REPO_SCAN_EXIT_CODE = 1
+TRIVY_REPO_SCAN_ADDITIONAL_PARAMETERS :=
+
+## trivy-scan
+TRIVY_SCAN_TYPE = sast
