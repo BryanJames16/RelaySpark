@@ -120,35 +120,35 @@
 ## =====================
 
 ## dotnet-clean
-DOTNET_CLEAN_SP_PATH = ./
-DOTNET_CLEAN_VERBOSITY = minimal
-DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
+# DOTNET_CLEAN_SP_PATH = ./
+# DOTNET_CLEAN_VERBOSITY = minimal
+# DOTNET_CLEAN_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## Java
 ## =====================
 
 ## maven-clean
-MAVEN_CLEAN_PROJECT_PATH = ./
-MAVEN_CLEAN_VERBOSITY = --errors
-MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
+# MAVEN_CLEAN_PROJECT_PATH = ./
+# MAVEN_CLEAN_VERBOSITY = --errors
+# MAVEN_CLEAN_ADDITIONAL_PARAMETERS :=
 
 ## ======================
 ## Infrastructure as Code
 ## ======================
 
 ## terraform-destroy
-TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS :=
+# TERRAFORM_DESTROY_ADDITIONAL_PARAMETERS :=
 
 ## tofu-destroy
-TOFU_DESTROYY_ADDITIONAL_PARAMETERS :=
+# TOFU_DESTROYY_ADDITIONAL_PARAMETERS :=
 
 ## =====================
 ## NodeJS
 ## =====================
 
 ## npm-clean
-NPM_CLEAN_DIRECTORY = .
+# NPM_CLEAN_DIRECTORY = .
 
 ## ----------------------------------
 #  PUBLISH
