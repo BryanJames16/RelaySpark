@@ -7,6 +7,12 @@
 # This mk file contains variable definition for build jobs.
 ##
 
+## angular-build
+ANGULAR_BUILD_APPLICATION_PATH = ./
+ANGULAR_BUILD_CONFIGURATION = production
+ANGULAR_BUILD_OUTPUT_PATH = ./publish
+ANGULAR_BUILD_ADDITIONAL_PARAMETERS :=
+
 ## cargo-build
 CARGO_BUILD_MANIFEST_PATH = ./Cargo.toml
 CARGO_BUILD_ADDITIONAL_PARAMETERS :=
