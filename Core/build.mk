@@ -8,6 +8,25 @@
 ##
 
 ##
+# @function     angular-build
+# @brief        Build your Angular applications.
+# @param[in]    ANGULAR_BUILD_APPLICATION_PATH                Path where the Angular application is located.
+# @param[in]    ANGULAR_BUILD_CONFIGURATION                   Configuration for building your app. Default is `production`.
+# @param[in]    ANGULAR_BUILD_OUTPUT_PATH                     Output path where the application will be built.
+# @param[in]    ANGULAR_BUILD_ADDITIONAL_PARAMETERS           Additional `ng build` parameters.
+##
+.PHONY: angular-build
+angular-build:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _angular-build
+
+.PHONY: _angular-build
+_angular-build:
+	@echo "🔨 Performing Go build..."
+	cd $(ANGULAR_BUILD_APPLICATION_PATH)
+	ng build --configuration $(ANGULAR_BUILD_CONFIGURATION) --output-path=$(ANGULAR_BUILD_OUTPUT_PATH) $(ANGULAR_BUILD_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed Go build!"
+
+##
 # @function     cargo-build
 # @brief        Build Rust applications through cargo.
 # @param[in]    CARGO_BUILD_MANIFEST_PATH                Path where Cargo.toml is located.
