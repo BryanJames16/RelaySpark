@@ -17,4 +17,10 @@ include Core/clean.mk
 include Core/security.mk
 
 # Include Helper Files
-include Helper/defaults.mk
+include Helper/Defaults/default-build.mk
+include Helper/Defaults/default-clean.mk
+include Helper/Defaults/default-general.mk
+include Helper/Defaults/default-publish.mk
+include Helper/Defaults/default-security.mk
+include Helper/Defaults/default-startup.mk
+include Helper/Defaults/default-test.mk
