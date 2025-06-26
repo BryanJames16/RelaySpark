@@ -21,10 +21,10 @@ angular-build:
 
 .PHONY: _angular-build
 _angular-build:
-	@echo "🔨 Performing Go build..."
+	@echo "🔨 Performing angular build..."
 	cd $(ANGULAR_BUILD_APPLICATION_PATH)
 	ng build --configuration $(ANGULAR_BUILD_CONFIGURATION) --output-path=$(ANGULAR_BUILD_OUTPUT_PATH) $(ANGULAR_BUILD_ADDITIONAL_PARAMETERS)
-	@echo "✅ Completed Go build!"
+	@echo "✅ Completed angular build!"
 
 ##
 # @function     cargo-build
