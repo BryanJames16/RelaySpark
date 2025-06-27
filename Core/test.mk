@@ -9,6 +9,23 @@
 ##
 
 ##
+# @function     angular-lint
+# @brief        Perform linting of Angular application.
+# @param[in]    ANGULAR_LINT_APP_PATH                           Path of yyour Angular application.
+# @param[in]    ANGULAR_LINT_ADDITIONAL_PARAMETERS              Additional parameters for `ng lint`.
+##
+.PHONY: angular-lint
+angular-lint:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _angular-lint
+
+.PHONY: _angular-lint
+_angular-lint:
+	@echo "🧪 Performing Angular lint..."
+	cd $(ANGULAR_LINT_APP_PATH)
+	ng lint $(ANGULAR_LINT_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed angular linting!"
+
+##
 # @function     axe-scan
 # @brief        Job for scanning accessibility violations via axe-scan.
 # @param[in]    AXE_SCAN_RESULTS_CSV                 CSV file for Axe Scan results.
