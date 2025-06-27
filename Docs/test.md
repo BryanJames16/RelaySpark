@@ -1,5 +1,26 @@
 # 🧪 Pipeline Test Jobs
 
+## 🧪 angular-lint
+Perform linting of Angular application.
+
+### 🗃️ Variables
+- `ANGULAR_LINT_APP_PATH`: Path of your Angular application.
+- `ANGULAR_LINT_ADDITIONAL_PARAMETERS`: Additional parameters for `ng lint`.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make angular-lint
+
+# Job Call
+make _angular-lint
+```
+
+### 🕶️ Requirements
+- Container image with angular installed.
+
+---
+
 ## 🧪 axe-scan
 Job for scanning accessibility violations via axe-scan.
 

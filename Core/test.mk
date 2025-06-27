@@ -11,7 +11,7 @@
 ##
 # @function     angular-lint
 # @brief        Perform linting of Angular application.
-# @param[in]    ANGULAR_LINT_APP_PATH                           Path of yyour Angular application.
+# @param[in]    ANGULAR_LINT_APP_PATH                           Path of your Angular application.
 # @param[in]    ANGULAR_LINT_ADDITIONAL_PARAMETERS              Additional parameters for `ng lint`.
 ##
 .PHONY: angular-lint
