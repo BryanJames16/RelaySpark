@@ -26,6 +26,24 @@ _angular-lint:
 	@echo "✅ Completed angular linting!"
 
 ##
+# @function     angular-test
+# @brief        Perform unit testing of Angular application.
+# @param[in]    ANGULAR_TEST_APP_PATH                           Path of your Angular application.
+# @param[in]    ANGULAR_TEST_ENABLE_FILE_WATCHING               Enable file watching during ng test. Default is `false`.
+# @param[in]    ANGULAR_TEST_ADDITIONAL_PARAMETERS              Additional parameters for `ng lint`.
+##
+.PHONY: angular-test
+angular-test:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _angular-test
+
+.PHONY: _angular-test
+_angular-test:
+	@echo "🧪 Performing Angular unit testing..."
+	cd $(ANGULAR_TEST_APP_PATH)
+	ng test --code-coverage --watch=$(ANGULAR_TEST_ENABLE_FILE_WATCHING) $(ANGULAR_LINT_ADDITIONAL_PARAMETERS)
+	@echo "✅ Completed angular unit testing!"
+
+##
 # @function     axe-scan
 # @brief        Job for scanning accessibility violations via axe-scan.
 # @param[in]    AXE_SCAN_RESULTS_CSV                 CSV file for Axe Scan results.
