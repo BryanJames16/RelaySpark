@@ -21,6 +21,28 @@ make _angular-lint
 
 ---
 
+## 🧪 angular-test
+Perform unit testing of Angular application.
+
+### 🗃️ Variables
+- `ANGULAR_TEST_APP_PATH`: Path of your Angular application.
+- `ANGULAR_TEST_ENABLE_FILE_WATCHING`: Enable file watching during ng test. Default is `false`.
+- `ANGULAR_TEST_ADDITIONAL_PARAMETERS`: Additional parameters for `ng test`.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make angular-test
+
+# Job Call
+make _angular-test
+```
+
+### 🕶️ Requirements
+- Container image with angular installed.
+
+---
+
 ## 🧪 axe-scan
 Job for scanning accessibility violations via axe-scan.
 

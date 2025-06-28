@@ -30,7 +30,7 @@ _angular-lint:
 # @brief        Perform unit testing of Angular application.
 # @param[in]    ANGULAR_TEST_APP_PATH                           Path of your Angular application.
 # @param[in]    ANGULAR_TEST_ENABLE_FILE_WATCHING               Enable file watching during ng test. Default is `false`.
-# @param[in]    ANGULAR_TEST_ADDITIONAL_PARAMETERS              Additional parameters for `ng lint`.
+# @param[in]    ANGULAR_TEST_ADDITIONAL_PARAMETERS              Additional parameters for `ng test`.
 ##
 .PHONY: angular-test
 angular-test:
