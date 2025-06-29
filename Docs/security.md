@@ -382,3 +382,24 @@ make _osv-license-scan
 
 ### 🕶️ Requirements
 - Container image with OSV scanner installed.
+
+---
+
+## 🔍 osv-license-scan
+Job for OSV scan for source code repository licenses.
+
+### 🗃️ Variables
+- `OSV_LICENSE_SCAN_PATH`: Path of the source code repository to scan licenses.
+- `OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS`: Additional parameters for OSV license scan.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make osv-license-scan
+
+# Job Call
+make _osv-license-scan
+```
+
+### 🕶️ Requirements
+- Container image with OSV scanner installed.

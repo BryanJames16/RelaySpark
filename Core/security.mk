@@ -373,12 +373,12 @@ _osv-license-scan:
 # @param[in]    HAWK_EYE_SCAN_JSON_OUTPUT_FILE            The JSON file output.
 # @param[in]    HAWK_EYE_SCAN_ADDITIONAL_PARAMETERS       Additional parameters for OSV license scan.
 ##
-.PHONY: hawk-eye-scan-fs
-hawk-eye-scan-fs:
-	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _hawk-eye-scan-fs
+.PHONY: hawk-eye-scan
+hawk-eye-scan:
+	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _hawk-eye-scan
 
-.PHONY: _hawk-eye-scan-fs
-_hawk-eye-scan-fs:
+.PHONY: _hawk-eye-scan
+_hawk-eye-scan:
 	@echo "🔍 Performing hawk eye scanning..."
 	hawk_scanner $(HAWK_EYE_SCAN_TYPE) --json $(HAWK_EYE_SCAN_JSON_OUTPUT_FILE) $(HAWK_EYE_SCAN_CONNECTION_PARAMETER) $(HAWK_EYE_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed hawk eye scanning!"
