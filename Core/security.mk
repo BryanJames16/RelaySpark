@@ -368,7 +368,7 @@ _osv-license-scan:
 ##
 # @function     hawk-eye-scan
 # @brief        Scan filesystem, buckets, firebase, database, and storages through hawk eye.
-# @param[in]    HAWK_EYE_SCAN_TYPE                        Scan type to perform. Valid values are `firebase`, `fs`, `gcs`, `text`, `mysql`, 1mongodb`, all`, etc. You can check the full list of supported option on [this site](https://github.com/rohitcoder/hawk-eye?tab=readme-ov-file#options)
+# @param[in]    HAWK_EYE_SCAN_TYPE                        Scan type to perform. Valid values are `firebase`, `fs`, `gcs`, `text`, `mysql`, 1mongodb`, all`, etc. You can check the full list of supported option on [this site](https://github.com/rohitcoder/hawk-eye?tab=readme-ov-file#options). Default is `fs`.
 # @param[in]    HAWK_EYE_SCAN_CONNECTION_PARAMETER        Conenction paramter. Default is `--connection connection.yml`.
 # @param[in]    HAWK_EYE_SCAN_JSON_OUTPUT_FILE            The JSON file output.
 # @param[in]    HAWK_EYE_SCAN_ADDITIONAL_PARAMETERS       Additional parameters for OSV license scan.
