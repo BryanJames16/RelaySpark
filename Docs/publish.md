@@ -1,5 +1,32 @@
 # 📖 Pipeline Publish Jobs
 
+## 🔨 archive-publish
+Job for publishing generic packages into an archive.
+
+### 🗃️ Variables
+- `ARCHIVE_PUBLISH_ARCHIVE_TYPE`: Type of the archive to be created. Possible values are `tar`, `zip`, `7z`, `xz`, and `upx`. Default is `7z`.
+- `ARCHIVE_PUBLISH_SOURCE_DIR`: Directory containing contents of archival.
+- `ARCHIVE_PUBLISH_OUTPUT_NAME`: Output name of the archive.
+- `ARCHIVE_PUBLISH_ZIP_ADDITIONAL_PARAMETERS`: Additional parameters for command `zip`.
+- `ARCHIVE_PUBLISH_TAR_ADDITIONAL_PARAMETERS`: Additional parameters for command `tar`.
+- `ARCHIVE_PUBLISH_XZ_ADDITIONAL_PARAMETERS`: Additional parameters for command `xz`.
+- `ARCHIVE_PUBLISH_7Z_ADDITIONAL_PARAMETERS`: Additional parameters for command `7z`.
+- `ARCHIVE_PUBLISH_UPX_ADDITIONAL_PARAMETERS`: Additional parameters for command `upx`.
+
+### 💻 Command
+```Shell
+# Via docker compose wrapper
+make archive-publish
+
+# Job Call
+make _archive-publish
+```
+
+### 🕶️ Requirements
+- Container image with `tar`, `zip`, `7z`, `xz`, and `upx` installed.
+
+---
+
 ## 🔨 cargo-package
 Build Rust applications through cargo.
 

@@ -11,13 +11,13 @@
 ##
 # @function     archive-publish
 # @brief        Job for publishing generic packages into an archive.
-# @param[in]    ARCHIVE_PUBLISH_ARCHIVE_TYPE         Type of the archive to be created. Possible values are `tar`, `zip`, `7z`, `xz`, and `upx`.
+# @param[in]    ARCHIVE_PUBLISH_ARCHIVE_TYPE         Type of the archive to be created. Possible values are `tar`, `zip`, `7z`, `xz`, and `upx`. Default is `7z`.
 # @param[in]    ARCHIVE_PUBLISH_SOURCE_DIR           Directory containing contents of archival.
 # @param[in]    ARCHIVE_PUBLISH_OUTPUT_NAME          Output name of the archive.
 # @param[in]    ARCHIVE_PUBLISH_ZIP_ADDITIONAL_PARAMETERS          Additional parameters for command `zip`.
 # @param[in]    ARCHIVE_PUBLISH_TAR_ADDITIONAL_PARAMETERS          Additional parameters for command `tar`.
 # @param[in]    ARCHIVE_PUBLISH_XZ_ADDITIONAL_PARAMETERS           Additional parameters for command `xz`.
-# @param[in]    ARCHIVE_PUBLISH_7ZIP_ADDITIONAL_PARAMETERS         Additional parameters for command `7z`.
+# @param[in]    ARCHIVE_PUBLISH_7Z_ADDITIONAL_PARAMETERS           Additional parameters for command `7z`.
 # @param[in]    ARCHIVE_PUBLISH_UPX_ADDITIONAL_PARAMETERS          Additional parameters for command `upx`.
 ##
 .PHONY: archive-publish
@@ -38,7 +38,7 @@ _archive-publish:
 		tar -cf - $(ARCHIVE_PUBLISH_SOURCE_DIR) | xz -c > $(ARCHIVE_PUBLISH_OUTPUT_NAME).tar.xz $(ARCHIVE_PUBLISH_XZ_ADDITIONAL_PARAMETERS)
 	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),7z)
 		echo "📦 Creating 7z archive..."
-		7z a $(ARCHIVE_PUBLISH_OUTPUT_NAME).7z $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_7ZIP_ADDITIONAL_PARAMETERS)
+		7z a $(ARCHIVE_PUBLISH_OUTPUT_NAME).7z $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_7Z_ADDITIONAL_PARAMETERS)
 	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),upx)
 		echo "📦 Applying UPX compression..."
 		upx -o $(ARCHIVE_PUBLISH_OUTPUT_NAME) $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_UPX_ADDITIONAL_PARAMETERS)
