@@ -22,8 +22,7 @@ angular-build:
 .PHONY: _angular-build
 _angular-build:
 	@echo "🔨 Performing angular build..."
-	cd $(ANGULAR_BUILD_APPLICATION_PATH)
-	ng build --configuration $(ANGULAR_BUILD_CONFIGURATION) --output-path=$(ANGULAR_BUILD_OUTPUT_PATH) $(ANGULAR_BUILD_ADDITIONAL_PARAMETERS)
+	cd $(ANGULAR_BUILD_APPLICATION_PATH) && ng build --configuration $(ANGULAR_BUILD_CONFIGURATION) --output-path=$(ANGULAR_BUILD_OUTPUT_PATH) $(ANGULAR_BUILD_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed angular build!"
 
 ##
@@ -194,7 +193,7 @@ terraform-plan:
 .PHONY: _terraform-plan
 _terraform-plan:
 	@echo "🔨 Performing terraform plan..."
-	tofu plan -out="$(TERRAFORM_PLAN_PLAN_FILE_NAME)" $(TERRAFORM_PLAN_ADDITIONAL_PARAMETERS)
+	terraform plan -out="$(TERRAFORM_PLAN_PLAN_FILE_NAME)" $(TERRAFORM_PLAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed terraform plan!"
 
 ##

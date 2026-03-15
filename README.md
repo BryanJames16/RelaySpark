@@ -50,5 +50,41 @@ Contributions are greatly appreciated and needed. You can read more about contri
 
 You can view the current reference documentation on [this link](./Docs/main.md).
 
+## 🚀 Quick Start
+
+A consuming repository can vendor or sparse-clone RelaySpark, include `pipeline.mk`, and then set only the variables it needs:
+
+```make
+# Makefile in your application repository
+include .relayspark/pipeline.mk
+
+CONTAINER_COMMAND_SERVICE := ci
+NPM_BUILD_DIRECTORY := ./
+NPM_BUILD_INSTALL_ADDITIONAL_PARAMETERS := --prefer-offline
+NPM_BUILD_ADDITIONAL_PARAMETERS := -- --configuration production
+
+.PHONY: ci-build
+ci-build: npm-build
+```
+
+Then run:
+
+```bash
+make ci-build
+```
+
+If your pipeline needs project-specific behavior, keep the shared RelaySpark job and wrap or override it in your own `Makefile`:
+
+```make
+include .relayspark/pipeline.mk
+
+.PHONY: release-package
+release-package:
+	@echo "Preparing release metadata..."
+	$(MAKE) _archive-publish ARCHIVE_PUBLISH_ARCHIVE_TYPE=tar ARCHIVE_PUBLISH_OUTPUT_NAME=release
+```
+
+RelaySpark defaults are intentionally override-friendly. Pipeline authors can replace variables, compose new targets around the underscored jobs, or fully redefine a target when a workflow needs custom behavior.
+
 # 📄 License
 MIT License - Copyright (c) 2025 Bryan James

@@ -149,7 +149,7 @@ gitleaks-repo-scan:
 .PHONY: _gitleaks-repo-scan
 _gitleaks-repo-scan:
 	@echo "🔍 Performing gitleaks scan..."
-	gitleaks dir $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
+	gitleaks git $(GITLEAKS_REPO_SCAN_PATH) --report-format $(GITLEAKS_REPO_SCAN_OUTPUT_FORMAT) --report-path $(GITLEAKS_REPO_SCAN_OUTPUT_FILE) --exit-code $(GITLEAKS_REPO_SCAN_EXIT_CODE) -v $(GITLEAKS_REPO_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed gitleaks scan!"
 
 ## ----------------------------------
@@ -206,7 +206,7 @@ kubesec-helm-scan:
 .PHONY: _kubesec-helm-scan
 _kubesec-helm-scan:
 	@echo "🔍 Performing Kubesec helm scan..."
-	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdn $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
+	helm template -f $(KUBESEC_HELM_VALUES_SCAN_PATH) $(KUBESEC_HELM_SCAN_PATH) | kubesec scan /dev/stdin $(KUBESEC_HELM_SCAN_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed Kubesec helm scan!"
 
 ## ----------------------------------
@@ -268,7 +268,7 @@ cosign-blob-signing:
 .PHONY: _cosign-blob-signing
 _cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
-	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_PATH)
+	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_FILE)
 	@echo "✅ Completed blob signing!"
 
 ## ----------------------------------
