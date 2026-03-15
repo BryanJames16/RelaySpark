@@ -54,7 +54,7 @@ npm-clean:
 .PHONY: _npm-clean
 _npm-clean:
 	@echo "🧹 Performing clean up of NPM directory..."
-	rm -rf $(NPM_CLEAN_DIRECTORY)/node-modules/
+	rm -rf $(NPM_CLEAN_DIRECTORY)/node_modules/
 	@echo "✅ Completed clean up of NPM directory!"
 
 ##

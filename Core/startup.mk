@@ -19,7 +19,7 @@ startup:
 	@echo  " |_|_\\___|_\\__,_|\\_, |___/ .__/\\__,_|_| |_\\_\\ "
 	@echo  "                 |__/    |_|                  "
 
-	make --version
+	$(MAKE) --version
 
 ##
 # @function     print-echo
@@ -43,12 +43,12 @@ relayspark-clone:
 .PHONY: _relayspark-clone
 _relayspark-clone:
 	@echo "⚡ Cloning RelaySpark repository..."
-	mkdir -p .relayspark
-	cd .relayspark
-	git init
-	git remote add origin $(RELAYSPARK_GIT_URL)
-	git sparse-checkout init --no-cone
-	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE)
+	mkdir -p .relayspark && \
+	cd .relayspark && \
+	git init && \
+	git remote add origin $(RELAYSPARK_GIT_URL) && \
+	git sparse-checkout init --no-cone && \
+	git sparse-checkout set $(RELAYSPARK_FOLDER_FILE) && \
 	git pull --depth=1 origin main
 	@echo "✅ Done cloning RelaySpark repository!"
 
@@ -67,7 +67,7 @@ go-init:
 _go-init:
 	@echo "🔌 Initializing Go repository..."
 	go mod init $(GO_INIT_PATH) $(GO_INIT_ADDITIONAL_PARAMETERS)
-	go mod tidy $(GO_INIT_PATH) $(GO_INIT_TIDY_ADDITIONAL_PARAMETERS)
+	go mod tidy $(GO_INIT_TIDY_ADDITIONAL_PARAMETERS)
 	@echo "✅ Done initializing Go repository!"
 
 ##
@@ -99,7 +99,7 @@ _terraform-init:
 		echo $(TERRAFORM_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
 	fi
 	@if [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_TF_RC)" = "T" ]; then \
-		echo $(TERRAFORM_INIT_TF_RC) > /root/.teraformrc; \
+		echo $(TERRAFORM_INIT_TF_RC) > /root/.terraformrc; \
 	fi
 	terraform init -backend-config=$(TERRAFORM_INIT_BACKEND_CONFIG_FILE) $(TERRAFORM_INIT_ADDITIONAL_PARAMETERS)
 	@if [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TERRAFORM_INIT_ENABLE_WORKSPACE)" = "T" ]; then \
@@ -136,7 +136,7 @@ _tofu-init:
 		echo $(TOFU_INIT_TF_CREDS) > /root/.terraform.d/credentials.tfrc.json; \
 	fi
 	@if [ "$(TOFU_INIT_ENABLE_TF_RC)" = "true" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "True" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "t" ] || [ "$(TOFU_INIT_ENABLE_TF_RC)" = "T" ]; then \
-		echo $(TOFU_INIT_TF_RC) > /root/.teraformrc; \
+		echo $(TOFU_INIT_TF_RC) > /root/.terraformrc; \
 	fi
 	tofu init -backend-config=$(TOFU_INIT_BACKEND_CONFIG_FILE) $(TOFU_INIT_ADDITIONAL_PARAMETERS)
 	@if [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "true" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "True" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "t" ] || [ "$(TOFU_INIT_ENABLE_WORKSPACE)" = "T" ]; then \

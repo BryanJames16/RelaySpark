@@ -21,8 +21,7 @@ angular-lint:
 .PHONY: _angular-lint
 _angular-lint:
 	@echo "🧪 Performing Angular lint..."
-	cd $(ANGULAR_LINT_APP_PATH)
-	ng lint $(ANGULAR_LINT_ADDITIONAL_PARAMETERS)
+	cd $(ANGULAR_LINT_APP_PATH) && ng lint $(ANGULAR_LINT_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed angular linting!"
 
 ##
@@ -39,8 +38,7 @@ angular-test:
 .PHONY: _angular-test
 _angular-test:
 	@echo "🧪 Performing Angular unit testing..."
-	cd $(ANGULAR_TEST_APP_PATH)
-	ng test --code-coverage --watch=$(ANGULAR_TEST_ENABLE_FILE_WATCHING) $(ANGULAR_LINT_ADDITIONAL_PARAMETERS)
+	cd $(ANGULAR_TEST_APP_PATH) && ng test --code-coverage --watch=$(ANGULAR_TEST_ENABLE_FILE_WATCHING) $(ANGULAR_TEST_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed angular unit testing!"
 
 ##
@@ -209,7 +207,7 @@ _helm-test:
 # @param[in]    YAML_SCHEMA_LINT_ADDITIONAL_PARAMETERS       Additional parameters for scanning through yamale.
 ##
 .PHONY: yaml-schema-lint
-helm-test:
+yaml-schema-lint:
 	$(CONTAINER_COMMAND_BASE) $(CONTAINER_COMMAND_PARAMETER) $(CONTAINER_COMMAND_SERVICE) $(MAKE) _yaml-schema-lint
 
 .PHONY: _yaml-schema-lint

@@ -27,27 +27,27 @@ archive-publish:
 .PHONY: _archive-publish
 _archive-publish:
 	@echo "📜 Publishing into an archive..."
-	ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),zip)
-		echo "📦 Packaging as ZIP..."
-		zip -r $(ARCHIVE_PUBLISH_OUTPUT_NAME).zip $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_ZIP_ADDITIONAL_PARAMETERS)
-	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),tar)
-		echo "📦 Packaging as TAR..."
-		tar -cvf $(ARCHIVE_PUBLISH_OUTPUT_NAME).tar $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_TAR_ADDITIONAL_PARAMETERS)
-	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),xz)
-		echo "📦 Packaging as TAR.XZ..."
-		tar -cf - $(ARCHIVE_PUBLISH_SOURCE_DIR) | xz -c > $(ARCHIVE_PUBLISH_OUTPUT_NAME).tar.xz $(ARCHIVE_PUBLISH_XZ_ADDITIONAL_PARAMETERS)
-	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),7z)
-		echo "📦 Creating 7z archive..."
-		7z a $(ARCHIVE_PUBLISH_OUTPUT_NAME).7z $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_7Z_ADDITIONAL_PARAMETERS)
-	else ifeq ($(ARCHIVE_PUBLISH_ARCHIVE_TYPE),upx)
-		echo "📦 Applying UPX compression..."
-		upx -o $(ARCHIVE_PUBLISH_OUTPUT_NAME) $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_UPX_ADDITIONAL_PARAMETERS)
-		echo "UPX compression complete."
-	else
-		echo "Invalid archive type: $(ARCHIVE_PUBLISH_ARCHIVE_TYPE)"
-		echo "Supported types: 7z, zip, tar, xz, upx"
-		exit 1
-	endif
+	@if [ "$(ARCHIVE_PUBLISH_ARCHIVE_TYPE)" = "zip" ]; then \
+		echo "📦 Packaging as ZIP..."; \
+		zip -r $(ARCHIVE_PUBLISH_OUTPUT_NAME).zip $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_ZIP_ADDITIONAL_PARAMETERS); \
+	elif [ "$(ARCHIVE_PUBLISH_ARCHIVE_TYPE)" = "tar" ]; then \
+		echo "📦 Packaging as TAR..."; \
+		tar -cvf $(ARCHIVE_PUBLISH_OUTPUT_NAME).tar $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_TAR_ADDITIONAL_PARAMETERS); \
+	elif [ "$(ARCHIVE_PUBLISH_ARCHIVE_TYPE)" = "xz" ]; then \
+		echo "📦 Packaging as TAR.XZ..."; \
+		tar -cf - $(ARCHIVE_PUBLISH_SOURCE_DIR) | xz -c > $(ARCHIVE_PUBLISH_OUTPUT_NAME).tar.xz; \
+	elif [ "$(ARCHIVE_PUBLISH_ARCHIVE_TYPE)" = "7z" ]; then \
+		echo "📦 Creating 7z archive..."; \
+		7z a $(ARCHIVE_PUBLISH_OUTPUT_NAME).7z $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_7Z_ADDITIONAL_PARAMETERS); \
+	elif [ "$(ARCHIVE_PUBLISH_ARCHIVE_TYPE)" = "upx" ]; then \
+		echo "📦 Applying UPX compression..."; \
+		upx -o $(ARCHIVE_PUBLISH_OUTPUT_NAME) $(ARCHIVE_PUBLISH_SOURCE_DIR) $(ARCHIVE_PUBLISH_UPX_ADDITIONAL_PARAMETERS); \
+		echo "UPX compression complete."; \
+	else \
+		echo "Invalid archive type: $(ARCHIVE_PUBLISH_ARCHIVE_TYPE)"; \
+		echo "Supported types: 7z, zip, tar, xz, upx"; \
+		exit 1; \
+	fi
 	@echo "✅ Completed archive publishing!"
 
 ##
@@ -112,7 +112,7 @@ _helm-package:
 	sed -i "s/helm_chart_name/$(HELM_CHART_PACKAGE_NAME)/" Chart.yaml
 	@if [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "true" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "True" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "t" ] || [ "$(HELM_CHART_PACKAGE_SIGNING_ENABLED)" = "T" ]; then \
 		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) --key $(HELM_CHART_PACKAGE_KEY) --keyring $(HELM_CHART_PACKAGE_KEYRING) --destination ./ $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
-	else
+	else \
 		helm package $(HELM_CHART_PACKAGE_PATH) --version $(HELM_CHART_PACKAGE_VERSION) $(HELM_CHART_PACKAGE_ADDITIONAL_PARAMETERS); \
 	fi
 
@@ -215,7 +215,7 @@ _tar-docker-push:
 	docker image load --input $(TAR_DOCKER_PUSH_CONTAINER_IMAGE_PATH)
 	docker image tag $(TAR_DOCKER_PUSH_SOURCE_IMAGE_NAME) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	@if [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "true" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "True" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "t" ] || [ "$(TAR_DOCKER_PUSH_CONTAINER_SCANING_ENABLED)" = "T" ]; then \
-		cosign sign --key $(TAR_DOCKER_PUSH_COSIGN_KEY_PATH) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME);
+		cosign sign --key $(TAR_DOCKER_PUSH_COSIGN_KEY_PATH) $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME); \
 	fi
 	docker push $(TAR_DOCKER_PUSH_DESTINATION_IMAGE_NAME)
 	@echo "✅ Completed pushing image!"
@@ -244,10 +244,9 @@ _tar-crane-push:
 		echo $(TAR_CRANE_DOCKER_AUTH_CONFIG) > /kaniko/.docker/config.json; \
 		echo "✅ Completed seeding remote authentication credentials!"; \
 	fi
-	@echo "☁️ Pushing container image to $(TAR_KANIKO_PUSH_DESTINATION_IMAGE_NAME)..."
-	crane load -t $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH)
+	@echo "☁️ Pushing container image to $(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)..."
+	crane push $(TAR_CRANE_PUSH_CONTAINER_IMAGE_PATH) $(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME) $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
 	@if [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "true" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "True" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "t" ] || [ "$(TAR_CRANE_PUSH_CONTAINER_SIGNING_ENABLED)" = "T" ]; then \
 		cosign sign --key $(TAR_CRANE_PUSH_COSIGN_KEY_PATH) $(TAR_CRANE_PUSH_SIGN_ADDITIONAL_PARAMETERS) $(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME); \
 	fi
-	crane push "$(TAR_CRANE_PUSH_DESTINATION_IMAGE_NAME)" $(TAR_CRANE_PUSH_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed pushing image!"
