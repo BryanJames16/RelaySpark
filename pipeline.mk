@@ -8,19 +8,21 @@
 # This is the file that should be included on your project's Makefile.
 ##
 
+PIPELINE_MK_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
 # Include Core Files
-include Core/startup.mk
-include Core/build.mk
-include Core/publish.mk
-include Core/test.mk
-include Core/clean.mk
-include Core/security.mk
+include $(PIPELINE_MK_DIR)Core/startup.mk
+include $(PIPELINE_MK_DIR)Core/build.mk
+include $(PIPELINE_MK_DIR)Core/publish.mk
+include $(PIPELINE_MK_DIR)Core/test.mk
+include $(PIPELINE_MK_DIR)Core/clean.mk
+include $(PIPELINE_MK_DIR)Core/security.mk
 
 # Include Helper Files
-include Helper/Defaults/default-build.mk
-include Helper/Defaults/default-clean.mk
-include Helper/Defaults/default-general.mk
-include Helper/Defaults/default-publish.mk
-include Helper/Defaults/default-security.mk
-include Helper/Defaults/default-startup.mk
-include Helper/Defaults/default-test.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-build.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-clean.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-general.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-publish.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-security.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-startup.mk
+include $(PIPELINE_MK_DIR)Helper/Defaults/default-test.mk

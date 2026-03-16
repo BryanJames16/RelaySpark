@@ -157,7 +157,7 @@ helm-lint:
 .PHONY: _helm-lint
 _helm-lint:
 	@echo "🧪 Performing helm linting..."
-	sed -i "s/helm_chart_name/$(HELM_CHART_LINT_NAME)/" Chart.yaml
+	sed -i "s/helm_chart_name/$(HELM_CHART_LINT_NAME)/" $(HELM_CHART_LINT_PATH)/Chart.yaml
 	helm lint $(HELM_CHART_LINT_PATH) $(HELM_CHART_LINT_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm linting!"
 
@@ -175,7 +175,7 @@ helm-template:
 .PHONY: _helm-template
 _helm-template:
 	@echo "🧪 Performing helm tempalte..."
-	sed -i "s/helm_chart_name/$(HELM_CHART_TEMPLATE_NAME)/" Chart.yaml
+	sed -i "s/helm_chart_name/$(HELM_CHART_TEMPLATE_NAME)/" $(HELM_CHART_TEMPLATE_PATH)/Chart.yaml
 	helm template $(HELM_CHART_TEMPLATE_PATH) $(HELM_CHART_TEMPLATE_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm template!"
 
@@ -194,7 +194,7 @@ helm-test:
 .PHONY: _helm-test
 _helm-test:
 	@echo "🧪 Performing helm test..."
-	sed -i "s/helm_chart_name/$(HELM_CHART_TEST_NAME)/" Chart.yaml
+	sed -i "s/helm_chart_name/$(HELM_CHART_TEST_NAME)/" $(HELM_CHART_TEST_PATH)/Chart.yaml
 	helm install $(HELM_CHART_TEST_NAME) $(HELM_CHART_TEST_PATH) --namespace $(HELM_CHART_TEST_NAMESPACE)
 	helm test $(HELM_CHART_TEST_PATH) $(HELM_CHART_TEST_ADDITIONAL_PARAMETERS)
 	@echo "✅ Completed helm test!"
