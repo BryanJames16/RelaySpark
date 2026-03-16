@@ -251,7 +251,7 @@ cosign-container-image-tar-signing:
 .PHONY: _cosign-container-image-tar-signing
 _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
-	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
+	cosign sign-blob --yes --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
 	@echo "✅ Completed container signing!"
 
 ##
@@ -268,7 +268,7 @@ cosign-blob-signing:
 .PHONY: _cosign-blob-signing
 _cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
-	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_FILE)
+	cosign sign-blob --yes --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_FILE)
 	@echo "✅ Completed blob signing!"
 
 ## ----------------------------------
