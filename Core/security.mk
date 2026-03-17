@@ -251,7 +251,7 @@ cosign-container-image-tar-signing:
 .PHONY: _cosign-container-image-tar-signing
 _cosign-container-image-tar-signing:
 	@echo "✒️ Performing container scanning..."
-	cosign sign-blob --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
+	cosign sign-blob --yes --key $(COSIGN_CONTAINER_SIGNING_KEY_PATH) $(COSIGN_CONTAINER_SIGNING_ADDITIONAL_PARAMETERS) $(COSIGN_CONTAINER_IMAGE_PATH)
 	@echo "✅ Completed container signing!"
 
 ##
@@ -268,7 +268,7 @@ cosign-blob-signing:
 .PHONY: _cosign-blob-signing
 _cosign-blob-signing:
 	@echo "✒️ Performing blob signing..."
-	cosign sign-blob --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_FILE)
+	cosign sign-blob --yes --key $(COSIGN_BLOB_SIGNING_KEY_PATH) $(COSIGN_BLOB_ADDITIONAL_PARAMETERS) $(COSIGN_BLOB_FILE)
 	@echo "✅ Completed blob signing!"
 
 ## ----------------------------------
@@ -332,7 +332,7 @@ _osv-container-tar-scan:
 ##
 # @function     osv-source-scan
 # @brief        Job for OSV scan for source code repository.
-# @param[in]    OSV_SOURCE_SCAN_PATH                     Path of the source code repository to recursively scan.
+# @param[in]    OSV_SOURCE_SCAN_PATH                     Path of the source code repository or lockfile to scan.
 # @param[in]    OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV source scan.
 ##
 .PHONY: osv-source-scan
@@ -342,14 +342,18 @@ osv-source-scan:
 .PHONY: _osv-source-scan
 _osv-source-scan:
 	@echo "🔍 Performing OSV source scanning..."
-	osv-scanner scan source -r $(OSV_SOURCE_SCAN_PATH) $(OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS)
+	@if [ -f "$(OSV_SOURCE_SCAN_PATH)" ]; then \
+		osv-scanner scan source --lockfile "$(OSV_SOURCE_SCAN_PATH)" $(OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS); \
+	else \
+		osv-scanner scan source "$(OSV_SOURCE_SCAN_PATH)" --recursive $(OSV_SOURCE_SCAN_ADDITIONAL_PARAMETERS); \
+	fi
 	@echo "✅ Completed OSV source scanning!"
 
 ##
 # @function     osv-license-scan
 # @brief        Job for OSV scan for source code repository licenses.
-# @param[in]    OSV_LICENSE_SCAN_PATH                     Path of the source code repository to scan licenses.
-# @param[in]    OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV license scan.
+# @param[in]    OSV_LICENSE_SCAN_PATH                     Path of the source code repository or lockfile to scan licenses.
+# @param[in]    OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS    Additional parameters for OSV license scan. Use this to pass allowlists such as `--licenses=MIT`.
 ##
 .PHONY: osv-license-scan
 osv-license-scan:
@@ -358,7 +362,11 @@ osv-license-scan:
 .PHONY: _osv-license-scan
 _osv-license-scan:
 	@echo "🔍 Performing OSV license scanning..."
-	osv-scanner scan --licenses $(OSV_LICENSE_SCAN_PATH) $(OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS)
+	@if [ -f "$(OSV_LICENSE_SCAN_PATH)" ]; then \
+		osv-scanner scan source --lockfile "$(OSV_LICENSE_SCAN_PATH)" $(OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS); \
+	else \
+		osv-scanner scan source "$(OSV_LICENSE_SCAN_PATH)" --recursive $(OSV_LICENSE_SCAN_ADDITIONAL_PARAMETERS); \
+	fi
 	@echo "✅ Completed OSV license scanning!"
 
 ## ----------------------------------

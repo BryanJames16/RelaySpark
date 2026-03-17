@@ -87,4 +87,4 @@ release-package:
 RelaySpark defaults are intentionally override-friendly. Pipeline authors can replace variables, compose new targets around the underscored jobs, or fully redefine a target when a workflow needs custom behavior.
 
 # 📄 License
-MIT License - Copyright (c) 2025 Bryan James
+MIT License - Copyright (c) 2026 Bryan James
